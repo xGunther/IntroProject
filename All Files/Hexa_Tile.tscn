@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://grass_forest.glb" type="PackedScene" id=1]
+
+[node name="Hexa_Tile_Wood" type="Spatial"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="Grass_Forest_Tile" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 0, 0, 0 )
