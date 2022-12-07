@@ -46,8 +46,8 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=4]
-size = 25
+[sub_resource type="DynamicFont" id=9]
+size = 35
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
@@ -364,7 +364,7 @@ margin_bottom = 176.0
 rect_pivot_offset = Vector2( 2246, -51 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 9 )
 custom_styles/hover = SubResource( 5 )
 custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 8 )
