@@ -1,0 +1,478 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://3_players_Button.gd" type="Script" id=3]
+[ext_resource path="res://TitleScreen_Focus.tres" type="StyleBox" id=4]
+[ext_resource path="res://UI_Button.tres" type="StyleBox" id=5]
+[ext_resource path="res://New_Game_ButtonV4.tscn" type="PackedScene" id=6]
+[ext_resource path="res://New_Game_ButtonV4.gd" type="Script" id=7]
+[ext_resource path="res://New_New_Button.tres" type="StyleBox" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=3]
+size = 38
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="DynamicFont" id=10]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="DynamicFont" id=23]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="DynamicFont" id=11]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="New_Game" type="Panel"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="StartGameButton" parent="." instance=ExtResource( 6 )]
+margin_left = 832.0
+margin_top = 960.0
+margin_right = 1088.0
+margin_bottom = 1024.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 21 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 4 )
+text = "Start Game"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+reference_path = "res://Main.tscn"
+
+[node name="BackButton" parent="." instance=ExtResource( 6 )]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 168.0
+margin_bottom = 80.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/normal = SubResource( 5 )
+text = "Back"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+reference_path = "res://TitleScreen.tscn"
+
+[node name="Player_Count" type="Label" parent="."]
+margin_left = 832.0
+margin_top = 16.0
+margin_right = 1090.0
+margin_bottom = 80.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "Number of players "
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="3_Players_Button" type="Button" parent="Player_Count"]
+margin_left = -168.0
+margin_top = 80.0
+margin_right = 88.0
+margin_bottom = 152.0
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 22 )
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/focus = SubResource( 24 )
+custom_styles/normal = SubResource( 15 )
+text = "3 Players"
+script = ExtResource( 3 )
+reference_path = "res://New_Game_Menu_3.tscn"
+
+[node name="4_Players_Button2" type="Button" parent="Player_Count"]
+margin_left = 168.0
+margin_top = 80.0
+margin_right = 424.0
+margin_bottom = 152.0
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 23 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 25 )
+custom_styles/normal = SubResource( 20 )
+text = "4 Players"
+script = ExtResource( 3 )
+reference_path = "res://New_Game_Menu_4.tscn"
+
+[node name="Player_Names" type="Panel" parent="."]
+margin_left = 640.0
+margin_top = 192.0
+margin_right = 1280.0
+margin_bottom = 384.0
+rect_pivot_offset = Vector2( 528, 168 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="Player_Name1" type="Label" parent="Player_Names"]
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "  Player 1"
+valign = 1
+
+[node name="LineEdit" type="LineEdit" parent="Player_Names/Player_Name1"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 12 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player_Name2" type="Label" parent="Player_Names"]
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "  Player 2"
+valign = 1
+
+[node name="LineEdit2" type="LineEdit" parent="Player_Names/Player_Name2"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player_Name3" type="Label" parent="Player_Names"]
+margin_top = 120.0
+margin_right = 192.0
+margin_bottom = 184.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "  Player 3"
+valign = 1
+
+[node name="LineEdit3" type="LineEdit" parent="Player_Names/Player_Name3"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 14 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player_Name4" type="Label" parent="Player_Names"]
+visible = false
+margin_top = 176.0
+margin_right = 192.0
+margin_bottom = 240.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "  Player 4"
+valign = 1
+
+[node name="LineEdit4" type="LineEdit" parent="Player_Names/Player_Name4"]
+visible = false
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
