@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=2]
@@ -35,23 +35,6 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=21]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -120,14 +103,6 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=22]
-size = 25
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
 border_width_left = 2
@@ -162,7 +137,7 @@ shadow_size = 3
 shadow_offset = Vector2( 2, 0 )
 anti_aliasing_size = 2.0
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=21]
 bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -196,15 +171,7 @@ shadow_size = 3
 shadow_offset = Vector2( 2, 0 )
 anti_aliasing_size = 2.0
 
-[sub_resource type="DynamicFont" id=23]
-size = 25
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 2 )
-
-[sub_resource type="StyleBoxFlat" id=26]
+[sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -238,30 +205,13 @@ shadow_size = 3
 shadow_offset = Vector2( 2, 0 )
 anti_aliasing_size = 2.0
 
-[sub_resource type="StyleBoxFlat" id=25]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_color = Color( 1, 1, 1, 1 )
 border_blend = true
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -318,7 +268,6 @@ focus_neighbour_top = NodePath("../ExitButton")
 focus_neighbour_bottom = NodePath("../OptionsButton")
 custom_fonts/font = SubResource( 3 )
 custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 21 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/normal = SubResource( 4 )
 text = "Start Game"
@@ -368,10 +317,10 @@ custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 22 )
+custom_fonts/font = ExtResource( 1 )
 custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 17 )
-custom_styles/focus = SubResource( 24 )
+custom_styles/focus = SubResource( 21 )
 custom_styles/normal = SubResource( 15 )
 text = "3 Players"
 script = ExtResource( 3 )
@@ -386,11 +335,11 @@ custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 23 )
-custom_styles/hover = SubResource( 26 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/hover = SubResource( 18 )
 custom_styles/pressed = SubResource( 19 )
-custom_styles/focus = SubResource( 25 )
-custom_styles/normal = SubResource( 20 )
+custom_styles/focus = SubResource( 20 )
+custom_styles/normal = SubResource( 15 )
 text = "4 Players"
 script = ExtResource( 3 )
 reference_path = "res://Menu Scenes/New_Game_Menu_4.tscn"
@@ -399,7 +348,7 @@ reference_path = "res://Menu Scenes/New_Game_Menu_4.tscn"
 margin_left = 640.0
 margin_top = 192.0
 margin_right = 1280.0
-margin_bottom = 384.0
+margin_bottom = 440.0
 rect_pivot_offset = Vector2( 528, 168 )
 custom_styles/panel = SubResource( 1 )
 
@@ -471,8 +420,18 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="LineEdit4" type="LineEdit" parent="Player_Names/Player_Name3"]
+margin_left = 360.0
+margin_top = 64.0
+margin_right = 632.0
+margin_bottom = 112.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+
 [node name="Player_Name4" type="Label" parent="Player_Names"]
-visible = false
 margin_top = 176.0
 margin_right = 192.0
 margin_bottom = 240.0
@@ -480,15 +439,3 @@ custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 11 )
 text = "  Player 4"
 valign = 1
-
-[node name="LineEdit4" type="LineEdit" parent="Player_Names/Player_Name4"]
-visible = false
-margin_left = 360.0
-margin_top = 8.0
-margin_right = 632.0
-margin_bottom = 56.0
-rect_pivot_offset = Vector2( -104, 112 )
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = ExtResource( 1 )
-custom_styles/focus = ExtResource( 4 )
-custom_styles/normal = ExtResource( 5 )

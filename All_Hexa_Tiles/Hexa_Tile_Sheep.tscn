@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=2]
-
-[ext_resource path="res://dirt.material" type="Material" id=1]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 0.572549, 0.909804, 0.247059, 1 )
@@ -14,7 +12,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 48,
-"material": ExtResource( 1 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 48

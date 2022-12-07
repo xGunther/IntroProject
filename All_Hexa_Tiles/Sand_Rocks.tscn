@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://sand_rocks.glb" type="PackedScene" id=1]
+[ext_resource path="res://All Materials/sand_rocks.glb" type="PackedScene" id=1]
+
 
 [node name="sand_rocks" instance=ExtResource( 1 )]
 transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0 )

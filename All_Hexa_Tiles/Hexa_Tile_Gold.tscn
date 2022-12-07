@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://wood.material" type="Material" id=1]
-[ext_resource path="res://dirt.material" type="Material" id=2]
-[ext_resource path="res://coinsLargegltf.tscn" type="PackedScene" id=3]
-[ext_resource path="res://wool.material" type="Material" id=4]
+[ext_resource path="res://coinsLarge.gltf.glb" type="PackedScene" id=1]
+[ext_resource path="res://All Materials/dirt.material" type="Material" id=2]
+[ext_resource path="res://All Materials/wood.material" type="Material" id=3]
+[ext_resource path="res://All Materials/wool.material" type="Material" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "building_mine_Mesh building_mine"
@@ -53,7 +53,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": ExtResource( 1 ),
+"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 120
@@ -149,11 +149,11 @@ mesh = SubResource( 5 )
 transform = Transform( -3.89031e-08, 0, 0.89, 0, 0.89, 0, -0.89, 0, -3.89031e-08, -0.024, 0.2, -0.214 )
 mesh = SubResource( 6 )
 
-[node name="coinsLargegltf" parent="tmpParent/building_mine" instance=ExtResource( 3 )]
+[node name="coinsLargegltf" parent="tmpParent/building_mine" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, -5.32907e-15, 0, 0.1, 0, 5.32907e-15, 0, 0.1, 0.152, 0.2, 0.372 )
 
-[node name="coinsLargegltf2" parent="tmpParent/building_mine" instance=ExtResource( 3 )]
+[node name="coinsLargegltf2" parent="tmpParent/building_mine" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, -5.32907e-15, 0, 0.1, 0, 5.32907e-15, 0, 0.1, -0.154, 0.2, 0.372 )
 
-[node name="coinsLargegltf3" parent="tmpParent/building_mine" instance=ExtResource( 3 )]
+[node name="coinsLargegltf3" parent="tmpParent/building_mine" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, -5.32907e-15, 0, 0.1, 0, 5.32907e-15, 0, 0.1, 0.359, 0.2, 0.253 )

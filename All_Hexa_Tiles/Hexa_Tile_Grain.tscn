@@ -1,8 +1,4 @@
-[gd_scene load_steps=8 format=2]
-
-[ext_resource path="res://dirt.material" type="Material" id=1]
-[ext_resource path="res://Sand_Colour.tres" type="Material" id=2]
-[ext_resource path="res://grass.material" type="Material" id=3]
+[gd_scene load_steps=5 format=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "building_farm_Mesh building_farm"
@@ -13,7 +9,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 60,
-"material": ExtResource( 1 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 54
@@ -25,7 +20,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 72,
-"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 54
@@ -40,7 +34,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 84,
-"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 48

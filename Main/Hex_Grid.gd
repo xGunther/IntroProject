@@ -2,11 +2,11 @@ extends Spatial
 
 
 const Tile_Size : float = 5.0 
-const Hexa_Tile_Sheep = preload("res://Hexa_Tile_Sheep.tscn")
-const Hexa_Tile_Gold = preload("res://Hexa_Tile_Gold.tscn")
-const Hexa_Tile_Grain = preload("res://Hexa_Tile_Grain.tscn")
-const Hexa_Tile_Wood = preload("res://Hexa_Tile_Wood.tscn")
-const Hexa_Tile_Stone = preload("res://Hexa_Tile_Stone.tscn")
+const Hexa_Tile_Sheep = preload("res://All_Hexa_Tiles/Hexa_Tile_Sheep.tscn")
+const Hexa_Tile_Gold = preload("res://All_Hexa_Tiles/Hexa_Tile_Gold.tscn")
+const Hexa_Tile_Grain = preload("res://All_Hexa_Tiles/Hexa_Tile_Grain.tscn")
+const Hexa_Tile_Wood = preload("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn")
+const Hexa_Tile_Stone = preload("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn")
 
 
 var grid_Range: int = 5
