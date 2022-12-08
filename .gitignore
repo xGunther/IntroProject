@@ -1,4 +1,4 @@
 
 # ignore all .import files
 *.import
-
+*.mono
