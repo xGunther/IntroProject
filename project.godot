@@ -51,6 +51,10 @@ camera_right={
  ]
 }
 
+[mono]
+
+project/assembly_name="Intro Project"
+
 [physics]
 
 common/enable_pause_aware_picking=true
