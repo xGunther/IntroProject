@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=1]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Menu Scenes/Options_Game_Button.gd" type="Script" id=3]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=3]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]

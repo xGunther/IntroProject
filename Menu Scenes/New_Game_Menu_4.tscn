@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=2]
-[ext_resource path="res://Menu Scenes/3_players_Button.gd" type="Script" id=3]
+[ext_resource path="res://Menu Scenes/Player_Count_Button.gd" type="Script" id=3]
 [ext_resource path="res://Menu Scenes/TitleScreen_Focus.tres" type="StyleBox" id=4]
 [ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=5]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Menu Scenes/New_Game_ButtonV4.gd" type="Script" id=7]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -420,17 +420,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LineEdit4" type="LineEdit" parent="Player_Names/Player_Name3"]
-margin_left = 360.0
-margin_top = 64.0
-margin_right = 632.0
-margin_bottom = 112.0
-rect_pivot_offset = Vector2( -104, 112 )
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = ExtResource( 1 )
-custom_styles/focus = ExtResource( 4 )
-custom_styles/normal = ExtResource( 5 )
-
 [node name="Player_Name4" type="Label" parent="Player_Names"]
 margin_top = 176.0
 margin_right = 192.0
@@ -439,3 +428,14 @@ custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 11 )
 text = "  Player 4"
 valign = 1
+
+[node name="LineEdit4" type="LineEdit" parent="Player_Names/Player_Name4"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = ExtResource( 1 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )

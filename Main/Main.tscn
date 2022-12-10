@@ -10,15 +10,14 @@
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=8]
 [ext_resource path="res://Menu Scenes/Build_Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=10]
-[ext_resource path="res://Main/Settings_Button.gd" type="Script" id=11]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=11]
 [ext_resource path="res://All Sprites/81020.png" type="Texture" id=12]
 [ext_resource path="res://All Sprites/1098400-200.png" type="Texture" id=13]
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
-[ext_resource path="res://Menu Scenes/Build_Button.gd" type="Script" id=17]
-[ext_resource path="res://Menu Scenes/Trade_Button.gd" type="Script" id=18]
-[ext_resource path="res://Menu Scenes/Players_Turn.gd" type="Script" id=20]
+[ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
+[ext_resource path="res://Main/CollisionShape2D2.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -306,6 +305,9 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 8 )
 
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 104, 46.625 )
+
 [node name="Main" type="Spatial"]
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
 
@@ -407,9 +409,9 @@ __meta__ = {
 }
 
 [node name="Player_Name1" type="Label" parent="UI_Rect_Players_4"]
-margin_left = -1.0
-margin_right = 511.0
-margin_bottom = 64.0
+margin_top = 8.0
+margin_right = 512.0
+margin_bottom = 72.0
 rect_pivot_offset = Vector2( -592, 152 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -417,7 +419,7 @@ text = "  Player 1"
 valign = 1
 
 [node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name1"]
-position = Vector2( -511, 80 )
+position = Vector2( -512, 72 )
 scale = Vector2( 2.1, 1.98148 )
 texture = ExtResource( 15 )
 offset = Vector2( 373.333, -20.6916 )
@@ -436,72 +438,72 @@ scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
 [node name="Player_Name2" type="Label" parent="UI_Rect_Players_4"]
-margin_top = 128.0
+margin_top = 72.0
 margin_right = 512.0
-margin_bottom = 192.0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "  Player 3"
-valign = 1
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name2"]
-position = Vector2( -512, 16 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight2"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight2/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight2/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54204 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
-
-[node name="Player_Name3" type="Label" parent="UI_Rect_Players_4"]
-margin_top = 192.0
-margin_right = 512.0
-margin_bottom = 256.0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "  Player 4  "
-valign = 1
-
-[node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name3"]
-position = Vector2( -512, 16 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54205 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
-
-[node name="Player_Name4" type="Label" parent="UI_Rect_Players_4"]
-margin_top = 64.0
-margin_right = 512.0
-margin_bottom = 128.0
+margin_bottom = 136.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "  Player 2"
 valign = 1
 
+[node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name2"]
+position = Vector2( -512, 72 )
+scale = Vector2( 2.1, 1.98148 )
+texture = ExtResource( 15 )
+offset = Vector2( 373.333, -20.6916 )
+
+[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight"]
+position = Vector2( 358.095, -20.6916 )
+texture = ExtResource( 15 )
+
+[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight/Knight2"]
+position = Vector2( 30.4762, -3.8147e-06 )
+texture = ExtResource( 15 )
+
+[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight/Knight2/Knight3"]
+position = Vector2( 53.333, 4.54202 )
+scale = Vector2( 0.13007, 0.181831 )
+texture = ExtResource( 16 )
+
+[node name="Player_Name3" type="Label" parent="UI_Rect_Players_4"]
+margin_top = 136.0
+margin_right = 512.0
+margin_bottom = 200.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "  Player 3"
+valign = 1
+
+[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name3"]
+position = Vector2( -512, 72 )
+scale = Vector2( 2.1, 1.98148 )
+texture = ExtResource( 15 )
+offset = Vector2( 373.333, -20.6916 )
+
+[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight2"]
+position = Vector2( 358.095, -20.6916 )
+texture = ExtResource( 15 )
+
+[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight2/Knight2"]
+position = Vector2( 30.4762, -3.8147e-06 )
+texture = ExtResource( 15 )
+
+[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight2/Knight2/Knight3"]
+position = Vector2( 53.333, 4.54204 )
+scale = Vector2( 0.13007, 0.181831 )
+texture = ExtResource( 16 )
+
+[node name="Player_Name4" type="Label" parent="UI_Rect_Players_4"]
+margin_top = 200.0
+margin_right = 512.0
+margin_bottom = 264.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "  Player 4  "
+valign = 1
+
 [node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name4"]
-position = Vector2( -512, 208 )
+position = Vector2( -512, 72 )
 scale = Vector2( 2.1, 1.98148 )
 texture = ExtResource( 15 )
 offset = Vector2( 373.333, -20.6916 )
@@ -515,7 +517,7 @@ position = Vector2( 30.4762, -3.8147e-06 )
 texture = ExtResource( 15 )
 
 [node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name4/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54202 )
+position = Vector2( 53.333, 4.54205 )
 scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
@@ -530,8 +532,9 @@ __meta__ = {
 }
 
 [node name="Player_Name1" type="Label" parent="UI_Rect_Players_3"]
+margin_top = 8.0
 margin_right = 512.0
-margin_bottom = 64.0
+margin_bottom = 72.0
 rect_pivot_offset = Vector2( -592, 152 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -539,7 +542,7 @@ text = "  Player 1"
 valign = 1
 
 [node name="Knight" type="Sprite" parent="UI_Rect_Players_3/Player_Name1"]
-position = Vector2( -511, 80 )
+position = Vector2( -512, 72 )
 scale = Vector2( 2.1, 1.98148 )
 texture = ExtResource( 15 )
 offset = Vector2( 373.333, -20.6916 )
@@ -558,16 +561,16 @@ scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
 [node name="Player_Name2" type="Label" parent="UI_Rect_Players_3"]
-margin_top = 64.0
+margin_top = 72.0
 margin_right = 512.0
-margin_bottom = 128.0
+margin_bottom = 136.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "  Player 4  "
+text = "  Player 2"
 valign = 1
 
 [node name="Knight" type="Sprite" parent="UI_Rect_Players_3/Player_Name2"]
-position = Vector2( -512, 80 )
+position = Vector2( -512, 72 )
 scale = Vector2( 2.1, 1.98148 )
 texture = ExtResource( 15 )
 offset = Vector2( 373.333, -20.6916 )
@@ -586,9 +589,9 @@ scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
 [node name="Player_Name3" type="Label" parent="UI_Rect_Players_3"]
-margin_top = 144.0
+margin_top = 136.0
 margin_right = 512.0
-margin_bottom = 208.0
+margin_bottom = 200.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "  Player 3"
@@ -636,7 +639,7 @@ custom_styles/hover = SubResource( 13 )
 custom_styles/pressed = SubResource( 16 )
 custom_styles/normal = SubResource( 11 )
 text = "Trade"
-script = ExtResource( 18 )
+script = ExtResource( 11 )
 
 [node name="Trade_Sprite" type="Sprite" parent="UI_Rect_Build_Destroy/Trade_Button"]
 position = Vector2( 32, 32 )
@@ -650,7 +653,7 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = "Build "
-script = ExtResource( 17 )
+script = ExtResource( 11 )
 reference_path = "res://Menu Scenes/Build_Menu.tscn"
 
 [node name="UI_Rect_End_Turn" parent="." instance=ExtResource( 7 )]
@@ -708,6 +711,20 @@ custom_fonts/font = SubResource( 25 )
 text = "Player 1's turn"
 align = 1
 valign = 1
-script = ExtResource( 20 )
+
+[node name="Side1" type="Sprite" parent="."]
+position = Vector2( 72, 920 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 19 )
+
+[node name="Side2" type="Sprite" parent="."]
+position = Vector2( 184, 920 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 19 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 128, 920 )
+shape = SubResource( 30 )
+script = ExtResource( 22 )
 
 [editable path="UI_Rect_Build_Destroy/Build_Button"]

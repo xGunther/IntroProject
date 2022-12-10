@@ -10,8 +10,8 @@
 [ext_resource path="res://All Sprites/Afbeelding_hamer.png" type="Texture" id=8]
 [ext_resource path="res://All Sprites/Development_Card.png" type="Texture" id=9]
 [ext_resource path="res://All Sprites/Goud_Hexa.png" type="Texture" id=10]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=11]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=12]
-[ext_resource path="res://Menu Scenes/Back_Button.gd" type="Script" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -370,5 +370,5 @@ custom_styles/pressed = SubResource( 6 )
 custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 7 )
 text = "Back"
-script = ExtResource( 13 )
+script = ExtResource( 11 )
 reference_path = "res://Main/Main.tscn"

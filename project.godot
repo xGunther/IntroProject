@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="Intro Project"
+run/main_scene="res://Menu Scenes/TitleScreen.tscn"
 config/icon="res://All Sprites/icon_improvement_ziggurat.png"
+
+[autoload]
+
+Player_Names="*res://Main/Main.gd"
 
 [display]
 

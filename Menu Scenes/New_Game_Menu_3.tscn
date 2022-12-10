@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=2]
-[ext_resource path="res://Menu Scenes/3_players_Button.gd" type="Script" id=3]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=3]
 [ext_resource path="res://Menu Scenes/TitleScreen_Focus.tres" type="StyleBox" id=4]
 [ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=5]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Menu Scenes/New_Game_ButtonV4.gd" type="Script" id=7]
+[ext_resource path="res://Menu Scenes/player_Count_Buttons.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -322,7 +322,7 @@ custom_styles/pressed = SubResource( 21 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/normal = SubResource( 4 )
 text = "Start Game"
-script = ExtResource( 7 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -340,7 +340,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/focus = SubResource( 2 )
 custom_styles/normal = SubResource( 5 )
 text = "Back"
-script = ExtResource( 7 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -374,7 +374,7 @@ custom_styles/pressed = SubResource( 17 )
 custom_styles/focus = SubResource( 24 )
 custom_styles/normal = SubResource( 15 )
 text = "3 Players"
-script = ExtResource( 3 )
+script = ExtResource( 7 )
 reference_path = "res://Menu Scenes/New_Game_Menu_3.tscn"
 
 [node name="4_Players_Button2" type="Button" parent="Player_Count"]
@@ -392,7 +392,7 @@ custom_styles/pressed = SubResource( 19 )
 custom_styles/focus = SubResource( 25 )
 custom_styles/normal = SubResource( 20 )
 text = "4 Players"
-script = ExtResource( 3 )
+script = ExtResource( 7 )
 reference_path = "res://Menu Scenes/New_Game_Menu_4.tscn"
 
 [node name="Player_Names" type="Panel" parent="."]

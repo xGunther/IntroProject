@@ -1,6 +1,5 @@
 extends Spatial
 
-
 const Tile_Size : float = 5.0 
 const Hexa_Tile_Sheep = preload("res://All_Hexa_Tiles/Hexa_Tile_Sheep.tscn")
 const Hexa_Tile_Gold = preload("res://All_Hexa_Tiles/Hexa_Tile_Gold.tscn")
@@ -8,18 +7,13 @@ const Hexa_Tile_Grain = preload("res://All_Hexa_Tiles/Hexa_Tile_Grain.tscn")
 const Hexa_Tile_Wood = preload("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn")
 const Hexa_Tile_Stone = preload("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn")
 
-
 var grid_Range: int = 5
-var x: int = 1
 var tile_Coordinates := Vector2.ZERO
-
 
 func _ready() -> void:
 	make_grid(grid_Range)
 
-
 func make_grid(grid_Range):
-
 
 	for x in range (1):
 		var tile_Coordinates := Vector2.ZERO
@@ -66,21 +60,3 @@ func make_grid(grid_Range):
 			add_child(tile)
 			tile.translate(Vector3(tile_Coordinates.x, 0, tile_Coordinates.y))
 			tile_Coordinates.y += Tile_Size 
-
-
-#		for x in range(0,5):
-#			if (x % 2 == 0): 
-#				tile_Coordinates.x = (x / 2) * Tile_Size * cos (deg2rad(30)) 
-#				tile_Coordinates.y = -2.5 if x % 3 == 0 else Tile_Size / 2
-#			if (x == 3): 
-#				tile_Coordinates.x = (x / 2) * Tile_Size * cos (deg2rad(30)) 
-#				tile_Coordinates.y = -5 if x % 2 == 0 else Tile_Size / 2
-#			else: 
-#				tile_Coordinates.x = x * Tile_Size * cos (deg2rad(30)) 
-#				tile_Coordinates.y = 0 if x % 2 == 0 else Tile_Size / 2
-#			for y in range(0,5):
-#				var tile = Hexa_Tile_Wood.instance()
-#				add_child(tile)
-#				tile.translate(Vector3(tile_Coordinates.x, 0, tile_Coordinates.y))
-#				tile_Coordinates.y += Tile_Size 
-			

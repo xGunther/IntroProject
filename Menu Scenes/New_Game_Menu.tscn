@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Menu Scenes/3_players_Button.gd" type="Script" id=2]
-[ext_resource path="res://Menu Scenes/New_Game_ButtonV4.gd" type="Script" id=3]
+[ext_resource path="res://Menu Scenes/Player_Count_Button.gd" type="Script" id=2]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=3]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=4]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=5]
 [ext_resource path="res://Menu Scenes/TitleScreen_Focus.tres" type="StyleBox" id=6]
@@ -312,11 +312,9 @@ custom_styles/normal = SubResource( 15 )
 script = ExtResource( 2 )
 reference_path = "res://Menu Scenes/New_Game_Menu_4.tscn"
 
-[node name="Player_4" type="Label" parent="Player_Count"]
-margin_left = 168.0
-margin_top = 80.0
-margin_right = 424.0
-margin_bottom = 152.0
+[node name="Player_4" type="Label" parent="Player_Count/4_Players_Button2"]
+margin_right = 256.0
+margin_bottom = 72.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 10 )
 text = "4 players"
