@@ -10,7 +10,7 @@ public class Hex_GridCS : GridMap
     private Texture TileWood = ResourceLoader.Load("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn") as Texture;
     private Texture TileStone = ResourceLoader.Load("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn") as Texture;
 
-    private PackedScene Tilesheep = (PackedScene)GD.Load("res://All_Hexa-Tiles/Hexa_Tile_Sheep.tscn");
+    private PackedScene Tilesheep = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Sheep.tscn");
 
     private int TileSize = 5;
     public int GridRange = 5; // Number of lines and columns of the grid
