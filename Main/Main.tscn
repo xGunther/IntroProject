@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Main/Hex_Grid.gd" type="Script" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
+[ext_resource path="res://Main/Main.cs" type="Script" id=17]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
 [ext_resource path="res://Main/CollisionShape2D2.gd" type="Script" id=22]
 
@@ -310,6 +311,7 @@ extents = Vector2( 104, 46.625 )
 
 [node name="Main" type="Spatial"]
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
+script = ExtResource( 17 )
 
 [node name="Hex_Grid" type="Spatial" parent="."]
 script = ExtResource( 1 )
