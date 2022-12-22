@@ -1,41 +1,19 @@
 using Godot;
 using System;
 
-public class Main : Spatial
-{   
+public class turnManager : Node
+{
     public Node[] players;
     public int playerCount = 3;
+    private int currentPlayer = 0;
 
     public override void _Ready()
     { 
-        var turnManager = new turnManager();
-        turnManager.currentTurn = 0;
-        Connect("pressed", this, "endTurn");
-        
+        players = GetChildren();
+
         // Get a reference to the LineEdit nodes in the previous scene
-        var newGameMenuScene = GD.Load<PackedScene>("res://Menu Scenes/New_Game_Menu.tscn");
-        LineEdit PlayerName1 = newGameMenuScene.Instance().GetNode<LineEdit>("LineEdit1"); 
-        LineEdit PlayerName2 = newGameMenuScene.Instance().GetNode<LineEdit>("LineEdit2"); 
-        LineEdit PlayerName3 = newGameMenuScene.Instance().GetNode<LineEdit>("LineEdit3"); 
-        LineEdit PlayerName4 = newGameMenuScene.Instance().GetNode<LineEdit>("LineEdit4"); 
-
-        
-       
-        //Get a reference to the Label nodes
-        Label Player_Name1 = GetNode<Label>("UI_Rect_Players_4/Player_Name1");
-        Label Player_Name2 = GetNode<Label>("UI_Rect_Players_4/Player_Name2");
-        Label Player_Name3 = GetNode<Label>("UI_Rect_Players_4/Player_Name3");
-        Label Player_Name4 = GetNode<Label>("UI_Rect_Players_4/Player_Name4");
-        Label turnLabel = GetNode<Label>("Players_Turn"); 
-
-        // Set the label's text to the player's name
-        PlayerName1.Text = Player_Name1.Text;
-        PlayerName2.Text = Player_Name2.Text;  
-        PlayerName3.Text = Player_Name3.Text;
-        PlayerName4.Text = Player_Name4.Text;
     }
-public class turnManager
-{
+
     public int currentTurn { get; set; } 
 
     public void nextTurn(int playerCount)
@@ -48,6 +26,11 @@ public class turnManager
         }
     }
 
+        public Node GetCurrentPlayer()
+    {
+        // Return the current player's node
+        return players[currentPlayer];
+    }
     public void endTurn(EventArgs ea, object o)
     {
             nextTurn(3);
@@ -85,4 +68,3 @@ public class turnManager
     }
 
   }
-}
