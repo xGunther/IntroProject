@@ -19,6 +19,12 @@ public class Builder : Node
         if (MoveCheck())
         {
             //make placeable and add it to the list
+
+            /*Inspiration for creating new nodes:
+             * Spatial SheepTile = (Spatial) TileSheep.Instance();
+                AddChild(SheepTile);
+                SheepTile.Translate(TileCoordsV3);
+             */
         }
         else
         {
