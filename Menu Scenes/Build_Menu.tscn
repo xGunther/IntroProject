@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://All Sprites/goat_Hexa.png" type="Texture" id=1]
-[ext_resource path="res://All Sprites/knight.png" type="Texture" id=2]
+[ext_resource path="res://All Sprites/SettlementIcon.png" type="Texture" id=2]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=3]
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=4]
 [ext_resource path="res://All Sprites/Stone_Hexa.png" type="Texture" id=5]
@@ -125,10 +125,10 @@ anti_aliasing_size = 2.0
 [node name="Build_Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -355.0
-margin_top = -93.0
-margin_right = -355.0
-margin_bottom = -93.0
+margin_left = -400.0
+margin_top = -78.0
+margin_right = -400.0
+margin_bottom = -78.0
 rect_pivot_offset = Vector2( -560, -80 )
 
 [node name="UI_Rect_Resources" parent="." instance=ExtResource( 7 )]
@@ -145,11 +145,11 @@ scale = Vector2( 0.375, 0.375 )
 texture = ExtResource( 8 )
 
 [node name="Settlement" type="Sprite" parent="UI_Rect_Resources"]
-position = Vector2( 688, 240 )
-scale = Vector2( 4.9, 4.94444 )
+position = Vector2( 723.116, 246.762 )
+scale = Vector2( 0.585443, 0.549691 )
 texture = ExtResource( 2 )
 
-[node name="Development_Card" type="Sprite" parent="UI_Rect_Resources"]
+[node name="Development_Card_Icon" type="Sprite" parent="UI_Rect_Resources"]
 position = Vector2( 216, 568 )
 scale = Vector2( 0.237744, 0.22725 )
 texture = ExtResource( 9 )
@@ -174,7 +174,7 @@ margin_right = 264.0
 margin_bottom = 248.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Sheep" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1"]
+[node name="Settlement_Sheep" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1"]
 position = Vector2( 32, 32 )
 scale = Vector2( 1.03223, 0.91793 )
 texture = ExtResource( 1 )
@@ -185,7 +185,7 @@ margin_right = -8.0
 margin_bottom = 64.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Wood" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1/Panel3"]
+[node name="Settlement_Wood" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1/Panel3"]
 position = Vector2( 32, 32 )
 scale = Vector2( 2.4525, 2.61805 )
 texture = ExtResource( 6 )
@@ -196,7 +196,7 @@ margin_right = -8.0
 margin_bottom = 64.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Stone" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1/Panel3/Panel4"]
+[node name="Settlement_Stone" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1/Panel3/Panel4"]
 position = Vector2( 32, 32.0001 )
 scale = Vector2( 2.45, 2.47222 )
 texture = ExtResource( 5 )
@@ -207,7 +207,7 @@ margin_right = -8.0
 margin_bottom = 64.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Wheat" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1/Panel3/Panel4/Panel2"]
+[node name="Settlement_Wheat" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Settlement/Panel1/Panel3/Panel4/Panel2"]
 position = Vector2( 32, 32 )
 scale = Vector2( 1.62241, 1.72222 )
 texture = ExtResource( 4 )
@@ -295,7 +295,7 @@ margin_right = 296.0
 margin_bottom = 264.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Sheep" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Dev_Card2/Panel1"]
+[node name="Development_Sheep" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Dev_Card2/Panel1"]
 position = Vector2( 32, 32 )
 scale = Vector2( 1.03223, 0.91793 )
 texture = ExtResource( 1 )
@@ -306,7 +306,7 @@ margin_right = -8.0
 margin_bottom = 64.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Stone" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Dev_Card2/Panel1/Panel4"]
+[node name="Development_Stone" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Dev_Card2/Panel1/Panel4"]
 position = Vector2( 32, 32 )
 scale = Vector2( 2.505, 2.9504 )
 texture = ExtResource( 10 )
@@ -317,7 +317,7 @@ margin_right = -8.0
 margin_bottom = 64.0
 custom_styles/panel = SubResource( 3 )
 
-[node name="Setlement_Wheat" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Dev_Card2/Panel1/Panel4/Panel2"]
+[node name="Development_Wheat" type="Sprite" parent="UI_Rect_Resources/Victory_Points_Dev_Card2/Panel1/Panel4/Panel2"]
 position = Vector2( 32, 32 )
 scale = Vector2( 1.62241, 1.72222 )
 texture = ExtResource( 4 )
@@ -382,7 +382,7 @@ anchor_right = 0.014
 anchor_bottom = 0.019
 margin_left = 544.0
 margin_top = 269.0
-margin_right = 802.12
+margin_right = 819.12
 margin_bottom = 484.48
 focus_next = NodePath("../SettlementBuild")
 focus_previous = NodePath("../Back_Button")
@@ -392,19 +392,19 @@ __meta__ = {
 }
 
 [node name="DevelopCardBuild" type="Button" parent="."]
-margin_left = 559.0
+margin_left = 537.0
 margin_top = 582.0
-margin_right = 837.0
-margin_bottom = 828.0
+margin_right = 858.0
+margin_bottom = 868.0
 focus_next = NodePath("../CityBuild")
 focus_previous = NodePath("../SettlementBuild")
 flat = true
 
 [node name="SettlementBuild" type="Button" parent="."]
-margin_left = 1018.0
-margin_top = 268.0
-margin_right = 1344.0
-margin_bottom = 516.0
+margin_left = 1005.0
+margin_top = 273.0
+margin_right = 1333.0
+margin_bottom = 521.0
 focus_next = NodePath("../DevelopCardBuild")
 focus_previous = NodePath("../RoadBuild")
 flat = true
