@@ -41,10 +41,11 @@ public class Builder : Node
         {
             //make placeable and add it to the list
 
+            Placeable NewBuild = (Placeable) YCity.Instance();
+            AddChild(NewBuild);
 
 
             /*Inspiration for creating new nodes:
-             * private PackedScene TileSheep = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Sheep.tscn");
              * Spatial SheepTile = (Spatial) TileSheep.Instance();
                 AddChild(SheepTile);
                 SheepTile.Translate(TileCoordsV3);
