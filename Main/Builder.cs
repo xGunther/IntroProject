@@ -49,6 +49,8 @@ public class Builder : Node
              * Spatial SheepTile = (Spatial) TileSheep.Instance();
                 AddChild(SheepTile);
                 SheepTile.Translate(TileCoordsV3);
+
+            NewBuild has access to C# added methods and methods for normal nodes
              */
         }
         else

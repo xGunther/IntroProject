@@ -125,6 +125,10 @@ anti_aliasing_size = 2.0
 [node name="Build_Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -355.0
+margin_top = -93.0
+margin_right = -355.0
+margin_bottom = -93.0
 rect_pivot_offset = Vector2( -560, -80 )
 
 [node name="UI_Rect_Resources" parent="." instance=ExtResource( 7 )]
@@ -372,3 +376,44 @@ custom_styles/normal = SubResource( 7 )
 text = "Back"
 script = ExtResource( 11 )
 reference_path = "res://Main/Main.tscn"
+
+[node name="RoadBuild" type="Button" parent="."]
+anchor_right = 0.014
+anchor_bottom = 0.019
+margin_left = 544.0
+margin_top = 269.0
+margin_right = 802.12
+margin_bottom = 484.48
+focus_next = NodePath("../SettlementBuild")
+focus_previous = NodePath("../Back_Button")
+flat = true
+__meta__ = {
+"_editor_description_": "Button to "
+}
+
+[node name="DevelopCardBuild" type="Button" parent="."]
+margin_left = 559.0
+margin_top = 582.0
+margin_right = 837.0
+margin_bottom = 828.0
+focus_next = NodePath("../CityBuild")
+focus_previous = NodePath("../SettlementBuild")
+flat = true
+
+[node name="SettlementBuild" type="Button" parent="."]
+margin_left = 1018.0
+margin_top = 268.0
+margin_right = 1344.0
+margin_bottom = 516.0
+focus_next = NodePath("../DevelopCardBuild")
+focus_previous = NodePath("../RoadBuild")
+flat = true
+
+[node name="CityBuild" type="Button" parent="."]
+margin_left = 974.0
+margin_top = 578.0
+margin_right = 1376.0
+margin_bottom = 882.0
+focus_next = NodePath("../Back_Button")
+focus_previous = NodePath("../DevelopCardBuild")
+flat = true
