@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
 [ext_resource path="res://All Sprites/Goud_Hexa.png" type="Texture" id=3]
@@ -15,8 +15,10 @@
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
-[ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
+[ext_resource path="res://Main/die.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Main/Die_Grid.cs" type="Script" id=18]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
+[ext_resource path="res://Main/Throw_Dice_Button.cs" type="Script" id=20]
 [ext_resource path="res://Main/CollisionShape2D2.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=8]
@@ -308,6 +310,11 @@ font_data = ExtResource( 8 )
 [sub_resource type="RectangleShape2D" id=30]
 extents = Vector2( 104, 46.625 )
 
+[sub_resource type="PlaneMesh" id=31]
+
+[sub_resource type="ConcavePolygonShape" id=32]
+data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+
 [node name="Main" type="Spatial"]
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
 
@@ -319,7 +326,7 @@ __meta__ = {
 }
 
 [node name="Camera_Controller" type="Spatial" parent="."]
-transform = Transform( -0.998472, 0, 0.0552465, 0, 1, 0, -0.0552465, 0, -0.998472, -5, 0, -2.08616e-07 )
+transform = Transform( -0.999999, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -0.999999, -5, 0, -2.08616e-07 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -327,7 +334,7 @@ __meta__ = {
 movement_speed = 20.0
 
 [node name="Elevation" type="Spatial" parent="Camera_Controller"]
-transform = Transform( 0.997793, -0.0426784, 0.0508621, 0, 0.766044, 0.642788, -0.0663958, -0.64137, 0.764354, -1, 0, -8 )
+transform = Transform( 1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766045, -1, 0, -8 )
 
 [node name="Camera" type="Camera" parent="Camera_Controller/Elevation"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
@@ -730,5 +737,45 @@ texture = ExtResource( 19 )
 position = Vector2( 128, 920 )
 shape = SubResource( 30 )
 script = ExtResource( 22 )
+
+[node name="Throw_Dice_Button" type="Button" parent="CollisionShape2D2"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = -108.0
+margin_top = -44.0
+margin_right = 103.0
+margin_bottom = 45.0
+script = ExtResource( 20 )
+
+[node name="Delay" type="Timer" parent="CollisionShape2D2/Throw_Dice_Button"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Die_Grid" type="Spatial" parent="."]
+script = ExtResource( 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Die_Grid"]
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 21, 0 )
+visible = false
+mesh = SubResource( 31 )
+
+[node name="StaticBody" type="StaticBody" parent="Die_Grid/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Die_Grid/MeshInstance/StaticBody"]
+shape = SubResource( 32 )
+
+[node name="die" parent="Die_Grid" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 25, 14 )
+mass = 0.06
+
+[node name="die2" parent="Die_Grid" instance=ExtResource( 17 )]
+transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 37, 25, 10 )
+mass = 0.06
+
+[connection signal="pressed" from="CollisionShape2D2/Throw_Dice_Button" to="CollisionShape2D2/Throw_Dice_Button" method="ButtonPressed"]
+[connection signal="timeout" from="CollisionShape2D2/Throw_Dice_Button/Delay" to="CollisionShape2D2/Throw_Dice_Button" method="TimedOut"]
+[connection signal="visibility_changed" from="Die_Grid" to="Camera_Controller" method="_on_Die_Grid_visibility_changed"]
+[connection signal="visibility_changed" from="Die_Grid" to="Die_Grid/die" method="Die_GridChangedVis"]
+[connection signal="visibility_changed" from="Die_Grid" to="Die_Grid/die2" method="Die_GridChangedVis"]
 
 [editable path="UI_Rect_Build_Destroy/Build_Button"]

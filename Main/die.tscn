@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main/Material.material" type="Material" id=1]
+[ext_resource path="res://Main/die.cs" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=2]
 
@@ -20,9 +21,11 @@ surfaces/0 = {
 }
 
 [node name="die" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44151, 0 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="Cube" type="MeshInstance" parent="CollisionShape"]
