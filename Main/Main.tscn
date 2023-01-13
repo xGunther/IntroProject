@@ -1,6 +1,5 @@
 [gd_scene load_steps=43 format=2]
 
-[ext_resource path="res://Main/Hex_Grid.gd" type="Script" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
 [ext_resource path="res://All Sprites/Goud_Hexa.png" type="Texture" id=3]
 [ext_resource path="res://All Sprites/goat_Hexa.png" type="Texture" id=4]
@@ -16,6 +15,7 @@
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
+[ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
 [ext_resource path="res://Main/CollisionShape2D2.gd" type="Script" id=22]
 
@@ -311,8 +311,12 @@ extents = Vector2( 104, 46.625 )
 [node name="Main" type="Spatial"]
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
 
-[node name="Hex_Grid" type="Spatial" parent="."]
-script = ExtResource( 1 )
+[node name="Hex_GridCS" type="GridMap" parent="."]
+transform = Transform( 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0, 0 )
+script = ExtResource( 17 )
+__meta__ = {
+"_editor_clip_": 0
+}
 
 [node name="Camera_Controller" type="Spatial" parent="."]
 transform = Transform( -0.998472, 0, 0.0552465, 0, 1, 0, -0.0552465, 0, -0.998472, -5, 0, -2.08616e-07 )
