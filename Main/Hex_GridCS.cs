@@ -53,55 +53,56 @@ public class Hex_GridCS : GridMap
             int F = x + 10 * y;
             switch (F)
             {
+                /*
                 case 0: break; // x=0 y=0
                 case 1: break; // x=1 y=0
                 case 2: break; // x=2 y=0
                 case 3: break; // x=3 y=0
                 case 4: break; // x=4 y=0
                 case 5: break; // x=5 y=0
-                case 6: break; // x=6 y=0
-                case 10: break; // x=0 y=1
-                case 11: break; // x=1 y=1
-                case 12: break; // x=2 y=1 there needs to be a caravan tile here
-                case 13: TileChooserGrain(); break; // x=3 y=1
-                case 14: break; // x=4 y=1 there needs to be a caravan tile here
-                case 15: break; // x=5 y=1
-                case 16: break; // x=6 y=1
-                case 20: break; // x=0 y=2
-                case 21: TileChooserStone(); break; // x=1 y=2
-                case 22: TileChooserWood(); break; // x=2 y=2
-                case 23: TileChooserWood(); break; // x=3 y=2
-                case 24: TileChooserGrain(); break; // x=4 y=2
-                case 25: TileChooserGold(); break; // x=5 y=2
-                case 26: break; // x=6 y=2 there needs to be a caravan tile here
-                case 30: break; // x=0 y=3
-                case 31: TileChooserGrain(); break; // x=1 y=3
-                case 32: TileChooserGold(); break; // x=2 y=3
-                case 33: break; // x=3 y=3 there needs to be a desert tile here
-                case 34: TileChooserStone(); break; // x=4 y=3
-                case 35: TileChooserSheep(); break; // x=5 y=3
-                case 36: break; // x=6 y=3
-                case 40: break; // x=0 y=4
-                case 41: TileChooserSheep(); break; // x=1 y=4
-                case 42: TileChooserGrain(); break; // x=2 y=4
-                case 43: TileChooserWood(); break; // x=3 y=4
-                case 44: TileChooserSheep(); break; // x=4 y=4
-                case 45: TileChooserWood(); break; // x=5 y=4
-                case 46: break; // x=6 y=4 there needs to be a caravan tile here
-                case 50: break; // x=0 y=5
-                case 51: break; // x=1 y=5 there needs to be a caravan tile here
-                case 52: TileChooserSheep(); break; // x=2 y=5
-                case 53: TileChooserGold(); break; // x=3 y=5
-                case 54: TileChooserStone(); break; // x=4 y=5
-                case 55: break; // x=5 y=5 there needs to be a caravan tile here
-                case 56: break; // x=6 y=5
-                case 60: break; // x=0 y=6
-                case 61: break; // x=1 y=6
-                case 62: break; // x=2 y=6
-                case 63: break; // x=3 y=6 there needs to be a caravan tile here
-                case 64: break; // x=4 y=6
-                case 65: break; // x=5 y=6
-                case 66: break; // x=6 y=6
+                case 6: break; // x=6 y=0 */
+                case 0: break; // x=0 y=1
+                case 1: break; // x=1 y=1
+                case 2: break; // x=2 y=1 there needs to be a caravan tile here
+                case 3: TileChooserGrain(); break; // x=3 y=1
+                case 4: break; // x=4 y=1 there needs to be a caravan tile here
+                case 5: break; // x=5 y=1
+                case 6: break; // x=6 y=1
+                case 10: break; // x=0 y=2
+                case 11: TileChooserStone(); break; // x=1 y=2
+                case 12: TileChooserWood(); break; // x=2 y=2
+                case 13: TileChooserWood(); break; // x=3 y=2
+                case 14: TileChooserGrain(); break; // x=4 y=2
+                case 15: TileChooserGold(); break; // x=5 y=2
+                case 16: break; // x=6 y=2 there needs to be a caravan tile here
+                case 20: break; // x=0 y=3
+                case 21: TileChooserGrain(); break; // x=1 y=3
+                case 22: TileChooserGold(); break; // x=2 y=3
+                case 23: break; // x=3 y=3 there needs to be a desert tile here
+                case 24: TileChooserStone(); break; // x=4 y=3
+                case 25: TileChooserSheep(); break; // x=5 y=3
+                case 26: break; // x=6 y=3
+                case 30: break; // x=0 y=4
+                case 31: TileChooserSheep(); break; // x=1 y=4
+                case 32: TileChooserGrain(); break; // x=2 y=4
+                case 33: TileChooserWood(); break; // x=3 y=4
+                case 34: TileChooserSheep(); break; // x=4 y=4
+                case 35: TileChooserWood(); break; // x=5 y=4
+                case 36: break; // x=6 y=4 there needs to be a caravan tile here
+                case 40: break; // x=0 y=5
+                case 41: break; // x=1 y=5 there needs to be a caravan tile here
+                case 42: TileChooserSheep(); break; // x=2 y=5
+                case 43: TileChooserGold(); break; // x=3 y=5
+                case 44: TileChooserStone(); break; // x=4 y=5
+                case 45: break; // x=5 y=5 there needs to be a caravan tile here
+                case 46: break; // x=6 y=5
+                case 50: break; // x=0 y=6
+                case 51: break; // x=1 y=6
+                case 52: break; // x=2 y=6
+                case 53: break; // x=3 y=6 there needs to be a caravan tile here
+                case 54: break; // x=4 y=6
+                case 55: break; // x=5 y=6
+                case 56: break; // x=6 y=6
             }
         }
 
@@ -146,7 +147,7 @@ public class Hex_GridCS : GridMap
             TileCoords.x = x * TileSize * Mathf.Cos(ThirtyDegrees());
             TileCoords.y = 0;
             
-            for (int y = 0; y < GridRange; y++)
+            for (int y = 0; y < (GridRange - 1); y++)
             {
                 if (x % 2 == 0)
                 {
