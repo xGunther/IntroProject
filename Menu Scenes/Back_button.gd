@@ -10,8 +10,5 @@ func Mouse_Entered():
 	grab_focus()
 		
 func Button_Pressed():
-	if(reference_path !=""):
-		get_tree().change_scene(reference_path)
-		
-	else:
-		get_tree().quit() 
+	$"../Options_Game".hide()
+	self.hide()
