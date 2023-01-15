@@ -5,7 +5,11 @@ using System.Collections.Generic;
 //In this class, all things related to building are added, from creating a new placeable to saving all current placeables
 public class Builder : Node
 {
+    //list to save all made placeables
     public List<Placeable> AllBuildings= new List<Placeable>();
+
+    //this variable saves what will be built next. If nothing is being built, value should be null
+    public string SelectedBuild;
 
     //Red Builds
     private PackedScene RCity = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_City.tscn");
@@ -57,12 +61,17 @@ public class Builder : Node
         {
             //show a popup that this move is invalid?
         }
+        SelectedBuild = null;
     }
 
     //This method will check whether the move is legal or not and return whether it is.
     private bool MoveCheck()
     {
-        return true;
+        if (SelectedBuild != null)
+        {
+            return true;
+        }
+        return false;
     }
 
 }

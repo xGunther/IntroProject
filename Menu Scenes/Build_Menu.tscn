@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://All Sprites/goat_Hexa.png" type="Texture" id=1]
 [ext_resource path="res://All Sprites/SettlementIcon.png" type="Texture" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://All Sprites/Goud_Hexa.png" type="Texture" id=10]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=11]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=12]
+[ext_resource path="res://Menu Scenes/RoadBuild_Button.cs" type="Script" id=13]
+[ext_resource path="res://Menu Scenes/DevelopCardBuild_Button.cs" type="Script" id=14]
+[ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=15]
+[ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -377,43 +381,47 @@ text = "Back"
 script = ExtResource( 11 )
 reference_path = "res://Main/Main.tscn"
 
-[node name="RoadBuild" type="Button" parent="."]
+[node name="RoadBuild_Button" type="Button" parent="."]
 anchor_right = 0.014
 anchor_bottom = 0.019
 margin_left = 544.0
 margin_top = 269.0
 margin_right = 819.12
 margin_bottom = 484.48
-focus_next = NodePath("../SettlementBuild")
+focus_next = NodePath("../SettlementBuild_Button")
 focus_previous = NodePath("../Back_Button")
 flat = true
+script = ExtResource( 13 )
 __meta__ = {
 "_editor_description_": "Button to "
 }
 
-[node name="DevelopCardBuild" type="Button" parent="."]
+[node name="DevelopCardBuild_Button" type="Button" parent="."]
 margin_left = 537.0
 margin_top = 582.0
 margin_right = 858.0
 margin_bottom = 868.0
-focus_next = NodePath("../CityBuild")
-focus_previous = NodePath("../SettlementBuild")
+focus_next = NodePath("../CityBuild_Button")
+focus_previous = NodePath("../SettlementBuild_Button")
 flat = true
+script = ExtResource( 14 )
 
-[node name="SettlementBuild" type="Button" parent="."]
+[node name="SettlementBuild_Button" type="Button" parent="."]
 margin_left = 1005.0
 margin_top = 273.0
 margin_right = 1333.0
 margin_bottom = 521.0
-focus_next = NodePath("../DevelopCardBuild")
-focus_previous = NodePath("../RoadBuild")
+focus_next = NodePath("../DevelopCardBuild_Button")
+focus_previous = NodePath("../RoadBuild_Button")
 flat = true
+script = ExtResource( 15 )
 
-[node name="CityBuild" type="Button" parent="."]
+[node name="CityBuild_Button" type="Button" parent="."]
 margin_left = 974.0
 margin_top = 578.0
 margin_right = 1376.0
 margin_bottom = 882.0
 focus_next = NodePath("../Back_Button")
-focus_previous = NodePath("../DevelopCardBuild")
+focus_previous = NodePath("../DevelopCardBuild_Button")
 flat = true
+script = ExtResource( 16 )
