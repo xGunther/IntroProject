@@ -8,9 +8,12 @@ public class DevelopCardBuild_Button : Button
     public override void _Ready()
     {
         //Connect("pressed", this, "Triggered");
+        var button = new Button();
+        button.Pressed += ButtonPressed;
+        AddChild(button);
     }
 
-    private void Triggered()
+    private void ButtonPressed()
     {
         
 
