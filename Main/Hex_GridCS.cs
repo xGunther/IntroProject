@@ -48,19 +48,11 @@ public class Hex_GridCS : GridMap
             }
         }
         */
-        void TileChooserV2(int x, int p, int y)
+        void TileChooserV2(int x, int p, int y) // a new version of the TileChooser which sets the tiles in the beginner layout, desert tiles and caravan tiles missing
         {
             int F = x + 10 * y;
             switch (F)
             {
-                /*
-                case 0: break; // x=0 y=0
-                case 1: break; // x=1 y=0
-                case 2: break; // x=2 y=0
-                case 3: break; // x=3 y=0
-                case 4: break; // x=4 y=0
-                case 5: break; // x=5 y=0
-                case 6: break; // x=6 y=0 */
                 case 0: break; // x=0 y=1
                 case 1: break; // x=1 y=1
                 case 2: break; // x=2 y=1 there needs to be a caravan tile here
