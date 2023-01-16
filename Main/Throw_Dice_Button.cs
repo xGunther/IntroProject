@@ -25,7 +25,7 @@ public class Throw_Dice_Button : Button
         // Currently missing an extra check to determine whether they are allowed to throw them game-wise
         if (dieTimer.TimeLeft == 0)
         {
-            Spatial Grid = GetNode<Spatial>("../../Die_Grid");
+            Spatial Grid = GetNode<Spatial>("../Die_Grid");
             Grid.Show();
             dieTimer.Start();
         }
@@ -79,24 +79,24 @@ public class Throw_Dice_Button : Button
 
     public void UpdateDie()
     {
-        Spatial Grid = GetNode<Spatial>("../../Die_Grid");
+        Spatial Grid = GetNode<Spatial>("../Die_Grid");
 
         // Checks if the die are visible before throwing them 
         if (Grid.Visible)
         {
             Sprite dieSprite;
 
-            RigidBody die1 = GetNode<RigidBody>(new NodePath("../../Die_Grid/die"));
-            RigidBody die2 = GetNode<RigidBody>(new NodePath("../../Die_Grid/die2"));
+            RigidBody die1 = GetNode<RigidBody>(new NodePath("../Die_Grid/die"));
+            RigidBody die2 = GetNode<RigidBody>(new NodePath("../Die_Grid/die2"));
             dieSide1 = GetDieSide(die1);
             dieSide2 = GetDieSide(die2);
             dieSideSum = dieSide1 + dieSide2;
 
             // Changes the Texture property to the rolled number of that die. First die
-            dieSprite = GetNode<Sprite>("../../Side1");
+            dieSprite = GetNode<Sprite>("../Side1");
             dieSprite.Texture = (Texture)GD.Load($"res://All Sprites/Side{dieSide1}.png");
             // Second die
-            dieSprite = GetNode<Sprite>("../../Side2");
+            dieSprite = GetNode<Sprite>("../Side2");
             dieSprite.Texture = (Texture)GD.Load($"res://All Sprites/Side{dieSide2}.png");
 
         }
@@ -109,7 +109,7 @@ public class Throw_Dice_Button : Button
     {
         UpdateDie();
 
-        Spatial Grid = GetNode<Spatial>("../../Die_Grid");
+        Spatial Grid = GetNode<Spatial>("../Die_Grid");
         Grid.Hide();
 
 
