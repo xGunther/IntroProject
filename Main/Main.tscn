@@ -16,7 +16,7 @@
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
-[ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
+[ext_resource path="res://Main/Builder.cs" type="Script" id=17]
 [ext_resource path="res://Main/Build_Cost.gd" type="Script" id=18]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
 [ext_resource path="res://Start_Game.gd" type="Script" id=20]
@@ -32,7 +32,6 @@
 [ext_resource path="res://All Sprites/City.png" type="Texture" id=30]
 [ext_resource path="res://All Sprites/Road.png" type="Texture" id=31]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=33]
-[ext_resource path="res://Main/Builder.cs" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -907,8 +906,6 @@ custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 37 )
 text = "  Player 2"
 valign = 1
-[node name="Builder" type="Node" parent="."]
-script = ExtResource( 17 )
 
 [node name="LineEdit2" type="LineEdit" parent="Name_Input_Menu/Player_Names/Player_Name2"]
 margin_left = 360.0
@@ -1005,6 +1002,9 @@ margin_top = 96.0
 margin_right = 1081.0
 margin_bottom = 159.0
 text = "4 Players"
+
+[node name="Builder" type="Node" parent="."]
+script = ExtResource( 17 )
 
 [node name="Pause_Menu" parent="." instance=ExtResource( 11 )]
 pause_mode = 2
