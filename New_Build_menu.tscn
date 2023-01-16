@@ -8,7 +8,7 @@
 [ext_resource path="res://All Sprites/goat_Hexa.png" type="Texture" id=6]
 [ext_resource path="res://All Sprites/Goud_Hexa.png" type="Texture" id=7]
 [ext_resource path="res://All Sprites/Stone_Hexa.png" type="Texture" id=8]
-[ext_resource path="res://Menu Scenes/Close_Button.gd" type="Script" id=9]
+[ext_resource path="res://Close_Button.gd" type="Script" id=9]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=10]
 [ext_resource path="res://All Sprites/Settlement.png" type="Texture" id=11]
 [ext_resource path="res://All Sprites/Close icon.png" type="Texture" id=12]
@@ -202,6 +202,7 @@ margin_right = 468.0
 margin_bottom = 352.0
 
 [node name="Back_Button" type="Button" parent="."]
+pause_mode = 2
 margin_left = 1312.0
 margin_top = 168.0
 margin_right = 1376.0

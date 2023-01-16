@@ -1,4 +1,4 @@
-extends Button
+extends "res://Start_Game.gd"
 
 
 # Declare member variables here. Examples:

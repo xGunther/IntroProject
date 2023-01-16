@@ -10,5 +10,5 @@ func Mouse_Entered():
 		
 func Button_Pressed():
 	$"../../Build_Cost_Menu".show()
-	$"../../Build_Cost_Menu/Close_Cost_Button".show()
-	$"../../Build_Cost_Menu/Close_Cost_Button/CloseIcon".show()
+	$"../../Build_Cost_Menu/Close_Button".show()
+	$"../../Build_Cost_Menu/Close_Button/CloseIcon".show()

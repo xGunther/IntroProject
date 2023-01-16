@@ -197,6 +197,7 @@ script = ExtResource( 6 )
 reference_path = "res://Menu Scenes/TitleScreen.tscn"
 
 [node name="Resum_Button" parent="." instance=ExtResource( 3 )]
+pause_mode = 2
 margin_left = 736.0
 margin_top = 352.0
 margin_right = 1184.0
