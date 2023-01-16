@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
 [ext_resource path="res://All Sprites/Goud_Hexa.png" type="Texture" id=3]
@@ -10,11 +10,28 @@
 [ext_resource path="res://Menu Scenes/Build_Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=11]
-[ext_resource path="res://All Sprites/81020.png" type="Texture" id=12]
+[ext_resource path="res://TurnManager.tscn" type="PackedScene" id=12]
 [ext_resource path="res://All Sprites/1098400-200.png" type="Texture" id=13]
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
+[ext_resource path="res://Main/Main.gd" type="Script" id=17]
+[ext_resource path="res://Menu Scenes/New_Build_menu.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Main/Pause_Menu.tscn" type="PackedScene" id=19]
+[ext_resource path="res://End_Turn_Button.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Players_Turn.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Menu Scenes/TitleScreen_Focus.tres" type="StyleBox" id=22]
+[ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=23]
+[ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Menu Scenes/Start_Game.gd" type="Script" id=25]
+[ext_resource path="res://TurnManager.gd" type="Script" id=26]
+[ext_resource path="res://All Sprites/Development_Card.png" type="Texture" id=27]
+[ext_resource path="res://All Sprites/City.png" type="Texture" id=28]
+[ext_resource path="res://All Sprites/Settlement.png" type="Texture" id=29]
+[ext_resource path="res://All Sprites/Road.png" type="Texture" id=30]
+[ext_resource path="res://Main/Build_Cost.gd" type="Script" id=31]
+[ext_resource path="res://Menu Scenes/Close_Button.gd" type="Script" id=32]
+[ext_resource path="res://All Sprites/Close icon.png" type="Texture" id=33]
 [ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
 [ext_resource path="res://Main/Builder.cs" type="Script" id=17]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
@@ -62,7 +79,7 @@ border_width_right = 3
 border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 corner_radius_top_right = 15
 
-[sub_resource type="DynamicFont" id=26]
+[sub_resource type="DynamicFont" id=48]
 size = 25
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -176,119 +193,6 @@ border_width_top = 3
 border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 corner_radius_top_left = 15
 
-[sub_resource type="DynamicFont" id=18]
-size = 25
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 8 )
-
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=20]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=21]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=22]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=23]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=29]
-bg_color = Color( 0, 0, 0, 0 )
-
-[sub_resource type="StyleBoxFlat" id=28]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
 border_width_left = 3
@@ -298,7 +202,118 @@ border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="DynamicFont" id=25]
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 38
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="DynamicFont" id=41]
 size = 25
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -306,11 +321,187 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 8 )
 
-[sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 104, 46.625 )
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=43]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=44]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=45]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=46]
+size = 25
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=30]
+size = 38
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=32]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=33]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="DynamicFont" id=49]
+size = 35
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=51]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=52]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
 
 [node name="Main" type="Spatial"]
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
+script = ExtResource( 17 )
 
 [node name="Hex_GridCS" type="GridMap" parent="."]
 transform = Transform( 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0, 0 )
@@ -414,8 +605,9 @@ __meta__ = {
 }
 
 [node name="Player_Name1" type="Label" parent="UI_Rect_Players_4"]
+margin_left = 8.0
 margin_top = 8.0
-margin_right = 512.0
+margin_right = 520.0
 margin_bottom = 72.0
 rect_pivot_offset = Vector2( -592, 152 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
@@ -443,8 +635,9 @@ scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
 [node name="Player_Name2" type="Label" parent="UI_Rect_Players_4"]
+margin_left = 8.0
 margin_top = 72.0
-margin_right = 512.0
+margin_right = 520.0
 margin_bottom = 136.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -471,8 +664,9 @@ scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
 [node name="Player_Name3" type="Label" parent="UI_Rect_Players_4"]
+margin_left = 8.0
 margin_top = 136.0
-margin_right = 512.0
+margin_right = 520.0
 margin_bottom = 200.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -499,12 +693,13 @@ scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
 [node name="Player_Name4" type="Label" parent="UI_Rect_Players_4"]
+margin_left = 8.0
 margin_top = 200.0
-margin_right = 512.0
+margin_right = 520.0
 margin_bottom = 264.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "  Player 4  "
+text = "  Player 4"
 valign = 1
 
 [node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name4"]
@@ -526,143 +721,130 @@ position = Vector2( 53.333, 4.54205 )
 scale = Vector2( 0.13007, 0.181831 )
 texture = ExtResource( 16 )
 
-[node name="UI_Rect_Players_3" parent="." instance=ExtResource( 7 )]
-visible = false
-margin_left = 1408.0
-margin_right = 0.0
-margin_bottom = -880.0
-custom_styles/panel = SubResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Player_Name1" type="Label" parent="UI_Rect_Players_3"]
-margin_top = 8.0
-margin_right = 512.0
-margin_bottom = 72.0
-rect_pivot_offset = Vector2( -592, 152 )
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "  Player 1"
-valign = 1
-
-[node name="Knight" type="Sprite" parent="UI_Rect_Players_3/Player_Name1"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_3/Player_Name1/Knight"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_3/Player_Name1/Knight/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_3/Player_Name1/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54206 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
-
-[node name="Player_Name2" type="Label" parent="UI_Rect_Players_3"]
-margin_top = 72.0
-margin_right = 512.0
-margin_bottom = 136.0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "  Player 2"
-valign = 1
-
-[node name="Knight" type="Sprite" parent="UI_Rect_Players_3/Player_Name2"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_3/Player_Name2/Knight"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_3/Player_Name2/Knight/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_3/Player_Name2/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54205 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
-
-[node name="Player_Name3" type="Label" parent="UI_Rect_Players_3"]
-margin_top = 136.0
-margin_right = 512.0
-margin_bottom = 200.0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 1 )
-text = "  Player 3"
-valign = 1
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_3/Player_Name3"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
-
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_3/Player_Name3/Knight2"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_3/Player_Name3/Knight2/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_3/Player_Name3/Knight2/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54204 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
-
-[node name="UI_Rect_Build_Destroy" parent="." instance=ExtResource( 7 )]
-margin_top = 984.0
-margin_right = -1360.0
+[node name="UI_Rect_Build_And_Trade" parent="." instance=ExtResource( 7 )]
+margin_top = 928.0
+margin_right = -1152.0
 margin_bottom = 0.0
 custom_styles/panel = SubResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="Trade_Button" type="Button" parent="UI_Rect_Build_Destroy"]
-margin_left = 288.0
-margin_top = 16.0
-margin_right = 544.0
-margin_bottom = 80.0
+[node name="Trade_Button" type="Button" parent="UI_Rect_Build_And_Trade"]
+margin_left = 528.0
+margin_top = 80.0
+margin_right = 752.0
+margin_bottom = 136.0
 focus_mode = 0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 48 )
 custom_styles/hover = SubResource( 13 )
 custom_styles/pressed = SubResource( 16 )
 custom_styles/normal = SubResource( 11 )
-text = "Trade"
+text = " Trade"
 script = ExtResource( 11 )
 
-[node name="Trade_Sprite" type="Sprite" parent="UI_Rect_Build_Destroy/Trade_Button"]
-position = Vector2( 32, 32 )
-scale = Vector2( 0.21, 0.21 )
+[node name="Trade_Sprite" type="Sprite" parent="UI_Rect_Build_And_Trade/Trade_Button"]
+position = Vector2( 26.75, 28 )
+scale = Vector2( 0.2125, 0.2 )
 texture = ExtResource( 13 )
 
-[node name="Build_Button" parent="UI_Rect_Build_Destroy" instance=ExtResource( 9 )]
+[node name="Build_Cost" type="Button" parent="UI_Rect_Build_And_Trade"]
+margin_left = 528.0
+margin_top = 16.0
+margin_right = 752.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 48 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/normal = SubResource( 11 )
+text = "Build Cost"
+script = ExtResource( 31 )
+
+[node name="Road_Button" parent="UI_Rect_Build_And_Trade" instance=ExtResource( 9 )]
+margin_top = 32.0
+margin_right = 128.0
+margin_bottom = 136.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 10 )
 custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
-text = "Build "
+text = ""
 script = ExtResource( 11 )
-reference_path = "res://Menu Scenes/Build_Menu.tscn"
+
+[node name="Road" type="Sprite" parent="UI_Rect_Build_And_Trade/Road_Button"]
+position = Vector2( 56, 58.7813 )
+scale = Vector2( 0.145833, 0.213638 )
+texture = ExtResource( 30 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DevCard_Button" parent="UI_Rect_Build_And_Trade" instance=ExtResource( 9 )]
+margin_left = 144.0
+margin_top = 32.0
+margin_right = 256.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+text = ""
+script = ExtResource( 11 )
+
+[node name="DevelopmentCard" type="Sprite" parent="UI_Rect_Build_And_Trade/DevCard_Button"]
+position = Vector2( 56, 54.0313 )
+scale = Vector2( 0.150974, 0.1473 )
+texture = ExtResource( 27 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Settlement_Button" parent="UI_Rect_Build_And_Trade" instance=ExtResource( 9 )]
+margin_left = 272.0
+margin_top = 32.0
+margin_right = 384.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+text = ""
+script = ExtResource( 11 )
+
+[node name="Settlement" type="Sprite" parent="UI_Rect_Build_And_Trade/Settlement_Button"]
+position = Vector2( 72, 64 )
+scale = Vector2( 0.161458, 0.174383 )
+texture = ExtResource( 29 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="City_Button" parent="UI_Rect_Build_And_Trade" instance=ExtResource( 9 )]
+margin_left = 400.0
+margin_top = 32.0
+margin_right = 512.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 27 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/normal = SubResource( 12 )
+text = ""
+script = ExtResource( 11 )
+
+[node name="City" type="Sprite" parent="UI_Rect_Build_And_Trade/City_Button"]
+position = Vector2( 64, 40 )
+scale = Vector2( 0.128472, 0.161265 )
+texture = ExtResource( 28 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="UI_Rect_End_Turn" parent="." instance=ExtResource( 7 )]
-margin_left = 1536.0
+margin_left = 1600.0
 margin_top = 984.0
 margin_right = 0.0
 margin_bottom = 0.0
@@ -671,36 +853,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="End_Turn_Button" type="Button" parent="UI_Rect_End_Turn"]
-margin_left = 24.0
-margin_top = 15.0
-margin_right = 232.0
-margin_bottom = 79.0
-focus_mode = 0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 18 )
-custom_styles/hover = SubResource( 19 )
-custom_styles/pressed = SubResource( 20 )
-custom_styles/normal = SubResource( 21 )
-text = "End Turn"
-
-[node name="Settings_Button" type="Button" parent="UI_Rect_End_Turn"]
-margin_left = 280.0
+[node name="End_Turn_Button" parent="UI_Rect_End_Turn" instance=ExtResource( 20 )]
+pause_mode = 2
+margin_left = 56.0
 margin_top = 16.0
-margin_right = 352.0
+margin_right = 264.0
 margin_bottom = 80.0
-custom_styles/hover = SubResource( 22 )
-custom_styles/pressed = SubResource( 23 )
-custom_styles/focus = SubResource( 29 )
-custom_styles/normal = SubResource( 28 )
-script = ExtResource( 11 )
-reference_path = "res://Menu Scenes/Options_Game_Menu_InGame.tscn"
-
-[node name="Settings_Sprite" type="Sprite" parent="UI_Rect_End_Turn/Settings_Button"]
-position = Vector2( 38, 32 )
-scale = Vector2( 0.884463, 0.812132 )
-texture = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="UI_Rect_Turn" parent="." instance=ExtResource( 7 )]
 margin_left = 760.0
@@ -708,31 +869,227 @@ margin_right = -760.0
 margin_bottom = -1000.0
 custom_styles/panel = SubResource( 24 )
 
-[node name="Players_Turn" type="Label" parent="UI_Rect_Turn"]
+[node name="Players_Turn" parent="UI_Rect_Turn" instance=ExtResource( 21 )]
+pause_mode = 2
+margin_left = 0.0
+margin_top = 0.0
 margin_right = 400.0
 margin_bottom = 80.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Build_menu" parent="." instance=ExtResource( 18 )]
+visible = false
+
+[node name="Name_Input_Menu" type="Panel" parent="."]
+pause_mode = 2
+margin_right = 1920.0
+margin_bottom = 1080.0
+custom_styles/panel = SubResource( 47 )
+
+[node name="BackButton2" parent="Name_Input_Menu" instance=ExtResource( 24 )]
+pause_mode = 2
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 168.0
+margin_bottom = 80.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_fonts/font = SubResource( 34 )
+custom_styles/hover = SubResource( 35 )
+custom_styles/focus = SubResource( 36 )
+custom_styles/normal = SubResource( 37 )
+text = "Back"
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+reference_path = "res://Menu Scenes/TitleScreen.tscn"
+
+[node name="4_Players_Button2" type="Button" parent="Name_Input_Menu"]
+margin_left = 832.0
+margin_top = 88.0
+margin_right = 1088.0
+margin_bottom = 160.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 25 )
-text = "Player 1's turn"
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/hover = SubResource( 38 )
+custom_styles/pressed = SubResource( 39 )
+custom_styles/normal = SubResource( 40 )
+
+[node name="Player_4" type="Label" parent="Name_Input_Menu/4_Players_Button2"]
+margin_right = 256.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 41 )
+text = "4 Players"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Side1" type="Sprite" parent="."]
-position = Vector2( 72, 920 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 19 )
+[node name="Player_Names2" type="Panel" parent="Name_Input_Menu"]
+margin_left = 640.0
+margin_top = 192.0
+margin_right = 1280.0
+margin_bottom = 440.0
+rect_pivot_offset = Vector2( 528, 168 )
+custom_styles/panel = SubResource( 42 )
 
-[node name="Side2" type="Sprite" parent="."]
-position = Vector2( 184, 920 )
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 19 )
+[node name="Player_Name1" type="Label" parent="Name_Input_Menu/Player_Names2"]
+margin_top = 8.0
+margin_right = 192.0
+margin_bottom = 72.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 43 )
+text = "  Player 1"
+valign = 1
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 128, 920 )
-shape = SubResource( 30 )
-script = ExtResource( 22 )
+[node name="LineEdit" type="LineEdit" parent="Name_Input_Menu/Player_Names2/Player_Name1"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 44 )
+custom_styles/focus = ExtResource( 22 )
+custom_styles/normal = ExtResource( 23 )
+__meta__ = {
+"_edit_lock_": true
+}
 
+[node name="Player_Name2" type="Label" parent="Name_Input_Menu/Player_Names2"]
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 128.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 43 )
+text = "  Player 2"
+valign = 1
 [node name="Builder" type="Node" parent="."]
 script = ExtResource( 17 )
 
 [editable path="UI_Rect_Build_Destroy/Build_Button"]
+
+[node name="LineEdit2" type="LineEdit" parent="Name_Input_Menu/Player_Names2/Player_Name2"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 45 )
+custom_styles/focus = ExtResource( 22 )
+custom_styles/normal = ExtResource( 23 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player_Name3" type="Label" parent="Name_Input_Menu/Player_Names2"]
+margin_top = 120.0
+margin_right = 192.0
+margin_bottom = 184.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 43 )
+text = "  Player 3"
+valign = 1
+
+[node name="LineEdit3" type="LineEdit" parent="Name_Input_Menu/Player_Names2/Player_Name3"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 46 )
+custom_styles/focus = ExtResource( 22 )
+custom_styles/normal = ExtResource( 23 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player_Name4" type="Label" parent="Name_Input_Menu/Player_Names2"]
+margin_top = 176.0
+margin_right = 192.0
+margin_bottom = 240.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 43 )
+text = "  Player 4"
+valign = 1
+
+[node name="LineEdit4" type="LineEdit" parent="Name_Input_Menu/Player_Names2/Player_Name4"]
+margin_left = 360.0
+margin_top = 8.0
+margin_right = 632.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -104, 112 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 46 )
+custom_styles/focus = ExtResource( 22 )
+custom_styles/normal = ExtResource( 23 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StartGameButton2" parent="." instance=ExtResource( 24 )]
+pause_mode = 2
+margin_left = 832.0
+margin_top = 960.0
+margin_right = 1088.0
+margin_bottom = 1024.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_fonts/font = SubResource( 30 )
+custom_styles/hover = SubResource( 31 )
+custom_styles/focus = SubResource( 32 )
+custom_styles/normal = SubResource( 33 )
+text = "Start Game"
+script = ExtResource( 25 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Pause_Menu" parent="." instance=ExtResource( 19 )]
+pause_mode = 2
+visible = false
+
+[node name="TurnManager" parent="." instance=ExtResource( 12 )]
+script = ExtResource( 26 )
+
+[node name="Build_Cost_Menu" parent="." instance=ExtResource( 18 )]
+visible = false
+
+[node name="Close_Cost_Button" type="Button" parent="Build_Cost_Menu"]
+margin_left = 1312.0
+margin_top = 168.0
+margin_right = 1376.0
+margin_bottom = 224.0
+rect_pivot_offset = Vector2( 2246, -51 )
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 49 )
+custom_styles/hover = SubResource( 50 )
+custom_styles/pressed = SubResource( 51 )
+custom_styles/focus = SubResource( 52 )
+custom_styles/normal = SubResource( 53 )
+script = ExtResource( 32 )
+
+[node name="CloseIcon" type="Sprite" parent="Build_Cost_Menu/Close_Cost_Button"]
+position = Vector2( 32, 28 )
+scale = Vector2( 0.0564707, 0.055325 )
+texture = ExtResource( 33 )
+
+[connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="_on_End_Turn_Button_pressed"]
+[connection signal="text_changed" from="Name_Input_Menu/Player_Names2/Player_Name1/LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="Name_Input_Menu/Player_Names2/Player_Name1/LineEdit" to="TurnManager" method="_on_LineEdit_text_changed"]
+[connection signal="text_changed" from="Name_Input_Menu/Player_Names2/Player_Name2/LineEdit2" to="." method="_on_LineEdit2_text_changed"]
+[connection signal="text_changed" from="Name_Input_Menu/Player_Names2/Player_Name3/LineEdit3" to="." method="_on_LineEdit3_text_changed"]
+[connection signal="text_changed" from="Name_Input_Menu/Player_Names2/Player_Name4/LineEdit4" to="." method="_on_LineEdit4_text_changed"]
+[connection signal="hide" from="StartGameButton2" to="." method="_on_StartGameButton2_hide"]
+
+[editable path="UI_Rect_Build_And_Trade/Road_Button"]
+[editable path="UI_Rect_Build_And_Trade/DevCard_Button"]
+[editable path="UI_Rect_Build_And_Trade/Settlement_Button"]
+[editable path="UI_Rect_Build_And_Trade/City_Button"]

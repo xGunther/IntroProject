@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=5]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=7]
+[ext_resource path="res://Menu Scenes/Player_Names.cs" type="Script" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -351,6 +352,7 @@ margin_right = 1280.0
 margin_bottom = 440.0
 rect_pivot_offset = Vector2( 528, 168 )
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 8 )
 
 [node name="Player_Name1" type="Label" parent="Player_Names"]
 margin_top = 8.0
