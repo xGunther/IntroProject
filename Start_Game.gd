@@ -8,7 +8,5 @@ func Mouse_Entered():
 	grab_focus()
 		
 func Button_Pressed():
-	$"../Name_Input_Menu".hide()
+	$"..".hide()
 	self.hide()
-
-

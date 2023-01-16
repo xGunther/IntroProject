@@ -90,6 +90,7 @@ margin_bottom = 1080.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="BackButton" parent="." instance=ExtResource( 1 )]
+pause_mode = 2
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 168.0
