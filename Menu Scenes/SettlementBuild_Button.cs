@@ -12,7 +12,7 @@ public class SettlementBuild_Button : Button
 
     private void Triggered()
     {
-        Builder.SelectedBuild = "settlement";
+        //Builder.SelectedBuild = "settlement";
         
 
     }

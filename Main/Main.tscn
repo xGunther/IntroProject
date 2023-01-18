@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -16,7 +16,7 @@
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
-[ext_resource path="res://Main/Builder.cs" type="Script" id=17]
+[ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
 [ext_resource path="res://Main/Build_Cost.gd" type="Script" id=18]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
 [ext_resource path="res://Start_Game.gd" type="Script" id=20]
@@ -31,7 +31,9 @@
 [ext_resource path="res://All Sprites/Close icon.png" type="Texture" id=29]
 [ext_resource path="res://All Sprites/City.png" type="Texture" id=30]
 [ext_resource path="res://All Sprites/Road.png" type="Texture" id=31]
+[ext_resource path="res://Main/Builder.cs" type="Script" id=32]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=33]
+[ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=34]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -482,7 +484,7 @@ anti_aliasing_size = 2.0
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
 
 [node name="Hex_GridCS" type="GridMap" parent="."]
-transform = Transform( 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
 script = ExtResource( 17 )
 __meta__ = {
 "_editor_clip_": 0
@@ -736,8 +738,6 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = ""
-script = ExtResource( 33 )
-reference_path = "res://Menu Scenes/Build_Menu.tscn"
 
 [node name="Road" type="Sprite" parent="UI_Rect_Build_Destroy/Road_Button"]
 position = Vector2( 66, 69.625 )
@@ -753,8 +753,6 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = ""
-script = ExtResource( 33 )
-reference_path = "res://Menu Scenes/Build_Menu.tscn"
 
 [node name="Settlement" type="Sprite" parent="UI_Rect_Build_Destroy/Settlement_Button"]
 position = Vector2( 89, 72.6875 )
@@ -770,8 +768,7 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = ""
-script = ExtResource( 33 )
-reference_path = "res://Menu Scenes/Build_Menu.tscn"
+script = ExtResource( 34 )
 
 [node name="City" type="Sprite" parent="UI_Rect_Build_Destroy/City_Button"]
 position = Vector2( 74, 48 )
@@ -787,8 +784,6 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = ""
-script = ExtResource( 33 )
-reference_path = "res://Menu Scenes/Build_Menu.tscn"
 
 [node name="DevCard" type="Sprite" parent="UI_Rect_Build_Destroy/DevCard_Button"]
 position = Vector2( 64, 56 )
@@ -1003,8 +998,8 @@ margin_right = 1081.0
 margin_bottom = 159.0
 text = "4 Players"
 
-[node name="Builder" type="Node" parent="."]
-script = ExtResource( 17 )
+[node name="Builder_Node" type="Node" parent="."]
+script = ExtResource( 32 )
 
 [node name="Pause_Menu" parent="." instance=ExtResource( 11 )]
 pause_mode = 2
@@ -1037,6 +1032,7 @@ position = Vector2( 32, 28 )
 scale = Vector2( 0.0564707, 0.055325 )
 texture = ExtResource( 29 )
 
+[connection signal="pressed" from="UI_Rect_Build_Destroy/City_Button" to="UI_Rect_Build_Destroy/City_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="_on_End_Turn_Button_pressed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="UI_Rect_Players_4" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="TurnManager" method="_on_LineEdit_text_changed"]

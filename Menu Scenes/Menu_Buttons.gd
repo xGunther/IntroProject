@@ -1,6 +1,6 @@
 extends Button
 
-export var reference_path = ""
+export var reference_path = "res://Main/Main.tscn"
 
 #If the mouse enters or the a button is pressed it gives a signal that the mouse has entered or a button is pressed, then it goes to the function that is connected to the signal.
 func _ready():

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 //In this class, all things related to building are added, from creating a new placeable to saving all current placeables
-public class Builder : Node
+public class BuilderNode : Node
 {
     //list to save all made placeables
     public List<Placeable> AllBuildings= new List<Placeable>();
