@@ -3,17 +3,21 @@ using System;
 
 public class SettlementBuild_Button : Button
 {
-    
+    //Leaves room to save the Builder node (Builder_Node)
+    private BuilderNode Builder;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        //Connect("pressed", this, "Triggered");
+        
     }
 
+    //When the button is pressed
     private void Triggered()
     {
-        //Builder.SelectedBuild = "settlement";
-        
+        Builder = GetNode<BuilderNode>("../../Builder_Node");
+        Builder.SelectedBuild = "settlement";
+
 
     }
 }

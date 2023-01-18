@@ -11,6 +11,12 @@ public class BuilderNode : Node
     //this variable saves what will be built next. If nothing is being built, value should be null
     public string SelectedBuild;
 
+    //spot to save the TurnManager
+    Node TM;
+
+    //The eventual place of the coördinates for new 'buildings'
+    Vector3 Buildplacement;
+
     //Red Builds
     private PackedScene RCity = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_City.tscn");
     private PackedScene RSettlement = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_Settlement.tscn");
@@ -43,12 +49,81 @@ public class BuilderNode : Node
     {
         if (MoveCheck())
         {
+            TM = GetNode<Node>("../TurnManager");
+            int currentPlayer;
+            //currentPlayer = TM.currentTurn;
+
+            Placeable NewBuild = null;
+
+
+            /*switch (currentPlayer)
+            {
+                case 1://Red player's turn
+                    switch(SelectedBuild)
+                    {
+                        case "road": 
+                            NewBuild = (Placeable) RRoad.Instance(); 
+                            break;
+                        case "settlement":
+                            NewBuild = (Placeable) RSettlement.Instance();
+                            break;
+                        case "city":
+                            NewBuild = (Placeable)RCity.Instance(); 
+                            break;
+                    }
+                    break;
+                case 2://Blue player's turn
+                    switch (SelectedBuild)
+                    {
+                        case "road":
+                            NewBuild = (Placeable) BRoad.Instance();
+                            break;
+                        case "settlement":
+                            NewBuild = (Placeable)BSettlement.Instance();
+                            break;
+                        case "city":
+                            NewBuild = (Placeable)BCity.Instance();
+                            break;
+                    }
+                    break;
+                case 3: //Green player's turn
+                    switch (SelectedBuild)
+                    {
+                        case "road":
+                            NewBuild = (Placeable) GRoad.Instance();
+                            break;
+                        case "settlement": 
+                            NewBuild = (Placeable)GSettlement.Instance();
+                            break;
+                        case "city": 
+                            NewBuild = (Placeable)GCity.Instance();
+                            break;
+                    }
+                    break;
+                case 4: //Yellow player's turn
+                    switch (SelectedBuild)
+                    {
+                        case "road":
+                            NewBuild = (Placeable) YRoad.Instance();
+                            break;
+                        case "settlement": 
+                            NewBuild = (Placeable)YSettlement.Instance();
+                            break;
+                        case "city":
+                            NewBuild = (Placeable)YCity.Instance();
+                            break;
+                    }
+                    break;
+            }
+            */
+            
             //make placeable and add it to the list
-
-            Placeable NewBuild = (Placeable) YCity.Instance();
-            AddChild(NewBuild);
-
-
+            if(NewBuild != null)
+            {
+                AddChild(NewBuild);
+                AllBuildings.Add(NewBuild);
+                //NewBuild.Translate();
+            }
             /*Inspiration for creating new nodes:
              * Spatial SheepTile = (Spatial) TileSheep.Instance();
                 AddChild(SheepTile);
