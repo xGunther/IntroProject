@@ -8,6 +8,7 @@ public class die : RigidBody
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+        // saves the start location so that any following die throws can be respawned from the same location
         startLocation = GlobalTransform;
 
     }
@@ -18,12 +19,12 @@ public class die : RigidBody
         // randomizes RandRange function
         GD.Randomize();
         
-        // saves the start location so that any following die throws can be respawned from the same location
+        // Respawns the die at the start location
         GlobalTransform = startLocation;
 
         // x is up (neg) and down (pos) the board, z is left (pos) to right (neg) on the board. 
 
-        // Makes it more likely for the dice to hit each other, can remove if needed.
+        // Different xForces makes it more likely for the dice to hit each other, can remove if needed.
         double xForce;
         if (Name == "die")
         {
@@ -35,13 +36,11 @@ public class die : RigidBody
         }
         double yForce = GD.RandRange(8,10);
         double zForce = GD.RandRange(-17,-18);
-
         Vector3 vecForce = new Vector3((float)xForce, (float)yForce, (float)zForce);
 
         double xAngle = GD.RandRange(5, 10);
         double yAngle = GD.RandRange(5, 10);
         double zAngle = GD.RandRange(5, 10);
-
         Vector3 vecAngle = new Vector3((float)xAngle, (float)yAngle, (float)zAngle);
 
         // Adds a random force and angular velocity

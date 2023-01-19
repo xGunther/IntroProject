@@ -24,12 +24,12 @@ func _on_Die_Grid_visibility_changed():
 	var Grid = $"/root/Main/Die_Grid"
 	var ElevationCam = $"Elevation"
 	if Grid.visible: # Camera when the dice are being thrown
-		translation = Vector3(22, 14, 4)
+		translation = Vector3(14.5, 14, 8.5)
 		ElevationCam.rotation_degrees = Vector3(-90, 0, 0)
-	else: # 3.807 176.833
-		translation = Vector3(-5, 0, 0)
+	else: 
+		translation = Vector3(-13.5, 0, 3)
 		ElevationCam.rotation_degrees = Vector3(-40, 0, 0)
-		# rotation_degrees = Vector3(0, 180, 0)
+		
 	
 	
 	
