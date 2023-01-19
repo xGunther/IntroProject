@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=1]
-[ext_resource path="res://All Sprites/Afbeelding_hamer.png" type="Texture" id=2]
 
 [sub_resource type="DynamicFont" id=2]
 size = 25
@@ -21,8 +20,3 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.992157, 0.992157, 0.992157, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Build"
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 32, 32 )
-scale = Vector2( 0.179688, 0.179687 )
-texture = ExtResource( 2 )
