@@ -31,7 +31,7 @@
 [ext_resource path="res://All Sprites/Close icon.png" type="Texture" id=29]
 [ext_resource path="res://All Sprites/City.png" type="Texture" id=30]
 [ext_resource path="res://All Sprites/Road.png" type="Texture" id=31]
-[ext_resource path="res://Main/Builder.cs" type="Script" id=32]
+[ext_resource path="res://Main/Builder_Node.cs" type="Script" id=32]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=33]
 [ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=34]
 [ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=35]
