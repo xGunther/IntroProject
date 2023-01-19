@@ -1034,7 +1034,7 @@ position = Vector2( 32, 28 )
 scale = Vector2( 0.0564707, 0.055325 )
 texture = ExtResource( 29 )
 
-[connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="_on_End_Turn_Button_pressed"]
+[connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="endTurn"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="UI_Rect_Players_4" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="TurnManager" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name2/LineEdit2" to="UI_Rect_Players_4" method="_on_LineEdit2_text_changed"]
