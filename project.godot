@@ -16,6 +16,8 @@ config/icon="res://All Sprites/icon_improvement_ziggurat.png"
 
 [autoload]
 
+endTurnButton="*res://End_Turn_Button.tscn"
+PlayersTurn="*res://Players_Turn.tscn"
 Player_Names="*res://Main/Main.gd"
 endTurnButton="*res://End_Turn_Button.tscn"
 PlayersTurn="*res://Players_Turn.tscn"
