@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 //In this class, all things related to building are added, from creating a new placeable to saving all current placeables
 public class BuilderNode : Node
@@ -46,8 +47,6 @@ public class BuilderNode : Node
     //This method will create the nodes/placement instances and add them to the list
     public void build(Vector3 plaats)
     {
-        if (MoveCheck())
-        {
             TM = GetNode<Node>("../TurnManager");
             int currentPlayer;
             //currentPlayer = TM.currentTurn;
@@ -121,29 +120,12 @@ public class BuilderNode : Node
             {
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
-                //NewBuild.Translate();
+                NewBuild.Translate(plaats);
+                //add victory points
+                //add tiles
             }
-            /*Inspiration for creating new nodes:
-             * Spatial SheepTile = (Spatial) TileSheep.Instance();
-                AddChild(SheepTile);
-                SheepTile.Translate(TileCoordsV3);
-            */
-        }
-        else
-        {
-            //show a popup that this move is invalid?
-        }
+            
         SelectedBuild = null;
-    }
-
-    //This method will check whether the move is legal or not and return whether it is.
-    private bool MoveCheck()
-    {
-        if (SelectedBuild != null)
-        {
-            return true;
-        }
-        return false;
     }
 
 }
