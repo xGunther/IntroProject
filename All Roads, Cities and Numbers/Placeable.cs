@@ -7,7 +7,7 @@ using System;
  * Therefore, there will be no instances of class*/
 public abstract class Placeable : Spatial
 {
-    private string player;//this describes what player this element belongs to
+    protected string player;//this describes what player this element belongs to
                           //specifically their colour, as this is the only consistent thing across different games
 
     // Called when the node enters the scene tree for the first time, essentially when the object is constructed

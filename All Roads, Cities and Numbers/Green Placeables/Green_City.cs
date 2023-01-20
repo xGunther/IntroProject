@@ -7,6 +7,6 @@ public class Green_City : Placeable
     // Called when the node enters the scene tree for the first time, essentially when the object is constructed
     public override void _Ready()
     {
-        string player = "green";
+        this.player = "green";//setting the colour of its player
     }
 }
