@@ -14,6 +14,9 @@ public class BuilderNode : Node
     //spot to save the TurnManager
     Node TM;
 
+    //saves which player is currently playing, with standard value, in case real value can't be retrieved.
+    private int currentPlayer=1;
+
     //The eventual place of the coördinates for new 'buildings'
     Vector3 Buildplacement;
 
@@ -48,13 +51,12 @@ public class BuilderNode : Node
     public void build(Vector3 plaats)
     {
             TM = GetNode<Node>("../TurnManager");
-            int currentPlayer;
             //currentPlayer = TM.currentTurn;
 
             Placeable NewBuild = null;
 
 
-            /*switch (currentPlayer)
+            switch (currentPlayer)
             {
                 case 1://Red player's turn
                     switch(SelectedBuild)
@@ -113,8 +115,7 @@ public class BuilderNode : Node
                     }
                     break;
             }
-            */
-
+            
             //make placeable and add it to the list
             if (NewBuild != null)
             {
