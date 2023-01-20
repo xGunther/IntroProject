@@ -19,7 +19,6 @@ public class Throw_Dice_Button : Button
     public void ButtonPressed()
     {
         Timer dieTimer = GetNode<Timer>("Delay");
-        GD.Print(dieTimer.TimeLeft);
 
         // Only throws new die if the timer is on zero.
         // Currently missing an extra check to determine whether they are allowed to throw them game-wise
