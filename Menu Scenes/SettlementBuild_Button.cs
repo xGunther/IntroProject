@@ -17,7 +17,5 @@ public class SettlementBuild_Button : Button
     {
         Builder = GetNode<BuilderNode>("../../Builder_Node");
         Builder.SelectedBuild = "settlement";
-
-
     }
 }

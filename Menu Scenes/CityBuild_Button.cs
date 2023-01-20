@@ -17,7 +17,5 @@ public class CityBuild_Button : Button
     {
         Builder = GetNode<BuilderNode>("../../Builder_Node");
         Builder.SelectedBuild = "city";
-        
-        
     }
 }

@@ -17,6 +17,5 @@ public class RoadBuild_Button : Button
     {
         Builder = GetNode<BuilderNode>("../../Builder_Node");
         Builder.SelectedBuild = "road";
-        //this.get();
     }
 }
