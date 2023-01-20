@@ -16,6 +16,7 @@ public class BuilderNode : Node
 
     //saves which player is currently playing, with standard value, in case real value can't be retrieved.
     private int currentPlayer=1;
+    private string currentColour = "red";
 
     //The eventual place of the coördinates for new 'buildings'
     Vector3 Buildplacement;
@@ -40,6 +41,12 @@ public class BuilderNode : Node
     private PackedScene YCity = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Yellow Placeables/Yellow_City.tscn");
     private PackedScene YSettlement = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Yellow Placeables/Yellow_Settlement.tscn");
     private PackedScene YRoad = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Yellow Placeables/Yellow_Road.tscn");
+
+    //Scorekeeping for the game
+    public int RedScore = 0;
+    public int BlueScore = 0;
+    public int GreenScore = 0;
+    public int YellowScore = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -71,6 +78,7 @@ public class BuilderNode : Node
                             NewBuild = (Placeable)RCity.Instance(); 
                             break;
                     }
+                currentColour = "red";
                     break;
                 case 2://Blue player's turn
                     switch (SelectedBuild)
@@ -85,6 +93,7 @@ public class BuilderNode : Node
                             NewBuild = (Placeable)BCity.Instance();
                             break;
                     }
+                currentColour = "blue";
                     break;
                 case 3: //Green player's turn
                     switch (SelectedBuild)
@@ -99,6 +108,7 @@ public class BuilderNode : Node
                             NewBuild = (Placeable)GCity.Instance();
                             break;
                     }
+                currentColour = "green";
                     break;
                 case 4: //Yellow player's turn
                     switch (SelectedBuild)
@@ -113,18 +123,53 @@ public class BuilderNode : Node
                             NewBuild = (Placeable)YCity.Instance();
                             break;
                     }
+                currentColour = "yellow";
                     break;
             }
             
             //make placeable and add it to the list
             if (NewBuild != null)
+        {
+                if(SelectedBuild == "city")
+            {
+                bool mag = false;
+
+                foreach(Placeable placed in AllBuildings)
+                {
+                    if(placed.getPlayer() == this.currentColour)
+                    {
+                        if (placed.Translation == plaats)
+                        {
+                            mag= true;
+                        }
+                        
+                    }
+                }
+
+            }
+            else
             {
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
                 NewBuild.Translate(plaats);
-                //add victory points
-                //add tiles
             }
+
+                AddChild(NewBuild);
+                AllBuildings.Add(NewBuild);
+                NewBuild.Translate(plaats);
+
+                if (SelectedBuild == "settlement" || SelectedBuild == "city")
+                {
+                    switch (currentPlayer)
+                    {
+                        case 1: RedScore++; break;
+                        case 2: BlueScore++; break;
+                        case 3: GreenScore++; break;
+                        case 4: YellowScore++; break;
+                    }
+                }
+                //add tiles
+         }
             
         SelectedBuild = null;
     }
