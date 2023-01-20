@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://All Sprites/Close icon.png" type="Texture" id=29]
 [ext_resource path="res://All Sprites/City.png" type="Texture" id=30]
 [ext_resource path="res://All Sprites/Road.png" type="Texture" id=31]
+[ext_resource path="res://Main/Builder_Node.cs" type="Script" id=32]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=33]
 [ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=34]
 [ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=35]
@@ -1004,6 +1005,7 @@ margin_bottom = 159.0
 text = "4 Players"
 
 [node name="Builder_Node" type="Node" parent="."]
+script = ExtResource( 32 )
 
 [node name="Pause_Menu" parent="." instance=ExtResource( 11 )]
 pause_mode = 2
