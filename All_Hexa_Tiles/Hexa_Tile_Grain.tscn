@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://All Materials/new_spatialmaterial.tres" type="Material" id=1]
-[ext_resource path="res://All_Hexa_Tiles/TileSide.cs" type="Script" id=2]
-[ext_resource path="res://All_Hexa_Tiles/TileCorner.cs" type="Script" id=3]
+[ext_resource path="res://All_Hexa_Tiles/TileClick.cs" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.909804, 0.611765, 0.34902, 1 )
@@ -65,7 +64,27 @@ surfaces/0 = {
 
 [sub_resource type="SphereShape" id=6]
 
-[sub_resource type="BoxShape" id=7]
+[sub_resource type="SphereShape" id=7]
+
+[sub_resource type="SphereShape" id=8]
+
+[sub_resource type="SphereShape" id=9]
+
+[sub_resource type="SphereShape" id=10]
+
+[sub_resource type="SphereShape" id=11]
+
+[sub_resource type="BoxShape" id=12]
+
+[sub_resource type="BoxShape" id=13]
+
+[sub_resource type="BoxShape" id=14]
+
+[sub_resource type="BoxShape" id=15]
+
+[sub_resource type="BoxShape" id=16]
+
+[sub_resource type="BoxShape" id=17]
 
 [node name="building_farm" type="Spatial"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
@@ -90,98 +109,98 @@ transform = Transform( 0.866026, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0.866026, -0.145036
 mesh = SubResource( 4 )
 
 [node name="Corner1" type="Area" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner1"]
 transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 2.887, 1, 0 )
 shape = SubResource( 6 )
 
 [node name="Corner2" type="Area" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner2"]
 transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 1.443, 1, 2.5 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="Corner3" type="Area" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner3"]
 transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.443, 1, 2.5 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [node name="Corner4" type="Area" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner4"]
 transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -2.887, 1, 0 )
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 
 [node name="Corner5" type="Area" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner5"]
 transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.443, 1, -2.5 )
-shape = SubResource( 6 )
+shape = SubResource( 10 )
 
 [node name="Corner6" type="Area" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner6"]
 transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 1.444, 1, -2.5 )
-shape = SubResource( 6 )
+shape = SubResource( 11 )
 
 [node name="Side1" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileSideShape" type="CollisionShape" parent="Side1"]
 transform = Transform( 0.3465, 0, 0.600156, 0, 0, 0, -0.600156, 0, 0.3465, 2.165, 1, 1.25 )
-shape = SubResource( 7 )
+shape = SubResource( 12 )
 
 [node name="Side2" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileSideShape" type="CollisionShape" parent="Side2"]
 transform = Transform( 0.693, 0, 0, 0, 0, 0, 0, 0, 0.693, 0, 1, 2.5 )
-shape = SubResource( 7 )
+shape = SubResource( 13 )
 
 [node name="Side3" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileSideShape" type="CollisionShape" parent="Side3"]
 transform = Transform( 0.600156, 0, 0.3465, 0, 0, 0, -0.3465, 0, 0.600156, -2.165, 1, 1.25 )
-shape = SubResource( 7 )
+shape = SubResource( 14 )
 
 [node name="Side4" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileSideShape" type="CollisionShape" parent="Side4"]
 transform = Transform( 0.3465, 0, 0.600156, 0, 0, 0, -0.600156, 0, 0.3465, -2.165, 1, -1.25 )
-shape = SubResource( 7 )
+shape = SubResource( 15 )
 
 [node name="Side5" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileSideShape" type="CollisionShape" parent="Side5"]
 transform = Transform( 0.693, 0, -6.39893e-16, 0, 0, 0, 6.39893e-16, 0, 0.693, 0, 1, -2.5 )
-shape = SubResource( 7 )
+shape = SubResource( 16 )
 
 [node name="Side6" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileSideShape" type="CollisionShape" parent="Side6"]
 transform = Transform( 0.600156, 0, 0.3465, 0, 0, 0, -0.3465, 0, 0.600156, 2.165, 1, -1.25 )
-shape = SubResource( 7 )
+shape = SubResource( 17 )
 
-[connection signal="input_event" from="Corner1" to="Corner1" method="CornerInputEvent"]
-[connection signal="input_event" from="Corner2" to="Corner2" method="CornerInputEvent"]
-[connection signal="input_event" from="Corner3" to="Corner3" method="CornerInputEvent"]
-[connection signal="input_event" from="Corner4" to="Corner4" method="CornerInputEvent"]
-[connection signal="input_event" from="Corner5" to="Corner5" method="CornerInputEvent"]
-[connection signal="input_event" from="Corner6" to="Corner6" method="CornerInputEvent"]
-[connection signal="input_event" from="Side1" to="Side1" method="SideInputEvent"]
-[connection signal="input_event" from="Side2" to="Side2" method="SideInputEvent"]
-[connection signal="input_event" from="Side3" to="Side3" method="SideInputEvent"]
-[connection signal="input_event" from="Side4" to="Side4" method="SideInputEvent"]
-[connection signal="input_event" from="Side5" to="Side5" method="SideInputEvent"]
-[connection signal="input_event" from="Side6" to="Side6" method="SideInputEvent"]
+[connection signal="input_event" from="Corner1" to="Corner1" method="TileInputEvent"]
+[connection signal="input_event" from="Corner2" to="Corner2" method="TileInputEvent"]
+[connection signal="input_event" from="Corner3" to="Corner3" method="TileInputEvent"]
+[connection signal="input_event" from="Corner4" to="Corner4" method="TileInputEvent"]
+[connection signal="input_event" from="Corner5" to="Corner5" method="TileInputEvent"]
+[connection signal="input_event" from="Corner6" to="Corner6" method="TileInputEvent"]
+[connection signal="input_event" from="Side1" to="Side1" method="TileInputEvent"]
+[connection signal="input_event" from="Side2" to="Side2" method="TileInputEvent"]
+[connection signal="input_event" from="Side3" to="Side3" method="TileInputEvent"]
+[connection signal="input_event" from="Side4" to="Side4" method="TileInputEvent"]
+[connection signal="input_event" from="Side5" to="Side5" method="TileInputEvent"]
+[connection signal="input_event" from="Side6" to="Side6" method="TileInputEvent"]
