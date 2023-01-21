@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -20,7 +20,7 @@
 [ext_resource path="res://Main/Build_Cost.gd" type="Script" id=18]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
 [ext_resource path="res://Start_Game.gd" type="Script" id=20]
-[ext_resource path="res://Main/CollisionShape2D2.gd" type="Script" id=21]
+[ext_resource path="res://Main/die.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Menu Scenes/TitleScreen_Focus.tres" type="StyleBox" id=22]
 [ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=23]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=24]
@@ -31,7 +31,10 @@
 [ext_resource path="res://All Sprites/Close icon.png" type="Texture" id=29]
 [ext_resource path="res://All Sprites/City.png" type="Texture" id=30]
 [ext_resource path="res://All Sprites/Road.png" type="Texture" id=31]
+[ext_resource path="res://Main/End_Turn_Button.tscn" type="PackedScene" id=32]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=33]
+[ext_resource path="res://Main/Players_Turn.tscn" type="PackedScene" id=34]
+[ext_resource path="res://Main/Throw_Dice_Button.cs" type="Script" id=35]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -221,65 +224,6 @@ border_width_top = 3
 border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 corner_radius_top_left = 15
 
-[sub_resource type="DynamicFont" id=18]
-size = 25
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 8 )
-
-[sub_resource type="StyleBoxFlat" id=19]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=20]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
-[sub_resource type="StyleBoxFlat" id=21]
-bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
-shadow_size = 3
-shadow_offset = Vector2( 2, 0 )
-anti_aliasing_size = 2.0
-
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
 border_width_left = 3
@@ -288,17 +232,6 @@ border_width_bottom = 3
 border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-
-[sub_resource type="DynamicFont" id=25]
-size = 25
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 8 )
-
-[sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 104, 46.625 )
 
 [sub_resource type="StyleBoxFlat" id=36]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -478,6 +411,10 @@ shadow_size = 3
 shadow_offset = Vector2( 2, 0 )
 anti_aliasing_size = 2.0
 
+[sub_resource type="PlaneMesh" id=50]
+
+[sub_resource type="PlaneShape" id=51]
+
 [node name="Main" type="Spatial"]
 transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
 
@@ -489,7 +426,7 @@ __meta__ = {
 }
 
 [node name="Camera_Controller" type="Spatial" parent="."]
-transform = Transform( -0.998472, 0, 0.0552465, 0, 1, 0, -0.0552465, 0, -0.998472, -5, 0, -2.08616e-07 )
+transform = Transform( -0.999999, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -0.999999, -13.5, 0, 3 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -497,10 +434,10 @@ __meta__ = {
 movement_speed = 20.0
 
 [node name="Elevation" type="Spatial" parent="Camera_Controller"]
-transform = Transform( 0.997793, -0.0426784, 0.0508621, 0, 0.766044, 0.642788, -0.0663958, -0.64137, 0.764354, -1, 0, -8 )
+transform = Transform( 1, 0, 0, 0, 0.766123, 0.642853, 0, -0.642853, 0.766123, -1, 0, -8 )
 
 [node name="Camera" type="Camera" parent="Camera_Controller/Elevation"]
-transform = Transform( 1, -6.70552e-08, 4.09782e-08, 3.72529e-09, 1, -2.98023e-08, -3.72529e-09, 0, 1, 0, 4.76837e-07, 20 )
+transform = Transform( 1, -6.70552e-08, 4.09782e-08, 3.72529e-09, 1, -2.98023e-08, -3.72529e-09, 0, 1, 0, 0, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -821,19 +758,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="End_Turn_Button" type="Button" parent="UI_Rect_End_Turn"]
-margin_left = 88.0
-margin_top = 16.0
-margin_right = 296.0
-margin_bottom = 80.0
-focus_mode = 0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 18 )
-custom_styles/hover = SubResource( 19 )
-custom_styles/pressed = SubResource( 20 )
-custom_styles/normal = SubResource( 21 )
-text = "End Turn"
+[node name="End_Turn_Button" parent="UI_Rect_End_Turn" instance=ExtResource( 32 )]
 
 [node name="UI_Rect_Turn" parent="." instance=ExtResource( 7 )]
 margin_left = 760.0
@@ -841,14 +766,7 @@ margin_right = -760.0
 margin_bottom = -1000.0
 custom_styles/panel = SubResource( 24 )
 
-[node name="Players_Turn" type="Label" parent="UI_Rect_Turn"]
-margin_right = 400.0
-margin_bottom = 80.0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 25 )
-text = "Player 1's turn"
-align = 1
-valign = 1
+[node name="Players_Turn" parent="UI_Rect_Turn" instance=ExtResource( 34 )]
 
 [node name="Side1" type="Sprite" parent="."]
 position = Vector2( 64, 872 )
@@ -859,11 +777,6 @@ texture = ExtResource( 19 )
 position = Vector2( 176, 872 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 120, 872 )
-shape = SubResource( 30 )
-script = ExtResource( 21 )
 
 [node name="Name_Input_Menu" parent="." instance=ExtResource( 1 )]
 rect_pivot_offset = Vector2( 528, 472 )
@@ -1034,12 +947,51 @@ position = Vector2( 32, 28 )
 scale = Vector2( 0.0564707, 0.055325 )
 texture = ExtResource( 29 )
 
+[node name="Throw_Dice_Button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 15.0
+margin_top = 829.0
+margin_right = 226.0
+margin_bottom = 918.0
+script = ExtResource( 35 )
+
+[node name="Delay" type="Timer" parent="Throw_Dice_Button"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Die_Grid" type="Spatial" parent="."]
+visible = false
+
+[node name="Ground_Plane" type="MeshInstance" parent="Die_Grid"]
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 21, 0 )
+visible = false
+mesh = SubResource( 50 )
+
+[node name="StaticBody" type="StaticBody" parent="Die_Grid/Ground_Plane"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Die_Grid/Ground_Plane/StaticBody"]
+shape = SubResource( 51 )
+
+[node name="die" parent="Die_Grid" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, 25, 18.5 )
+mass = 0.06
+
+[node name="die2" parent="Die_Grid" instance=ExtResource( 21 )]
+transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 29.5, 25, 14.5 )
+mass = 0.06
+
 [connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="_on_End_Turn_Button_pressed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="UI_Rect_Players_4" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="TurnManager" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name2/LineEdit2" to="UI_Rect_Players_4" method="_on_LineEdit2_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name3/LineEdit3" to="UI_Rect_Players_4" method="_on_LineEdit3_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name4/LineEdit4" to="UI_Rect_Players_4" method="_on_LineEdit4_text_changed"]
+[connection signal="pressed" from="Throw_Dice_Button" to="Throw_Dice_Button" method="ButtonPressed"]
+[connection signal="timeout" from="Throw_Dice_Button/Delay" to="Throw_Dice_Button" method="TimedOut"]
+[connection signal="visibility_changed" from="Die_Grid" to="Camera_Controller" method="_on_Die_Grid_visibility_changed"]
+[connection signal="visibility_changed" from="Die_Grid" to="Die_Grid/die" method="Die_GridChangedVis"]
+[connection signal="visibility_changed" from="Die_Grid" to="Die_Grid/die2" method="Die_GridChangedVis"]
 
 [editable path="UI_Rect_Build_Destroy/Road_Button"]
 [editable path="UI_Rect_Build_Destroy/Settlement_Button"]
