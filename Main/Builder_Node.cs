@@ -8,6 +8,12 @@ public class BuilderNode : Node
     //list to save all made placeables
     public List<Placeable> AllBuildings = new List<Placeable>();
 
+    //Lists for all players to quickly access their buildings
+    public List<Placeable> RedBuilds= new List<Placeable>();
+    public List<Placeable> BlueBuilds= new List<Placeable>();
+    public List<Placeable> GreenBuilds= new List<Placeable>();
+    public List<Placeable> YellowBuilds= new List<Placeable>();
+
     //this variable saves what will be built next. If nothing is being built, value should be null
     public string SelectedBuild;
 
@@ -62,6 +68,8 @@ public class BuilderNode : Node
 
         Placeable NewBuild = null;
 
+        //A local variable to save the relevant player-specific list, with standard value
+        List<Placeable> RelevantList= RedBuilds;
 
         switch (currentPlayer)
         {
@@ -79,6 +87,7 @@ public class BuilderNode : Node
                         break;
                 }
                 currentColour = "red";
+                RelevantList = RedBuilds;
                 break;
             case 2://Blue player's turn
                 switch (SelectedBuild)
@@ -94,6 +103,7 @@ public class BuilderNode : Node
                         break;
                 }
                 currentColour = "blue";
+                RelevantList = BlueBuilds;
                 break;
             case 3: //Green player's turn
                 switch (SelectedBuild)
@@ -109,6 +119,7 @@ public class BuilderNode : Node
                         break;
                 }
                 currentColour = "green";
+                RelevantList= GreenBuilds;
                 break;
             case 4: //Yellow player's turn
                 switch (SelectedBuild)
@@ -124,6 +135,7 @@ public class BuilderNode : Node
                         break;
                 }
                 currentColour = "yellow";
+                RelevantList = YellowBuilds;
                 break;
         }
 
@@ -152,11 +164,8 @@ public class BuilderNode : Node
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
                 NewBuild.Translate(plaats);
+                RelevantList.Add(NewBuild);
             }
-
-            AddChild(NewBuild);
-            AllBuildings.Add(NewBuild);
-            NewBuild.Translate(plaats);
 
             if (SelectedBuild == "settlement" || SelectedBuild == "city")
             {
@@ -168,7 +177,7 @@ public class BuilderNode : Node
                     case 4: YellowScore++; break;
                 }
             }
-            //add tiles
+            //add tiles to builds
         }
 
         SelectedBuild = null;
