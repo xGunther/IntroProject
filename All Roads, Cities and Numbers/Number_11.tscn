@@ -1,18 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://dark.material" type="Material" id=1]
-[ext_resource path="res://COPRGTB.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://All Materials/dark.material" type="Material" id=1]
+[ext_resource path="res://Main/Font.tres" type="DynamicFont" id=2]
 
 [sub_resource type="CylinderMesh" id=1]
 height = 0.1
 
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
-
 [sub_resource type="TextMesh" id=3]
 material = ExtResource( 1 )
 text = "11"
-font = SubResource( 2 )
+font = ExtResource( 2 )
 
 [sub_resource type="CylinderMesh" id=4]
 material = ExtResource( 1 )

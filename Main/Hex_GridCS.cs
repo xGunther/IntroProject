@@ -11,6 +11,7 @@ public class Hex_GridCS : GridMap
     private PackedScene TileGrain = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Grain.tscn");
     private PackedScene TileWood = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn");
     private PackedScene TileStone = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn");
+    private PackedScene Number2 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_2.tscn");
 
     private float TileSize = 5; // Size of the tiles of the board
     public int GridRange = 7; // Number of lines and columns of the grid
@@ -31,24 +32,8 @@ public class Hex_GridCS : GridMap
     {
         Vector2 TileCoords;
         Vector3 TileCoordsV3;
-        /*
-        void TileChooser(int x, int p, int y)
-        {
-            if (x % 2 == 0)
-            {
-                Spatial SheepTile = (Spatial) TileSheep.Instance();
-                AddChild(SheepTile);
-                SheepTile.Translate(TileCoordsV3);
-            }
-            else
-            {
-                Spatial GoldTile = (Spatial) TileGold.Instance();
-                AddChild(GoldTile);
-                GoldTile.Translate(TileCoordsV3);
-            }
-        }
-        */
-        void TileChooserV2(int x, int p, int y) // a new version of the TileChooser which sets the tiles in the beginner layout, desert tiles and caravan tiles missing
+
+        void TileChooserV2(int x, int p, int y) // A function that sets the tiles in the beginner layout, desert tiles and caravan tiles missing
         {
             int F = x + 10 * y;
             switch (F)
@@ -98,6 +83,7 @@ public class Hex_GridCS : GridMap
             }
         }
 
+        // Functions for adding the specific tile to the coordinate in the switch (above)
         void TileChooserSheep()
         {
             Spatial SheepTile = (Spatial)TileSheep.Instance();
@@ -132,14 +118,14 @@ public class Hex_GridCS : GridMap
             AddChild(StoneTile);
             StoneTile.Translate(TileCoordsV3);
         }
-    
-        for (int x = 0; x < GridRange; x++)
+        
+        for (int x = 0; x < GridRange; x++) // Function for calculating the coordinates of the tiles
         {
             TileCoords = new Vector2();
             TileCoords.x = x * TileSize * Mathf.Cos(ThirtyDegrees());
             TileCoords.y = 0;
             
-            for (int y = 0; y < (GridRange - 1); y++)
+            for (int y = 0; y < (GridRange - 1); y++) // The grid is higher than wide
             {
                 if (x % 2 == 0)
                 {
