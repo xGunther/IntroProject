@@ -3,6 +3,7 @@ using System;
 
 public class TileCorner : Area
 {
+    // currently TileSide.cs and TileCorner.cs are two different files in case that is necessary, but it's possible to use only one file
     public override void _Ready()
     {
         

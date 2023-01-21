@@ -109,21 +109,21 @@ mesh = SubResource( 6 )
 script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner1"]
-transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 2.886, 1, 0 )
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 2.887, 1, 0 )
 shape = SubResource( 11 )
 
 [node name="Corner2" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner2"]
-transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 1.444, 1, 2.5 )
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 1.443, 1, 2.5 )
 shape = SubResource( 11 )
 
 [node name="Corner3" type="Area" parent="."]
 script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner3"]
-transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.444, 1, 2.5 )
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.443, 1, 2.5 )
 shape = SubResource( 11 )
 
 [node name="Corner4" type="Area" parent="."]
@@ -137,7 +137,7 @@ shape = SubResource( 11 )
 script = ExtResource( 2 )
 
 [node name="TileCornerShape" type="CollisionShape" parent="Corner5"]
-transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.444, 1, -2.5 )
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.443, 1, -2.5 )
 shape = SubResource( 11 )
 
 [node name="Corner6" type="Area" parent="."]
