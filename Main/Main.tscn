@@ -434,7 +434,7 @@ __meta__ = {
 movement_speed = 20.0
 
 [node name="Elevation" type="Spatial" parent="Camera_Controller"]
-transform = Transform( 1, 0, 0, 0, 0.766123, 0.642853, 0, -0.642853, 0.766123, -1, 0, -8 )
+transform = Transform( 1, 0, 0, 0, 0.642853, 0.766123, 0, -0.766123, 0.642853, -1, 0, -8 )
 
 [node name="Camera" type="Camera" parent="Camera_Controller/Elevation"]
 transform = Transform( 1, -6.70552e-08, 4.09782e-08, 3.72529e-09, 1, -2.98023e-08, -3.72529e-09, 0, 1, 0, 0, 20 )

@@ -6,7 +6,6 @@
 [ext_resource path="res://All Materials/wool.material" type="Material" id=4]
 [ext_resource path="res://All Materials/new_spatialmaterialbrown.tres" type="Material" id=5]
 
-
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "building_mine_Mesh building_mine"
 surfaces/0 = {

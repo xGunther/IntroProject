@@ -3,5 +3,5 @@
 [resource]
 resource_name = "dirt"
 vertex_color_use_as_albedo = true
-albedo_color = Color( 0.948242, 0.744326, 0.619001, 1 )
+albedo_color = Color( 0.898039, 0.870588, 0.866667, 1 )
 metallic = 1.0

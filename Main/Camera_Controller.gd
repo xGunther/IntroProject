@@ -28,7 +28,7 @@ func _on_Die_Grid_visibility_changed():
 		ElevationCam.rotation_degrees = Vector3(-90, 0, 0)
 	else: 
 		translation = Vector3(-13.5, 0, 3)
-		ElevationCam.rotation_degrees = Vector3(-40, 0, 0)
+		ElevationCam.rotation_degrees = Vector3(-50, 0, 0)
 		
 	
 	
