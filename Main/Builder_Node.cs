@@ -64,7 +64,7 @@ public class BuilderNode : Node
     public void build(Vector3 plaats)
     {
         TM = GetNode<Node>("../TurnManager");
-        //currentPlayer = TM.currentTurn;
+        currentPlayer = (int)TM.Get("currentTurn");
 
         Placeable NewBuild = null;
 
@@ -146,15 +146,11 @@ public class BuilderNode : Node
             {
                 bool mag = false;
 
-                foreach (Placeable placed in AllBuildings)
+                foreach (Placeable placed in RelevantList)
                 {
-                    if (placed.getPlayer() == this.currentColour)
+                    if (placed.Translation == plaats)
                     {
-                        if (placed.Translation == plaats)
-                        {
-                            mag = true;
-                        }
-
+                        mag = true;
                     }
                 }
 
