@@ -1,27 +1,25 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://dark.material" type="Material" id=1]
-[ext_resource path="res://COPRGTB.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://All Materials/dark.material" type="Material" id=1]
+[ext_resource path="res://Main/Font.tres" type="DynamicFont" id=2]
 
 [sub_resource type="CylinderMesh" id=1]
 height = 0.1
 
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
-
 [sub_resource type="TextMesh" id=3]
 material = ExtResource( 1 )
 text = "6"
-font = SubResource( 2 )
+font = ExtResource( 2 )
 
 [sub_resource type="CylinderMesh" id=4]
 material = ExtResource( 1 )
 height = 0.1
 
 [node name="Numbers" type="Spatial"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+transform = Transform( -4.37114e-08, -0.292372, 0.956305, 0, 0.956305, 0.292372, -1, 1.278e-08, -4.18014e-08, 0, 2.45, 0 )
 mesh = SubResource( 1 )
 
 [node name="Number" type="MeshInstance" parent="MeshInstance"]

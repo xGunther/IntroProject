@@ -4,6 +4,7 @@
 [ext_resource path="res://All Materials/wool.material" type="Material" id=2]
 
 
+
 [sub_resource type="ArrayMesh" id=6]
 resource_name = "building_sheep_Mesh sheep"
 surfaces/0 = {
