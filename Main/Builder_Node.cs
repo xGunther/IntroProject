@@ -61,15 +61,81 @@ public class BuilderNode : Node
     }
 
     //This method will create the nodes/placement instances and add them to the list
-    public void build(Vector3 plaats)
+    public void build(Vector3 Plaats)
     {
         TM = GetNode<Node>("../TurnManager");
         currentPlayer = (int)TM.Get("currentTurn");
 
-        Placeable NewBuild = null;
-
         //A local variable to save the relevant player-specific list, with standard value
         List<Placeable> RelevantList= RedBuilds;
+        switch (currentPlayer)
+        {
+            case 1:
+                RelevantList = RedBuilds;
+                break;
+            case 2:
+                RelevantList = BlueBuilds;
+                break;
+            case 3:
+                RelevantList = GreenBuilds;
+                break;
+            case 4:
+                RelevantList = YellowBuilds;
+                break;
+        }
+
+        
+
+        //make placeable and add it to the list
+        
+            if (SelectedBuild == "city")
+            {
+                foreach (Placeable placed in RelevantList)
+                {
+                    
+                if (placed.Translation == Plaats)
+                {
+                    placed.Hide();
+                    Placeable NewBuild = CreateInstance();
+                    NewBuild.Translate(Plaats);
+                    //Adding it to relevant
+                    AddChild(NewBuild);
+                    AllBuildings.Add(NewBuild);
+                    RelevantList.Add(NewBuild);
+                }
+                
+            }
+        }
+        else
+
+        {       
+            AddChild(NewBuild);
+            AllBuildings.Add(NewBuild);
+            NewBuild.Translate(Plaats);
+            RelevantList.Add(NewBuild);
+        }
+            
+        if (SelectedBuild == "settlement" || SelectedBuild == "city")
+        {       
+            switch (currentPlayer)
+            {
+                    
+                case 1: RedScore++; break;
+                case 2: BlueScore++; break;
+                case 3: GreenScore++; break;
+                case 4: YellowScore++; break;
+            }
+        }   
+        //add tiles to builds
+        
+
+        SelectedBuild = null;
+    }
+
+    //
+    private Placeable CreateInstance()
+    {
+        Placeable Result = null;
 
         switch (currentPlayer)
         {
@@ -77,106 +143,64 @@ public class BuilderNode : Node
                 switch (SelectedBuild)
                 {
                     case "road":
-                        NewBuild = (Placeable)RRoad.Instance();
+                        Result = (Placeable)RRoad.Instance();
                         break;
                     case "settlement":
-                        NewBuild = (Placeable)RSettlement.Instance();
+                        Result = (Placeable)RSettlement.Instance();
                         break;
                     case "city":
-                        NewBuild = (Placeable)RCity.Instance();
+                        Result = (Placeable)RCity.Instance();
                         break;
                 }
                 currentColour = "red";
-                RelevantList = RedBuilds;
                 break;
             case 2://Blue player's turn
                 switch (SelectedBuild)
                 {
                     case "road":
-                        NewBuild = (Placeable)BRoad.Instance();
+                        Result = (Placeable)BRoad.Instance();
                         break;
                     case "settlement":
-                        NewBuild = (Placeable)BSettlement.Instance();
+                        Result = (Placeable)BSettlement.Instance();
                         break;
                     case "city":
-                        NewBuild = (Placeable)BCity.Instance();
+                        Result = (Placeable)BCity.Instance();
                         break;
                 }
                 currentColour = "blue";
-                RelevantList = BlueBuilds;
                 break;
             case 3: //Green player's turn
                 switch (SelectedBuild)
                 {
                     case "road":
-                        NewBuild = (Placeable)GRoad.Instance();
+                        Result = (Placeable)GRoad.Instance();
                         break;
                     case "settlement":
-                        NewBuild = (Placeable)GSettlement.Instance();
+                        Result = (Placeable)GSettlement.Instance();
                         break;
                     case "city":
-                        NewBuild = (Placeable)GCity.Instance();
+                        Result = (Placeable)GCity.Instance();
                         break;
                 }
                 currentColour = "green";
-                RelevantList= GreenBuilds;
                 break;
             case 4: //Yellow player's turn
                 switch (SelectedBuild)
                 {
                     case "road":
-                        NewBuild = (Placeable)YRoad.Instance();
+                        Result = (Placeable)YRoad.Instance();
                         break;
                     case "settlement":
-                        NewBuild = (Placeable)YSettlement.Instance();
+                        Result = (Placeable)YSettlement.Instance();
                         break;
                     case "city":
-                        NewBuild = (Placeable)YCity.Instance();
+                        Result = (Placeable)YCity.Instance();
                         break;
                 }
                 currentColour = "yellow";
-                RelevantList = YellowBuilds;
                 break;
         }
-
-        //make placeable and add it to the list
-        if (NewBuild != null)
-        {
-            if (SelectedBuild == "city")
-            {
-                bool mag = false;
-
-                foreach (Placeable placed in RelevantList)
-                {
-                    if (placed.Translation == plaats)
-                    {
-                        mag = true;
-                    }
-                }
-
-            }
-            else
-            {
-                AddChild(NewBuild);
-                AllBuildings.Add(NewBuild);
-                NewBuild.Translate(plaats);
-                RelevantList.Add(NewBuild);
-            }
-
-            if (SelectedBuild == "settlement" || SelectedBuild == "city")
-            {
-                switch (currentPlayer)
-                {
-                    case 1: RedScore++; break;
-                    case 2: BlueScore++; break;
-                    case 3: GreenScore++; break;
-                    case 4: YellowScore++; break;
-                }
-            }
-            //add tiles to builds
-        }
-
-        SelectedBuild = null;
+        return Result;
     }
 
 }
