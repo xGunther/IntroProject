@@ -3,8 +3,8 @@ using System;
 
 public class TileClick : Area
 {
-    public String lastClick = "";
-    public Vector3 lastCoordinates = new Vector3(0, 0, 0);
+    private String lastClick = "";
+    private Vector3 lastCoordinates = new Vector3(0, 0, 0);
     public override void _Ready()
     {
 
@@ -24,6 +24,10 @@ public class TileClick : Area
             lastCoordinates = shape.GlobalTranslation;
 
             GD.Print($"{lastClick} clicked: {lastCoordinates}");
+
+            GridClick Grid = (GridClick)GetNode("/root/GridClick");
+            Grid.NewBuilding(lastCoordinates);
         }
     }
+
 }
