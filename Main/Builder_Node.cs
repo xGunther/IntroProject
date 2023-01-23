@@ -24,9 +24,6 @@ public class BuilderNode : Node
     private int currentPlayer = 1;
     private string currentColour = "red";
 
-    //The eventual place of the coordinates for new 'buildings'
-    Vector3 Buildplacement;
-
     //Red Builds
     private PackedScene RCity = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_City.tscn");
     private PackedScene RSettlement = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_Settlement.tscn");
@@ -54,16 +51,15 @@ public class BuilderNode : Node
     public int GreenScore = 0;
     public int YellowScore = 0;
 
-    // Called when the node enters the scene tree for the first time.
+    // Called when the node enters the scene tree for the first time
     public override void _Ready()
     {
-
+        TM = GetNode<Node>("../TurnManager");//only need to be called once to access
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
     public void build(Vector3 Plaats)
     {
-        TM = GetNode<Node>("../TurnManager");
         currentPlayer = (int)TM.Get("currentTurn");
 
         //A local variable to save the relevant player-specific list, with standard value
@@ -84,22 +80,23 @@ public class BuilderNode : Node
                 break;
         }
 
-        
+        bool ActuallyPlaced= false;
 
         //make placeable and add it to the list
         if (SelectedBuild == "city")
         {       
-            foreach (Placeable placed in RelevantList)
+            foreach (Placeable Placed in RelevantList)
             {       
-                if (placed.Translation == Plaats)
+                if (Placed.Translation == Plaats)
                 {
-                    placed.Hide();
+                    Placed.Hide();
                     Placeable NewBuild = CreateInstance();
                     NewBuild.Translate(Plaats);
                     //Adding it to relevant
                     AddChild(NewBuild);
                     AllBuildings.Add(NewBuild);
                     RelevantList.Add(NewBuild);
+                    ActuallyPlaced= true;
                 }
                 
             }
@@ -108,11 +105,21 @@ public class BuilderNode : Node
         {
             if (AllowedSettlement(Plaats))
             {
-
+                Placeable NewBuild = CreateInstance();
+                NewBuild.Translate(Plaats);
+                //Adding it to relevant
+                AddChild(NewBuild);
+                AllBuildings.Add(NewBuild);
+                RelevantList.Add(NewBuild);
+                ActuallyPlaced= true;
             }
         }
+        else if(SelectedBuild == "road")
+        {
+
+        }
             
-        if (SelectedBuild == "settlement" || SelectedBuild == "city")
+        if ((SelectedBuild == "settlement" || SelectedBuild == "city") && ActuallyPlaced)
         {       
             switch (currentPlayer)
             {
