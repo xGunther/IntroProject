@@ -11,13 +11,12 @@ public class GridClick : Area
     public void NewBuilding(Vector3 Coordinates)
     {
         PackedScene GSettlement = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Green Placeables/Green_Settlement.tscn");
-        GD.Print("click");
-        Spatial test = (Spatial)GSettlement.Instance();
-        AddChild(test);
+        Spatial NewBuilding = (Spatial)GSettlement.Instance();
+        AddChild(NewBuilding);
         //Main main = (Main)GetNode("/root/Main");
         //test.Translate(main.lastCoordinates);
-        test.Translate(Coordinates);
-        test.Translate(new Vector3(0, 0.334f, 0));
+        NewBuilding.Translate(Coordinates);
+        NewBuilding.Translate(new Vector3(0, 0.334f, 0));
     }
 }
 

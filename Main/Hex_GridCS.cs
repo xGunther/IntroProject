@@ -17,9 +17,9 @@ public class Hex_GridCS : GridMap
 
     public static float ThirtyDegrees() // Making a floating number to give to the Vector3 structure
     {
-        double radians = (Math.PI / 180) * 30;
-        float radiansF = Convert.ToSingle(radians);
-        return radiansF;
+        double Radians = (Math.PI / 180) * 30;
+        float RadiansF = Convert.ToSingle(Radians);
+        return RadiansF;
     }
 
     public override void _Ready()
