@@ -12,7 +12,7 @@ public class Hex_GridCS : GridMap
     private PackedScene TileWood = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn");
     private PackedScene TileStone = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn");
 
-    private float TileSize = 5; // Size of the tiles of the board
+    public float TileSize = 5; // Size of the tiles of the board
     public int GridRange = 7; // Number of lines and columns of the grid
 
     public static float ThirtyDegrees() // Making a floating number to give to the Vector3 structure

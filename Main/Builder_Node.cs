@@ -60,7 +60,7 @@ public class BuilderNode : Node
 
     }
 
-    //This method will create the nodes/placement instances and add them to the list
+    //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
     public void build(Vector3 Plaats)
     {
         TM = GetNode<Node>("../TurnManager");
@@ -87,12 +87,10 @@ public class BuilderNode : Node
         
 
         //make placeable and add it to the list
-        
-            if (SelectedBuild == "city")
-            {
-                foreach (Placeable placed in RelevantList)
-                {
-                    
+        if (SelectedBuild == "city")
+        {       
+            foreach (Placeable placed in RelevantList)
+            {       
                 if (placed.Translation == Plaats)
                 {
                     placed.Hide();
@@ -106,13 +104,12 @@ public class BuilderNode : Node
                 
             }
         }
-        else
+        else if(SelectedBuild == "settlement")
+        {
+            if (AllowedSettlement(Plaats))
+            {
 
-        {       
-            AddChild(NewBuild);
-            AllBuildings.Add(NewBuild);
-            NewBuild.Translate(Plaats);
-            RelevantList.Add(NewBuild);
+            }
         }
             
         if (SelectedBuild == "settlement" || SelectedBuild == "city")
@@ -132,7 +129,7 @@ public class BuilderNode : Node
         SelectedBuild = null;
     }
 
-    //
+    //Takes player and values and creates and instances the correct placeable
     private Placeable CreateInstance()
     {
         Placeable Result = null;
@@ -203,4 +200,18 @@ public class BuilderNode : Node
         return Result;
     }
 
+    //Will execute all checks related to placing a settlement and if there is not anther settlement too close
+    private bool AllowedSettlement(Vector3 Check)
+    {
+        Hex_GridCS Board = GetNode<Hex_GridCS>("../Hex_GridCS");
+        float size = Board.TileSize;
+        foreach (Placeable other in AllBuildings)
+        {
+            if(Check.DistanceTo(other.Translation) < 0.75 * size)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
