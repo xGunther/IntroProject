@@ -1,51 +1,81 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Runtime.ExceptionServices;
 
 public class Hex_GridCS : GridMap
 {
     // Loading the tile files into the project
-    private PackedScene TileSheep = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Sheep.tscn");
-    private PackedScene TileGold = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Gold.tscn");
-    private PackedScene TileGrain = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Grain.tscn");
-    private PackedScene TileWood = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn");
-    private PackedScene TileStone = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn");
-    private PackedScene TileSand = (PackedScene)GD.Load("res://All_Hexa_Tiles/Sand_Tile2.tscn");
+    public PackedScene TileSheep = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Sheep.tscn");
+    public PackedScene TileGold = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Gold.tscn");
+    public PackedScene TileGrain = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Grain.tscn");
+    public PackedScene TileWood = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn");
+    public PackedScene TileStone = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn");
+    public PackedScene TileSand = (PackedScene)GD.Load("res://All_Hexa_Tiles/Sand_Tile2.tscn");
 
     // Loading the number files into the project
-    private PackedScene Number2 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_2.tscn");
-    private PackedScene Number3 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_3.tscn");
-    private PackedScene Number4 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_4.tscn");
-    private PackedScene Number5 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_5.tscn");
-    private PackedScene Number6 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_6.tscn");
-    private PackedScene Number8 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_8.tscn");
-    private PackedScene Number9 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_9.tscn");
-    private PackedScene Number10 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_10.tscn");
-    private PackedScene Number11 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_11.tscn");
-    private PackedScene Number12 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_12.tscn");
+    public PackedScene Number2 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_2.tscn");
+    public PackedScene Number3 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_3.tscn");
+    public PackedScene Number4 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_4.tscn");
+    public PackedScene Number5 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_5.tscn");
+    public PackedScene Number6 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_6.tscn");
+    public PackedScene Number8 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_8.tscn");
+    public PackedScene Number9 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_9.tscn");
+    public PackedScene Number10 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_10.tscn");
+    public PackedScene Number11 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_11.tscn");
+    public PackedScene Number12 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_12.tscn");
 
     public float TileSize = 5; // Size of the tiles of the board
     public int GridRange = 7; // Number of lines and columns of the grid
+    List<Spatial> Tiles = new List<Spatial>();
 
-    public static float ThirtyDegrees() // Making a floating number to give to the Vector3 structure
+    // Function that makes a floating number to give to the Vector3 structure
+    public static float ThirtyDegrees() 
     {
         double radians = (Math.PI / 180) * 30;
         float radiansF = Convert.ToSingle(radians);
         return radiansF;
     }
 
-    public override void _Ready()
+    // Function that puts the tiles in a list for the build feature to use
+    public void PutInTileList(Spatial listTile)
     {
-        MakeGrid(GridRange);
+        Tiles.Add(listTile);
     }
 
-    private void MakeGrid(int GridRange)
+    // Function responsible for creating the grid
+    public void MakeGrid(int GridRange)
     {
-        Vector2 TileCoords;
-        Vector3 TileCoordsV3;
+        Vector2 tileCoords = new Vector2();
+        Vector3 tileCoordsV3 = new Vector3();
 
-        void TileChooser(int x, int p, int y) // Function that places the tiles in Catan's beginner layout
+        // Loop that calculates the coordinates of the tiles
+        for (int x = 0; x < GridRange; x++)
+        {
+            tileCoords.x = x * TileSize * Mathf.Cos(ThirtyDegrees());
+            tileCoords.y = 0;
+
+            for (int y = 0; y < (GridRange - 2); y++) // "GridRange - 2" because the grid is higher than it is wide
+            {
+                if (x % 2 == 0)
+                {
+                    tileCoords.y = y * TileSize;
+                }
+                else
+                {
+                    tileCoords.y = (y * TileSize) + TileSize / 2;
+                }
+
+                tileCoordsV3.x = tileCoords.x;
+                tileCoordsV3.y = 0;
+                tileCoordsV3.z = tileCoords.y;
+                TileChooser(x, 0, y); // The calculated coordinates are given to TileChooser
+            }
+        }
+
+        // Function that places the tiles in Catan's beginner layout
+        void TileChooser(int x, int p, int y) 
         {
             int F = x + 10 * y;
             switch (F)
@@ -91,127 +121,111 @@ public class Hex_GridCS : GridMap
         // Functions for adding the specific tile to the coordinate in the switch (above)
         void TileChooserSheep()
         {
-            Spatial SheepTile = (Spatial)TileSheep.Instance();
-            AddChild(SheepTile);
-            SheepTile.Translate(TileCoordsV3);
+            Spatial sheepTile = (Spatial)TileSheep.Instance();
+            AddChild(sheepTile);
+            sheepTile.Translate(tileCoordsV3);
+            PutInTileList(sheepTile);
         }
         void TileChooserGold()
         {
-            Spatial GoldTile = (Spatial)TileGold.Instance();
-            AddChild(GoldTile);
-            GoldTile.Translate(TileCoordsV3);
+            Spatial goldTile = (Spatial)TileGold.Instance();
+            AddChild(goldTile);
+            goldTile.Translate(tileCoordsV3);
+            PutInTileList(goldTile);
         }
         void TileChooserGrain()
         {
-            Spatial GrainTile = (Spatial)TileGrain.Instance();
-            AddChild(GrainTile);
-            GrainTile.Translate(TileCoordsV3);
+            Spatial grainTile = (Spatial)TileGrain.Instance();
+            AddChild(grainTile);
+            grainTile.Translate(tileCoordsV3);
+            PutInTileList(grainTile);
         }
         void TileChooserWood()
         {
-            Spatial WoodTile = (Spatial)TileWood.Instance();
-            AddChild(WoodTile);
-            WoodTile.Translate(TileCoordsV3);
+            Spatial woodTile = (Spatial)TileWood.Instance();
+            AddChild(woodTile);
+            woodTile.Translate(tileCoordsV3);
+            PutInTileList(woodTile);
         }
         void TileChooserStone()
         {
-            Spatial StoneTile = (Spatial)TileStone.Instance();
-            AddChild(StoneTile);
-            StoneTile.Translate(TileCoordsV3);
+            Spatial stoneTile = (Spatial)TileStone.Instance();
+            AddChild(stoneTile);
+            stoneTile.Translate(tileCoordsV3);
+            PutInTileList(stoneTile);
         }
         void TileChooserSand()
         {
-            Spatial SandTile = (Spatial)TileSand.Instance();
-            AddChild(SandTile);
-            SandTile.Translate(TileCoordsV3);
+            Spatial sandTile = (Spatial)TileSand.Instance();
+            AddChild(sandTile);
+            sandTile.Translate(tileCoordsV3);
+            PutInTileList(sandTile);
         }
 
         // Functions for adding the specific number to the coordinate in the switch (above)
         void NumberChooser2()
         {
-            Spatial Nr2 = (Spatial)Number2.Instance();
-            AddChild(Nr2);
-            Nr2.Translate(TileCoordsV3);
+            Spatial nr2 = (Spatial)Number2.Instance();
+            AddChild(nr2);
+            nr2.Translate(tileCoordsV3);
         }
         void NumberChooser3()
         {
-            Spatial Nr3 = (Spatial)Number3.Instance();
-            AddChild(Nr3);
-            Nr3.Translate(TileCoordsV3);
+            Spatial nr3 = (Spatial)Number3.Instance();
+            AddChild(nr3);
+            nr3.Translate(tileCoordsV3);
         }
         void NumberChooser4()
         {
-            Spatial Nr4 = (Spatial)Number4.Instance();
-            AddChild(Nr4);
-            Nr4.Translate(TileCoordsV3);
+            Spatial nr4 = (Spatial)Number4.Instance();
+            AddChild(nr4);
+            nr4.Translate(tileCoordsV3);
         }
         void NumberChooser5()
         {
-            Spatial Nr5 = (Spatial)Number5.Instance();
-            AddChild(Nr5);
-            Nr5.Translate(TileCoordsV3);
+            Spatial nr5 = (Spatial)Number5.Instance();
+            AddChild(nr5);
+            nr5.Translate(tileCoordsV3);
         }
         void NumberChooser6()
         {
-            Spatial Nr6 = (Spatial)Number6.Instance();
-            AddChild(Nr6);
-            Nr6.Translate(TileCoordsV3);
+            Spatial nr6 = (Spatial)Number6.Instance();
+            AddChild(nr6);
+            nr6.Translate(tileCoordsV3);
         }
         void NumberChooser8()
         {
-            Spatial Nr8 = (Spatial)Number8.Instance();
-            AddChild(Nr8);
-            Nr8.Translate(TileCoordsV3);
+            Spatial nr8 = (Spatial)Number8.Instance();
+            AddChild(nr8);
+            nr8.Translate(tileCoordsV3);
         }
         void NumberChooser9()
         {
-            Spatial Nr9 = (Spatial)Number9.Instance();
-            AddChild(Nr9);
-            Nr9.Translate(TileCoordsV3);
+            Spatial nr9 = (Spatial)Number9.Instance();
+            AddChild(nr9);
+            nr9.Translate(tileCoordsV3);
         }
         void NumberChooser10()
         {
-            Spatial Nr10 = (Spatial)Number10.Instance();
-            AddChild(Nr10);
-            Nr10.Translate(TileCoordsV3);
+            Spatial nr10 = (Spatial)Number10.Instance();
+            AddChild(nr10);
+            nr10.Translate(tileCoordsV3);
         }
         void NumberChooser11()
         {
-            Spatial Nr11 = (Spatial)Number11.Instance();
-            AddChild(Nr11);
-            Nr11.Translate(TileCoordsV3);
-        }
+            Spatial nr11 = (Spatial)Number11.Instance();
+            AddChild(nr11);
+            nr11.Translate(tileCoordsV3);
+        }   
         void NumberChooser12()
         {
-            Spatial Nr12 = (Spatial)Number12.Instance();
-            AddChild(Nr12);
-            Nr12.Translate(TileCoordsV3);
+            Spatial nr12 = (Spatial)Number12.Instance();
+            AddChild(nr12);
+            nr12.Translate(tileCoordsV3);
         }
-
-        // Function for calculating the coordinates of the tiles
-        for (int x = 0; x < GridRange; x++) // Function for calculating the coordinates of the tiles
-        {
-            TileCoords = new Vector2();
-            TileCoords.x = x * TileSize * Mathf.Cos(ThirtyDegrees());
-            TileCoords.y = 0;
-            
-            for (int y = 0; y < (GridRange - 2); y++) // "GridRange - 2" because the grid is higher than it is wide
-            {
-                if (x % 2 == 0)
-                {
-                    TileCoords.y = y * TileSize;
-                }
-                else
-                {
-                    TileCoords.y = (y * TileSize) + TileSize / 2;
-                }
-
-                TileCoordsV3 = new Vector3();
-                TileCoordsV3.x = TileCoords.x;
-                TileCoordsV3.y = 0;
-                TileCoordsV3.z = TileCoords.y;
-                TileChooser(x, 0, y); // The calculated coordinates are given to the Tile Chooser
-            }
-        }
+    }
+    public override void _Ready()
+    {
+        MakeGrid(GridRange);
     }
 }
