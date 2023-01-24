@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Hexa_Files/grass.glb" type="PackedScene" id=1]
-[ext_resource path="res://Sand_Tile.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Grass_Forest_Tile.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sand_Rocks.tscn" type="PackedScene" id=4]
+[ext_resource path="res://All_Hexa_Tiles/Sand_Tile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://All_Hexa_Tiles/Hexa_Tile_Wood.tscn" type="PackedScene" id=3]
+[ext_resource path="res://All_Hexa_Tiles/Sand_Rocks.tscn" type="PackedScene" id=4]
+
 
 [node name="Hexa_Tiles" type="GridMap"]
 __meta__ = {
