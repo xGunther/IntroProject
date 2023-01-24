@@ -1,12 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://All Materials/new_spatialmaterial.tres" type="Material" id=1]
-[ext_resource path="res://All Materials/new_spatialmaterialbrown.tres" type="Material" id=2]
-
-
-
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0.909804, 0.611765, 0.34902, 1 )
+[ext_resource path="res://All Materials/new_spatialmateriallightbrown.tres" type="Material" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "building_farm_Mesh building_farm"
@@ -28,7 +23,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 72,
-"material": SubResource( 5 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 54
