@@ -15,7 +15,7 @@ public class RoadBuild_Button : Button
     //When the button is pressed
     private void Triggered()
     {
-        Builder = GetNode<BuilderNode>("../../Builder_Node");
+        Builder = GetNode<BuilderNode>("../../BuilderNode");
         Builder.SelectedBuild = "road";
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 public class DevelopCardBuild_Button : Button
 {
-    //Leaves room to save the Builder node (Builder_Node)
+    //Leaves room to save the Builder node (BuilderNode)
     private BuilderNode Builder;
 
     // Called when the node enters the scene tree for the first time.
@@ -15,8 +15,6 @@ public class DevelopCardBuild_Button : Button
     //When the button is pressed
     private void Triggered()
     {
-        Builder = GetNode<BuilderNode>("../../Builder_Node");
-        //make a development card
-
+        Builder = GetNode<BuilderNode>("../../BuilderNode");
     }
 }
