@@ -27,6 +27,9 @@ public class BuilderNode : Node
     //spot to save the TurnManager
     Node TM;
 
+    //spot to save the HexatileBoard
+    Hex_GridCS Board;
+
     //saves which player is currently playing, with standard value, in case real value can't be retrieved.
     private int CurrentPlayer = 1;
     private string currentColour = "red";
@@ -61,33 +64,40 @@ public class BuilderNode : Node
     // Called when the node enters the scene tree for the first time
     public override void _Ready()
     {
-        TM = GetNode<Node>("../TurnManager");//only need to be called once to access
+        //only need to be called once to access
+        TM = GetNode<Node>("../TurnManager");
+        Board = GetNode<Hex_GridCS>("../Hex_GridCS");
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    public void build(Vector3 Plaats)
+    public void Build(Vector3 Plaats)
     {
-        CurrentPlayer = (int)TM.Get("currentTurn");
+        CurrentPlayer = (int)TM.Get("CurrentTurn");
 
-        //A local variable to save the relevant player-specific list, with standard value
+        //Local variables to save the relevant player-specific list, whether for roads or buildings, with standard value
         List<Placeable> RelevantList= RedBuilds;
+        List<Road> RoadList = RedWays;
 
         switch (CurrentPlayer)
         {
             case 1:
+                RoadList = RedWays;
                 RelevantList = RedBuilds;
                 break;
             case 2:
+                RoadList = BlueWays;
                 RelevantList = BlueBuilds;
                 break;
             case 3:
+                RoadList = GreenWays;
                 RelevantList = GreenBuilds;
                 break;
             case 4:
+                RoadList = YellowWays;
                 RelevantList = YellowBuilds;
                 break;
         }
-
+        
         //A variable that checks whether anything was actually instanced. Used for victory point management
         bool ActuallyPlaced= false;
 
@@ -127,7 +137,15 @@ public class BuilderNode : Node
         }
         else if(SelectedBuild == "road")
         {
+            if (AllowedRoad(Plaats, RoadList))
+            {
+                Placeable NewBuild = CreateRoadInstance();
+                NewBuild.Translate(Plaats);
 
+                AddChild(NewBuild);
+                AllWays.Add(NewBuild);
+                RelevantList.Add(NewBuild);
+            }
         }
             
         if ((SelectedBuild == "settlement" || SelectedBuild == "city") && ActuallyPlaced)
@@ -216,19 +234,47 @@ public class BuilderNode : Node
         return Result;
     }
 
+    //Creates an instance of a road
+
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
     private bool AllowedSettlement(Vector3 Check)
     {
-        Hex_GridCS Board = GetNode<Hex_GridCS>("../Hex_GridCS");
         float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
-        foreach (Placeable other in AllBuildings)
+
+        foreach (Placeable Other in AllBuildings)
         {
-            if(Check.DistanceTo(other.Translation) < 0.8 * size)
+            if(Check.DistanceTo(Other.Translation) < 0.8 * size)
             {
                 return false;
             }
         }
         //no other building is too close
         return true;
+    }
+
+    //Will execute all checks related to placing a road and if there isn't a road on the same spot
+    private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads)
+    {
+        float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
+
+        int TurnCount= (int)TM.Get("TurnCount");
+
+        foreach(Road Another in AllWays)
+        {
+            if(Check.DistanceTo(Another.Translation) < 0.25 * size)//the roads are on the same edge of a tile, practically in the same spot
+            {
+                return false;
+            }
+        }
+        //No road in the same spot
+        foreach(Road Owned in OwnedRoads)
+        {
+            if(Check.DistanceTo(Owned.Translation) < 0.7 * size && TurnCount>2)//there is a road that is only one tile edge away, or 'directly connects'
+            {
+                return true;
+            }
+        }
+        //there are no roads of this player that 'directly connect'; they're all too far away
+        return false;
     }
 }
