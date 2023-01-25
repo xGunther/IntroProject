@@ -10,8 +10,4 @@ public abstract class Road : Placeable
     public override void _Ready()
     {    }
 
-    //A function that should count the amount of roads connected, for the feat "Longest Traderoute"
-    public int CountRoute()
-    { return 1; }
-    
 }
