@@ -132,9 +132,7 @@ public class BuilderNode : Node
                 case 4: YellowScore++; break;
             }
         }   
-        //add tiles to builds
         
-
         SelectedBuild = null;
     }
 
