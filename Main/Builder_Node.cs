@@ -21,7 +21,7 @@ public class BuilderNode : Node
     Node TM;
 
     //saves which player is currently playing, with standard value, in case real value can't be retrieved.
-    private int currentPlayer = 1;
+    private int CurrentPlayer = 1;
     private string currentColour = "red";
 
     //Red Builds
@@ -60,11 +60,12 @@ public class BuilderNode : Node
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
     public void build(Vector3 Plaats)
     {
-        currentPlayer = (int)TM.Get("currentTurn");
+        CurrentPlayer = (int)TM.Get("currentTurn");
 
         //A local variable to save the relevant player-specific list, with standard value
         List<Placeable> RelevantList= RedBuilds;
-        switch (currentPlayer)
+
+        switch (CurrentPlayer)
         {
             case 1:
                 RelevantList = RedBuilds;
@@ -80,6 +81,7 @@ public class BuilderNode : Node
                 break;
         }
 
+        //A variable that checks whether anything was actually instanced. Used for victory point management
         bool ActuallyPlaced= false;
 
         //make placeable and add it to the list
@@ -107,7 +109,7 @@ public class BuilderNode : Node
             {
                 Placeable NewBuild = CreateInstance();
                 NewBuild.Translate(Plaats);
-                //Adding it to relevant
+                //Adding to relevant lists and connecting it to nodes
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
@@ -121,7 +123,7 @@ public class BuilderNode : Node
             
         if ((SelectedBuild == "settlement" || SelectedBuild == "city") && ActuallyPlaced)
         {       
-            switch (currentPlayer)
+            switch (CurrentPlayer)
             {
                     
                 case 1: RedScore++; break;
@@ -141,7 +143,7 @@ public class BuilderNode : Node
     {
         Placeable Result = null;
 
-        switch (currentPlayer)
+        switch (CurrentPlayer)
         {
             case 1://Red player's turn
                 switch (SelectedBuild)
