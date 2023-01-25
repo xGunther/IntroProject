@@ -19,10 +19,4 @@ public abstract class Placeable : Spatial
     {
          return this.player;
     }
-
-/*// A method called every frame. 'delta' is the elapsed time since the previous frame.
-  public override void _Process(float delta)
-  {
-      
-  }*/
 }
