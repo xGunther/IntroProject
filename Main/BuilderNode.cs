@@ -6,13 +6,20 @@ using System.Collections.Generic;
 public class BuilderNode : Node
 {
     //list to save all made placeables
-    public List<Placeable> AllBuildings = new List<Placeable>();
+    public List<Placeable> AllBuildings= new List<Placeable>();
+    public List<Road> AllWays= new List<Road>();
 
     //Lists for all players to quickly access their buildings
     public List<Placeable> RedBuilds= new List<Placeable>();
     public List<Placeable> BlueBuilds= new List<Placeable>();
     public List<Placeable> GreenBuilds= new List<Placeable>();
     public List<Placeable> YellowBuilds= new List<Placeable>();
+
+    //Lists for all players with their roads
+    public List<Road> RedWays= new List<Road>();
+    public List<Road> BlueWays= new List<Road>();
+    public List<Road> GreenWays= new List<Road>();
+    public List<Road> YellowWays= new List<Road>();
 
     //this variable saves what will be built next. If nothing is being built, value should be null
     public string SelectedBuild;
@@ -92,9 +99,11 @@ public class BuilderNode : Node
                 if (Placed.Translation == Plaats)
                 {
                     Placed.Hide();
+                    AllBuildings.Remove(Placed);
+
                     Placeable NewBuild = CreateInstance();
                     NewBuild.Translate(Plaats);
-                    //Adding it to relevant
+                    
                     AddChild(NewBuild);
                     AllBuildings.Add(NewBuild);
                     RelevantList.Add(NewBuild);
@@ -109,7 +118,7 @@ public class BuilderNode : Node
             {
                 Placeable NewBuild = CreateInstance();
                 NewBuild.Translate(Plaats);
-                //Adding to relevant lists and connecting it to nodes
+                
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
@@ -211,14 +220,15 @@ public class BuilderNode : Node
     private bool AllowedSettlement(Vector3 Check)
     {
         Hex_GridCS Board = GetNode<Hex_GridCS>("../Hex_GridCS");
-        float size = Board.TileSize;
+        float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
         foreach (Placeable other in AllBuildings)
         {
-            if(Check.DistanceTo(other.Translation) < 0.75 * size)
+            if(Check.DistanceTo(other.Translation) < 0.8 * size)
             {
                 return false;
             }
         }
+        //no other building is too close
         return true;
     }
 }
