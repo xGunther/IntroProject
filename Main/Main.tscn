@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -32,14 +32,14 @@
 [ext_resource path="res://All Sprites/City.png" type="Texture" id=30]
 [ext_resource path="res://All Sprites/Road.png" type="Texture" id=31]
 [ext_resource path="res://Main/End_Turn_Button.tscn" type="PackedScene" id=32]
-[ext_resource path="res://Main/Builder_Node.cs" type="Script" id=32]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=33]
 [ext_resource path="res://Main/Players_Turn.tscn" type="PackedScene" id=34]
 [ext_resource path="res://Main/Throw_Dice_Button.cs" type="Script" id=35]
-[ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=34]
-[ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=35]
 [ext_resource path="res://Menu Scenes/DevelopCardBuild_Button.cs" type="Script" id=36]
 [ext_resource path="res://Menu Scenes/RoadBuild_Button.cs" type="Script" id=37]
+[ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=38]
+[ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=39]
+[ext_resource path="res://Main/Builder_Node.cs" type="Script" id=40]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -694,7 +694,7 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = ""
-script = ExtResource( 35 )
+script = ExtResource( 39 )
 
 [node name="Settlement" type="Sprite" parent="UI_Rect_Build_Destroy/Settlement_Button"]
 position = Vector2( 89, 72.6875 )
@@ -710,7 +710,7 @@ custom_styles/hover = SubResource( 27 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/normal = SubResource( 12 )
 text = ""
-script = ExtResource( 34 )
+script = ExtResource( 38 )
 
 [node name="City" type="Sprite" parent="UI_Rect_Build_Destroy/City_Button"]
 position = Vector2( 74, 48 )
@@ -918,7 +918,7 @@ margin_bottom = 159.0
 text = "4 Players"
 
 [node name="Builder_Node" type="Node" parent="."]
-script = ExtResource( 32 )
+script = ExtResource( 40 )
 
 [node name="Pause_Menu" parent="." instance=ExtResource( 11 )]
 pause_mode = 2
@@ -951,11 +951,6 @@ position = Vector2( 32, 28 )
 scale = Vector2( 0.0564707, 0.055325 )
 texture = ExtResource( 29 )
 
-[connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
-[connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]
-[connection signal="pressed" from="UI_Rect_Build_Destroy/City_Button" to="UI_Rect_Build_Destroy/City_Button" method="Triggered"]
-[connection signal="pressed" from="UI_Rect_Build_Destroy/DevCard_Button" to="UI_Rect_Build_Destroy/DevCard_Button" method="Triggered"]
-[connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="endTurn"]
 [node name="Throw_Dice_Button" type="Button" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0 )
@@ -990,6 +985,11 @@ mass = 0.06
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 29.5, 25, 14.5 )
 mass = 0.06
 
+[connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
+[connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]
+[connection signal="pressed" from="UI_Rect_Build_Destroy/City_Button" to="UI_Rect_Build_Destroy/City_Button" method="Triggered"]
+[connection signal="pressed" from="UI_Rect_Build_Destroy/DevCard_Button" to="UI_Rect_Build_Destroy/DevCard_Button" method="Triggered"]
+[connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="endTurn"]
 [connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="_on_End_Turn_Button_pressed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="UI_Rect_Players_4" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="TurnManager" method="_on_LineEdit_text_changed"]
