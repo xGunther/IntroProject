@@ -3,8 +3,6 @@ using System;
 
 public class TileClick : Area
 {
-    private String lastClick = "";
-    private Vector3 lastCoordinates = new Vector3(0, 0, 0);
     public override void _Ready()
     {
 
@@ -14,19 +12,27 @@ public class TileClick : Area
     {
         if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
         {
-            CollisionShape shape;
-            lastClick = Name;
+            CollisionShape Shape;
+            String LastClick = Name;
+            String ShapeString = "";
 
-            if (lastClick.Contains("Side"))
-                shape = (CollisionShape)GetNode("TileSideShape");
+            if (LastClick.Contains("Side"))
+            {
+                Shape = (CollisionShape)GetNode("TileSideShape");
+                ShapeString = "Side";
+            }
+
             else // Corner
-                shape = (CollisionShape)GetNode("TileCornerShape");
-            lastCoordinates = shape.GlobalTranslation;
+            {
+                Shape = (CollisionShape)GetNode("TileCornerShape");
+                ShapeString = "Corner";
+            }
+            Vector3 LastCoordinates = Shape.GlobalTranslation;
 
-            GD.Print($"{lastClick} clicked: {lastCoordinates}");
+            GD.Print($"{LastClick} clicked: {LastCoordinates}"); // REMOVE LATER
 
             GridClick Grid = (GridClick)GetNode("/root/GridClick");
-            Grid.NewBuilding(lastCoordinates);
+            Grid.NewBuilding(LastCoordinates, ShapeString); // This is where you use the buildernode. Something like: BuilderNode.NewBuilding(parameters that you need here)
         }
     }
 
