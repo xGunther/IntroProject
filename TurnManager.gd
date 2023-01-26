@@ -1,32 +1,24 @@
 extends Node
 
-
-var currentTurn : int = 1 
-var playerCount : int = 4
-
-
 func _ready():
 	pass
-
+	
+#Updates the label to the current player and it will display their name on the top of the screen
 func updateLabel():
-	if(currentTurn == 1):	
+	if($"../DiceValueManager".currentTurn == 1):	
 		$"../UI_Rect_Turn/Players_Turn".text =  $"../UI_Rect_Players_4/Player_Name1".text + "'s Turn" 
-	elif(currentTurn == 2):
+	elif($"../DiceValueManager".currentTurn == 2):
 		$"../UI_Rect_Turn/Players_Turn".text =  $"../UI_Rect_Players_4/Player_Name2".text + "'s Turn" 
-	elif(currentTurn == 3):	
+	elif($"../DiceValueManager".currentTurn == 3):	
 		$"../UI_Rect_Turn/Players_Turn".text =  $"../UI_Rect_Players_4/Player_Name3".text + "'s Turn"
-	elif(currentTurn == 4):	
+	elif($"../DiceValueManager".currentTurn == 4):	
 		$"../UI_Rect_Turn/Players_Turn".text =  $"../UI_Rect_Players_4/Player_Name4".text + "'s Turn"
 		
-func endTurn():
-	currentTurn += 1
-	if (currentTurn > playerCount):
-		currentTurn = 1
-		
+#If the End Turn button is pressed it will go through the EndTurn function and it will update the turn label with the function aboven
 func _on_End_Turn_Button_pressed():
-	endTurn()
+	$"../DiceValueManager".EndTurn()
 	updateLabel()
 
-
+#Sets the first player's name to the current turn in the turn label
 func _on_LineEdit_text_changed(new_text):
 	$"../UI_Rect_Turn/Players_Turn".text =  new_text + "'s Turn"

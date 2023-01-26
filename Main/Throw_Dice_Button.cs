@@ -5,7 +5,7 @@ public class Throw_Dice_Button : Button
 {
     public int dieSide1 = 1;
     public int dieSide2 = 1;
-    public int dieSideSum = 2;
+    public static int dieSideSum = 2;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -27,6 +27,7 @@ public class Throw_Dice_Button : Button
             Spatial Grid = GetNode<Spatial>("../Die_Grid");
             Grid.Show();
             dieTimer.Start();
+            DiceValueManager.ButtonPressedOrNot = true;
         }
 
     }
@@ -108,15 +109,9 @@ public class Throw_Dice_Button : Button
     private void TimedOut()
     {
         UpdateDie();
-
+        DiceValueManager.DieValue();
         Spatial Grid = GetNode<Spatial>("../Die_Grid");
         Grid.Hide();
     }
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
-
 
 }
