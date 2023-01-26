@@ -11,7 +11,7 @@
 [ext_resource path="res://Menu Scenes/Build_Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Main/Pause_Menu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Main/TurnManager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Main/TurnManager.gd" type="Script" id=12]
 [ext_resource path="res://All Sprites/1098400-200.png" type="Texture" id=13]
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
@@ -920,11 +920,12 @@ text = "4 Players"
 [node name="BuilderNode" type="Node" parent="."]
 script = ExtResource( 40 )
 
+[node name="TurnManager" type="Node" parent="."]
+script = ExtResource( 12 )
+
 [node name="Pause_Menu" parent="." instance=ExtResource( 11 )]
 pause_mode = 2
 visible = false
-
-[node name="TurnManager" parent="." instance=ExtResource( 12 )]
 
 [node name="Build_Cost_Menu" parent="." instance=ExtResource( 25 )]
 visible = false
@@ -989,7 +990,6 @@ mass = 0.06
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/City_Button" to="UI_Rect_Build_Destroy/City_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/DevCard_Button" to="UI_Rect_Build_Destroy/DevCard_Button" method="Triggered"]
-[connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="endTurn"]
 [connection signal="pressed" from="UI_Rect_End_Turn/End_Turn_Button" to="TurnManager" method="_on_End_Turn_Button_pressed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="UI_Rect_Players_4" method="_on_LineEdit_text_changed"]
 [connection signal="text_changed" from="Name_Input_Menu/Player_Names/Player_Name1/LineEdit" to="TurnManager" method="_on_LineEdit_text_changed"]
