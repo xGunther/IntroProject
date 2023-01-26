@@ -25,10 +25,10 @@ public class BuilderNode : Node
     public string SelectedBuild;
 
     //spot to save the TurnManager
-    Node TM;
+    private Node TM;
 
     //spot to save the HexatileBoard
-    Hex_GridCS Board;
+    private Hex_GridCS Board;
 
     //saves which player is currently playing, with standard value, in case real value can't be retrieved.
     private int CurrentPlayer = 1;
@@ -111,7 +111,7 @@ public class BuilderNode : Node
                     Placed.Hide();
                     AllBuildings.Remove(Placed);
 
-                    Placeable NewBuild = CreateInstance();
+                    Placeable NewBuild = CreateBuidingInstance();
                     NewBuild.Translate(Plaats);
                     
                     AddChild(NewBuild);
@@ -126,7 +126,7 @@ public class BuilderNode : Node
         {
             if (AllowedSettlement(Plaats))
             {
-                Placeable NewBuild = CreateInstance();
+                Placeable NewBuild = CreateBuidingInstance();
                 NewBuild.Translate(Plaats);
                 
                 AddChild(NewBuild);
@@ -139,7 +139,7 @@ public class BuilderNode : Node
         {
             if (AllowedRoad(Plaats, RoadList))
             {
-                Placeable NewBuild = CreateRoadInstance();
+                Road NewBuild = CreateRoadInstance();
                 NewBuild.Translate(Plaats);
 
                 AddChild(NewBuild);
@@ -163,8 +163,8 @@ public class BuilderNode : Node
         SelectedBuild = null;
     }
 
-    //Takes player and values and creates and instances the correct placeable
-    private Placeable CreateInstance()
+    //Takes player and values and creates and instances the correct placeable/building
+    private Placeable CreateBuidingInstance()
     {
         Placeable Result = null;
 
@@ -173,9 +173,6 @@ public class BuilderNode : Node
             case 1://Red player's turn
                 switch (SelectedBuild)
                 {
-                    case "road":
-                        Result = (Placeable)RRoad.Instance();
-                        break;
                     case "settlement":
                         Result = (Placeable)RSettlement.Instance();
                         break;
@@ -188,9 +185,6 @@ public class BuilderNode : Node
             case 2://Blue player's turn
                 switch (SelectedBuild)
                 {
-                    case "road":
-                        Result = (Placeable)BRoad.Instance();
-                        break;
                     case "settlement":
                         Result = (Placeable)BSettlement.Instance();
                         break;
@@ -203,9 +197,6 @@ public class BuilderNode : Node
             case 3: //Green player's turn
                 switch (SelectedBuild)
                 {
-                    case "road":
-                        Result = (Placeable)GRoad.Instance();
-                        break;
                     case "settlement":
                         Result = (Placeable)GSettlement.Instance();
                         break;
@@ -218,9 +209,6 @@ public class BuilderNode : Node
             case 4: //Yellow player's turn
                 switch (SelectedBuild)
                 {
-                    case "road":
-                        Result = (Placeable)YRoad.Instance();
-                        break;
                     case "settlement":
                         Result = (Placeable)YSettlement.Instance();
                         break;
@@ -234,7 +222,32 @@ public class BuilderNode : Node
         return Result;
     }
 
-    //Creates an instance of a road
+    //Takes player and values and creates an instance of a road
+    private Road CreateRoadInstance()
+    {
+        Road Result = null;
+
+        switch (CurrentPlayer)
+        {
+            case 1://Red player's turn
+                Result = (Road)RRoad.Instance();
+                currentColour = "red";
+                break;
+            case 2://Blue player's turn
+                Result = (Road)BRoad.Instance();
+                currentColour = "blue";
+                break;
+            case 3: //Green player's turn
+                Result = (Road)GRoad.Instance();
+                currentColour = "green";
+                break;
+            case 4: //Yellow player's turn
+                Result = (Road)YRoad.Instance();
+                currentColour = "yellow";
+                break;
+        }
+        return Result;
+    }
 
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
     private bool AllowedSettlement(Vector3 Check)
