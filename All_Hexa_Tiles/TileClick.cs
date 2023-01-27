@@ -36,7 +36,7 @@ public class TileClick : Area
 
             // Tells Main that the tile has been clicked at the coordinates given
             TileClickManager Grid = GetNode<TileClickManager>("/root/TileClickManager");
-            Grid.ClickedAt(LastCoordinates, Corner, RotationOfNode); 
+            Grid.ClickedAt(LastCoordinates, Corner, RotationOfNode);
         }
     }
 

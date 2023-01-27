@@ -19,7 +19,7 @@ public class TileClickManager : Node
         
         return Rotation;
     }
-    // Emits signal for Builder_Node to use
+    // Emits signal for BuilderNode to use
     public void ClickedAt(Vector3 Coordinates, bool Corner, Vector3 Rotation)
     {
         EmitSignal("NewBuilding", Coordinates, Corner, ConvertRotation(Rotation));

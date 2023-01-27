@@ -39,7 +39,7 @@
 [ext_resource path="res://Menu Scenes/RoadBuild_Button.cs" type="Script" id=37]
 [ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=38]
 [ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=39]
-[ext_resource path="res://Main/Builder_Node.cs" type="Script" id=40]
+[ext_resource path="res://Main/BuilderNode.cs" type="Script" id=40]
 [ext_resource path="res://Main/InventoryManager.gd" type="Script" id=41]
 [ext_resource path="res://Main/DiceValueManager.cs" type="Script" id=42]
 [ext_resource path="res://Main/TileClickManager.cs" type="Script" id=43]
@@ -818,7 +818,6 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
 
 [node name="Name_Input_Menu" parent="." instance=ExtResource( 1 )]
-visible = false
 rect_pivot_offset = Vector2( 528, 472 )
 
 [node name="Player_Names" type="Panel" parent="Name_Input_Menu"]

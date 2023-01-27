@@ -9,7 +9,7 @@ public class DiceValueManager : Node
     public static int TurnCount = 1;
     public static int playerCount = 4;
     public static Hex_GridCS Board;
-    public static Builder_Node Builder;
+    public static BuilderNode Builder;
     public static Node InventoryManager;
     public static List<Label> ResourceLabels = new List<Label>();
     public static Button DiceButton;
@@ -20,7 +20,7 @@ public class DiceValueManager : Node
     {
         InventoryManager = GetNode("../InventoryManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
-        Builder = GetNode<Builder_Node>("../Builder_Node");
+        Builder = GetNode<BuilderNode>("../Builder_Node");
         DiceButton = GetNode<Button>("../Throw_Dice_Button");
     }
 
@@ -29,8 +29,7 @@ public class DiceValueManager : Node
     public static void DieValue()
     {
         int DieNumber = Throw_Dice_Button.dieSideSum;
-        GD.Print($"{DieNumber} thrown"); // REMOVE LATER
- 
+
         // Goes over each Tile that has the given die number
         foreach(Tile Tile in Board.TilesDictionary[DieNumber])
         {

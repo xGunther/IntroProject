@@ -22,6 +22,7 @@ func endTurn():
 	CurrentTurn += 1
 	if (CurrentTurn > playerCount):
 		CurrentTurn = 1
+		CurrentRound += 1
 		
 func _on_End_Turn_Button_pressed():
 	endTurn()
