@@ -111,17 +111,33 @@ public class DiceValueManager : Node
         {
             Vector3 Location = Tile.TileNode.GlobalTranslation;
             // Goes over each Building that is on the corners of the tile
-            foreach (Placeable Placeable in GetPlaceables(Location))
-            {
-                if (Placeable.GetPlayer() == "red")
-                { AddResources(Tile.ResourceType, 1, 1);}
-                else if (Placeable.GetPlayer() == "blue")
-                { AddResources(Tile.ResourceType, 2, 1); }
-                else if (Placeable.GetPlayer() == "green")
-                { AddResources(Tile.ResourceType, 3, 1); }
-                else if (Placeable.GetPlayer() == "yellow")
-                { AddResources(Tile.ResourceType, 4, 1); }
+            GetPlayerResources(Tile.ResourceType, Location);
+        }
+    }
 
+    private static void GetPlayerResources(String ResourceType, Vector3 Location)
+    {
+        foreach (Placeable Placeable in GetPlaceables(Location))
+        {
+            if (Placeable.GetPlayer() == "red")
+            { AddResources(ResourceType, 1, 1); }
+            else if (Placeable.GetPlayer() == "blue")
+            { AddResources(ResourceType, 2, 1); }
+            else if (Placeable.GetPlayer() == "green")
+            { AddResources(ResourceType, 3, 1); }
+            else if (Placeable.GetPlayer() == "yellow")
+            { AddResources(ResourceType, 4, 1); }
+
+        }
+    }
+
+    public static void EarlyResources()
+    {
+        foreach (KeyValuePair<int, List<Tile>> kvp in Board.TilesDictionary)
+        {
+            foreach (Tile Tile in kvp.Value)
+            {
+                GetPlayerResources(Tile.ResourceType, Tile.TileNode.GlobalTranslation);
             }
         }
     }
@@ -177,6 +193,8 @@ public class DiceValueManager : Node
             if (CurrentTurn > playerCount)
             {
                 CurrentTurn = 1;
+                if (TurnCount <= 2)
+                { EarlyResources(); }
                 TurnCount++;
             } 
             ButtonPressedOrNot = false;
