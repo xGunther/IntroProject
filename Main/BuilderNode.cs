@@ -63,6 +63,11 @@ public class BuilderNode : Node
     {
         //only need to be called once to access
         Board = (Hex_GridCS)GetNode("/root/Main/Hex_GridCS");
+
+        RedScore = 0;
+        BlueScore = 0;
+        GreenScore = 0;
+        YellowScore = 0;
     }
 
     //This method is the 'entrance' for the build function. It makes a couple important filters before going through the process of building
@@ -164,7 +169,7 @@ public class BuilderNode : Node
             }
         }
             
-        if ((SelectedBuild == "settlement" || SelectedBuild == "city") && ActuallyPlaced)
+        if (ActuallyPlaced)
         {       
             switch (CurrentPlayer)
             {
