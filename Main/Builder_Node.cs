@@ -72,11 +72,23 @@ public class Builder_Node : Node
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
 
         Signal = GetNode<TileClickManager>("/root/TileClickManager");
-        Signal.Connect("NewBuilding", this, "Build");
+        Signal.Connect("NewBuilding", this, "PlaceBuilding");
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    public void Build(Vector3 Plaats, bool IsCorner, Vector3 Rotation)
+
+    public void PlaceBuilding(Vector3 Place, bool IsCorner, Vector3 Rotation)
+    {
+        if (IsCorner && (SelectedBuild == "settlement" || SelectedBuild == "city"))
+        {
+            Build(Place, Rotation);
+        }
+        else if (!IsCorner && SelectedBuild == "road")
+        {
+            Build(Place, Rotation);
+        }
+    }
+    private void Build(Vector3 Plaats, Vector3 Rotation)
     {
         CurrentPlayer = (int)DVM.Get("CurrentTurn");
 
@@ -108,7 +120,7 @@ public class Builder_Node : Node
         bool ActuallyPlaced= false;
 
         //make placeable and add it to the list
-        if (SelectedBuild == "city" && IsCorner)
+        if (SelectedBuild == "city")
         {       
             foreach (Placeable Placed in RelevantList)
             {       
@@ -128,7 +140,7 @@ public class Builder_Node : Node
                 
             }
         }
-        else if(SelectedBuild == "settlement" && IsCorner)
+        else if(SelectedBuild == "settlement")
         {
             if (AllowedSettlement(Plaats))
             {
@@ -142,7 +154,7 @@ public class Builder_Node : Node
                 NewBuild.Translate(new Vector3(0, 0.334f, 0));
             }
         }
-        else if(SelectedBuild == "road" && !IsCorner)
+        else if(SelectedBuild == "road")
         {
             if (AllowedRoad(Plaats, RoadList, RelevantList))
             {
