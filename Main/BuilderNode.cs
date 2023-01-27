@@ -24,9 +24,6 @@ public class BuilderNode : Node
     //this variable saves what will be built next. If nothing is being built, value should be null
     public string SelectedBuild;
 
-    //spot to save the TurnManager
-    private Node TM;
-
     //spot to save the HexatileBoard
     private Hex_GridCS Board;
 
@@ -65,28 +62,27 @@ public class BuilderNode : Node
     public override void _Ready()
     {
         //only need to be called once to access
-        TM = (Node)GetNode("/root/Main/TurnManager");
         Board = (Hex_GridCS)GetNode("/root/Main/Hex_GridCS");
     }
 
     //This method is the 'entrance' for the build function. It makes a couple important filters before going through the process of building
-    public void PlaceBuilding(Vector3 Placement, String Type)
+    public void PlaceBuilding(Vector3 Placement, bool Corner, Vector3 Rotation)
     {
-        if(Type=="Side" && SelectedBuild == "road") //the collision node pressed is on an edge and the building to be placed is a road
+        if(!Corner && SelectedBuild == "road") //the collision node pressed is on an edge and the building to be placed is a road
         {
-            Build(Placement);
+            Build(Placement, Rotation);
         }
-        else if(Type == "Corner" && (SelectedBuild=="city"||SelectedBuild=="settlement") ) //the collision node pressed is on a corner
+        else if(Corner && (SelectedBuild=="city"||SelectedBuild=="settlement") ) //the collision node pressed is on a corner
                                                                                    //and the building to be placed is a city or settlement
         {
-            Build(Placement);
+            Build(Placement, Rotation);
         }
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    private void Build(Vector3 Plaats)
+    private void Build(Vector3 Plaats, Vector3 ObjectRotation)
     {
-        CurrentPlayer = (int)TM.Get("CurrentTurn");
+        CurrentPlayer = DiceValueManager.CurrentTurn;
 
         //Local variables to save the relevant player-specific list, whether for roads or buildings, with standard value
         List<Placeable> RelevantList= RedBuilds;
@@ -126,6 +122,7 @@ public class BuilderNode : Node
                 AllBuildings.Remove(CurrentSettlement);
                 Placeable NewBuild = CreateBuidingInstance();
                 NewBuild.Translate(Plaats);
+                NewBuild.Rotation = ObjectRotation;
                     
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
@@ -141,7 +138,8 @@ public class BuilderNode : Node
             {
                 Placeable NewBuild = CreateBuidingInstance();
                 NewBuild.Translate(Plaats);
-                
+                NewBuild.Rotation = ObjectRotation;
+
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
@@ -156,6 +154,7 @@ public class BuilderNode : Node
             {
                 Road NewBuild = CreateRoadInstance();
                 NewBuild.Translate(Plaats);
+                NewBuild.Rotation = ObjectRotation;
 
                 AddChild(NewBuild);
                 AllWays.Add(NewBuild);
@@ -300,7 +299,7 @@ public class BuilderNode : Node
     {
         float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
-        int CurrentRound= (int)TM.Get("CurrentRound");
+        int CurrentRound= DiceValueManager.TurnCount;
 
         foreach(Road Another in AllWays)
         {

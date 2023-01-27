@@ -10,10 +10,10 @@ public class TileClick : Area
     }
 
     // Is called whenever a tile is clicked on the side or corner
-    public void TileInputEvent(Viewport viewport, InputEvent @event, Vector3 position, Vector3 normal, int shape_idx)
+    public void TileInputEvent(Viewport Viewport, InputEvent @Event, Vector3 Position, Vector3 Normal, int ShapeIdx)
     {
         // Filters for only left clicks that have just been pressed
-        if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
+        if (@Event is InputEventMouseButton EventMouseButton && EventMouseButton.ButtonIndex == (int)ButtonList.Left && EventMouseButton.Pressed)
         {
             CollisionShape Shape;
             Vector3 RotationOfNode;
@@ -32,12 +32,23 @@ public class TileClick : Area
                 Corner = true;
             }
             Vector3 LastCoordinates = Shape.GlobalTranslation;
-            RotationOfNode = Shape.Rotation;
+            RotationOfNode = ConvertRotation(Shape.Rotation);
 
             // Tells Main that the tile has been clicked at the coordinates given
-            TileClickManager Grid = GetNode<TileClickManager>("/root/TileClickManager");
-            Grid.ClickedAt(LastCoordinates, Corner, RotationOfNode);
+            BuilderNode Builder = GetNode<BuilderNode>("/root/Main/BuilderNode");
+            Builder.PlaceBuilding(LastCoordinates, Corner, RotationOfNode);
         }
+    }
+
+    //A method to change the rotational vector, to avoid some problems
+    public Vector3 ConvertRotation(Vector3 Rotation)
+    {
+        if (0.52 < Rotation[1] && Rotation[1] < 0.53)
+        {
+            Rotation[1] += (float)(0.5 * Math.PI);
+        }
+
+        return Rotation;
     }
 
 }

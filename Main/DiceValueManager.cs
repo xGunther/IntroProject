@@ -20,7 +20,7 @@ public class DiceValueManager : Node
     {
         InventoryManager = GetNode("../InventoryManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
-        Builder = GetNode<BuilderNode>("../Builder_Node");
+        Builder = GetNode<BuilderNode>("../BuilderNode");
         DiceButton = GetNode<Button>("../Throw_Dice_Button");
     }
 
@@ -100,7 +100,7 @@ public class DiceValueManager : Node
                 CurrentTurn += 1;
                 if (CurrentTurn > playerCount)
                 {
-                  CurrentTurn = 1;
+                CurrentTurn = 1;
                 TurnCount++;
                 } 
                 ButtonPressedOrNot = false;

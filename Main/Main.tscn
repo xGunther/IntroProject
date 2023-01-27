@@ -955,7 +955,7 @@ margin_right = 1081.0
 margin_bottom = 159.0
 text = "4 Players"
 
-[node name="Builder_Node" type="Node" parent="."]
+[node name="BuilderNode" type="Node" parent="."]
 script = ExtResource( 40 )
 
 [node name="TurnManager" type="Node" parent="."]
