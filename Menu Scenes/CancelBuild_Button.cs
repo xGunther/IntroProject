@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class DevelopCardBuild_Button : Button
+public class CancelBuild_Button : Button
 {
     //Leaves room to save the Builder node (BuilderNode)
     private BuilderNode Builder;
