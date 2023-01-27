@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -14,8 +14,6 @@
 [ext_resource path="res://TurnManager.gd" type="Script" id=12]
 [ext_resource path="res://All Sprites/1098400-200.png" type="Texture" id=13]
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
-[ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
-[ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
 [ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
 [ext_resource path="res://Main/BuildCost.gd" type="Script" id=18]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
@@ -42,6 +40,7 @@
 [ext_resource path="res://Main/BuilderNode.cs" type="Script" id=40]
 [ext_resource path="res://Main/InventoryManager.gd" type="Script" id=41]
 [ext_resource path="res://Main/DiceValueManager.cs" type="Script" id=42]
+[ext_resource path="res://All Sprites/Victory.png" type="Texture" id=43]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -73,21 +72,9 @@ corner_radius_bottom_left = 15
 [sub_resource type="GDScript" id=31]
 script/source = "extends Panel
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = \"text\"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	pass 
 
 func _on_LineEdit_text_changed(new_text):
 	$Player_Name1.text = new_text
@@ -454,6 +441,114 @@ public class TileClickManager : Node
 
 "
 
+[sub_resource type="StyleBoxFlat" id=53]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 0.686275 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=54]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=55]
+size = 38
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=56]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=57]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=58]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=59]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=60]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [node name="Main" type="Spatial"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
@@ -585,19 +680,16 @@ margin_bottom = 69.0
 text = "0"
 
 [node name="UI_Rect_Players_4" parent="." instance=ExtResource( 7 )]
-margin_left = 1408.0
+margin_left = 1552.0
 margin_right = 0.0
 margin_bottom = -816.0
 custom_styles/panel = SubResource( 7 )
 script = SubResource( 31 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Player_Name1" type="Label" parent="UI_Rect_Players_4"]
-margin_left = 16.0
+margin_left = 88.0
 margin_top = 8.0
-margin_right = 528.0
+margin_right = 384.0
 margin_bottom = 72.0
 rect_pivot_offset = Vector2( -592, 152 )
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
@@ -605,111 +697,91 @@ custom_fonts/font = SubResource( 1 )
 text = "  Player 1"
 valign = 1
 
-[node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name1"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
+[node name="PlayerScore1" parent="UI_Rect_Players_4/Player_Name1" instance=ExtResource( 34 )]
+margin_left = 216.0
+margin_top = -8.0
+margin_right = 280.0
+margin_bottom = 72.0
+text = " : 0 "
 
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name1/Knight"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name1/Knight/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name1/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54206 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
+[node name="ColorRect" type="ColorRect" parent="UI_Rect_Players_4/Player_Name1"]
+margin_left = -48.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 48.0
+color = Color( 1, 0, 0, 1 )
 
 [node name="Player_Name2" type="Label" parent="UI_Rect_Players_4"]
-margin_left = 16.0
+margin_left = 88.0
 margin_top = 72.0
-margin_right = 528.0
+margin_right = 384.0
 margin_bottom = 136.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "  Player 2"
 valign = 1
 
-[node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name2"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
+[node name="PlayerScore2" parent="UI_Rect_Players_4/Player_Name2" instance=ExtResource( 34 )]
+margin_left = 216.0
+margin_top = -16.0
+margin_right = 280.0
+margin_bottom = 64.0
+text = ": 0"
 
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name2/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54202 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
+[node name="ColorRect" type="ColorRect" parent="UI_Rect_Players_4/Player_Name2"]
+margin_left = -48.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 48.0
+color = Color( 0, 0, 1, 1 )
 
 [node name="Player_Name3" type="Label" parent="UI_Rect_Players_4"]
-margin_left = 16.0
+margin_left = 88.0
 margin_top = 136.0
-margin_right = 528.0
+margin_right = 384.0
 margin_bottom = 200.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "  Player 3"
 valign = 1
 
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name3"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
+[node name="PlayerScore3" parent="UI_Rect_Players_4/Player_Name3" instance=ExtResource( 34 )]
+margin_left = 216.0
+margin_top = -8.0
+margin_right = 280.0
+margin_bottom = 72.0
+text = ": 0"
 
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight2"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight2/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name3/Knight2/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54204 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
+[node name="ColorRect" type="ColorRect" parent="UI_Rect_Players_4/Player_Name3"]
+margin_left = -48.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 48.0
+color = Color( 0, 1, 0, 1 )
 
 [node name="Player_Name4" type="Label" parent="UI_Rect_Players_4"]
-margin_left = 16.0
+margin_left = 88.0
 margin_top = 200.0
-margin_right = 528.0
+margin_right = 384.0
 margin_bottom = 264.0
 custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "  Player 4"
 valign = 1
 
-[node name="Knight" type="Sprite" parent="UI_Rect_Players_4/Player_Name4"]
-position = Vector2( -512, 72 )
-scale = Vector2( 2.1, 1.98148 )
-texture = ExtResource( 15 )
-offset = Vector2( 373.333, -20.6916 )
+[node name="PlayerScore4" parent="UI_Rect_Players_4/Player_Name4" instance=ExtResource( 34 )]
+margin_left = 216.0
+margin_top = -8.0
+margin_right = 280.0
+margin_bottom = 72.0
+text = " : 0 "
 
-[node name="Knight2" type="Sprite" parent="UI_Rect_Players_4/Player_Name4/Knight"]
-position = Vector2( 358.095, -20.6916 )
-texture = ExtResource( 15 )
-
-[node name="Knight3" type="Sprite" parent="UI_Rect_Players_4/Player_Name4/Knight/Knight2"]
-position = Vector2( 30.4762, -3.8147e-06 )
-texture = ExtResource( 15 )
-
-[node name="Longest_Road" type="Sprite" parent="UI_Rect_Players_4/Player_Name4/Knight/Knight2/Knight3"]
-position = Vector2( 53.333, 4.54205 )
-scale = Vector2( 0.13007, 0.181831 )
-texture = ExtResource( 16 )
+[node name="ColorRect" type="ColorRect" parent="UI_Rect_Players_4/Player_Name4"]
+margin_left = -48.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 48.0
+color = Color( 1, 1, 0, 1 )
 
 [node name="UI_Rect_Build_Destroy" parent="." instance=ExtResource( 7 )]
 margin_top = 928.0
@@ -849,7 +921,6 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
 
 [node name="Name_Input_Menu" parent="." instance=ExtResource( 1 )]
-visible = false
 rect_pivot_offset = Vector2( 528, 472 )
 
 [node name="Player_Names" type="Panel" parent="Name_Input_Menu"]
@@ -1065,6 +1136,69 @@ script = ExtResource( 42 )
 [node name="TileClickManager" type="Node" parent="."]
 script = SubResource( 52 )
 
+[node name="VictoryRect" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_left = 256.0
+margin_top = 192.0
+margin_right = -256.0
+margin_bottom = -176.0
+custom_styles/panel = SubResource( 53 )
+
+[node name="Victory" type="Sprite" parent="VictoryRect"]
+position = Vector2( 704, 88 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 43 )
+
+[node name="VictoryLabel" parent="VictoryRect" instance=ExtResource( 34 )]
+margin_left = 616.0
+margin_top = 176.0
+margin_right = 792.0
+margin_bottom = 221.0
+custom_fonts/font = SubResource( 54 )
+text = "Victory"
+
+[node name="WinningName" parent="VictoryRect" instance=ExtResource( 34 )]
+margin_right = 1408.0
+margin_bottom = 712.0
+custom_fonts/font = SubResource( 54 )
+text = "Player 1 has won!!!"
+
+[node name="Exit_Button" parent="VictoryRect" instance=ExtResource( 24 )]
+pause_mode = 2
+margin_left = 512.0
+margin_top = 576.0
+margin_right = 896.0
+margin_bottom = 640.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_colors/font_color_focus = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 55 )
+custom_styles/hover = SubResource( 56 )
+custom_styles/pressed = SubResource( 57 )
+custom_styles/focus = SubResource( 58 )
+custom_styles/normal = SubResource( 59 )
+text = "Exit"
+script = ExtResource( 33 )
+reference_path = "res://Menu Scenes/TitleScreen.tscn"
+
+[node name="WarningLabel" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_left = 760.0
+margin_top = 88.0
+margin_right = -760.0
+margin_bottom = -896.0
+custom_styles/panel = SubResource( 60 )
+
+[node name="WarningMessage" parent="WarningLabel" instance=ExtResource( 34 )]
+margin_bottom = 96.0
+text = "The turn cannot be ended,
+you have not thrown the 
+dice yet!!!"
+
+[node name="WarningTimer" type="Timer" parent="WarningLabel"]
+wait_time = 4.0
+one_shot = true
+
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/City_Button" to="UI_Rect_Build_Destroy/City_Button" method="Triggered"]
@@ -1080,6 +1214,7 @@ script = SubResource( 52 )
 [connection signal="visibility_changed" from="Die_Grid" to="Camera_Controller" method="_on_Die_Grid_visibility_changed"]
 [connection signal="visibility_changed" from="Die_Grid" to="Die_Grid/die" method="Die_GridChangedVis"]
 [connection signal="visibility_changed" from="Die_Grid" to="Die_Grid/die2" method="Die_GridChangedVis"]
+[connection signal="timeout" from="WarningLabel/WarningTimer" to="DiceValueManager" method="WarningTimerTimeOut"]
 
 [editable path="UI_Rect_Build_Destroy/Road_Button"]
 [editable path="UI_Rect_Build_Destroy/Settlement_Button"]

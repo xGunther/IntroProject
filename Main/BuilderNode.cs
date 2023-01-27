@@ -56,10 +56,10 @@ public class BuilderNode : Node
     private PackedScene YRoad = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Yellow Placeables/Yellow_Road.tscn");
 
     //Scorekeeping for the game
-    public int RedScore = 0;
-    public int BlueScore = 0;
-    public int GreenScore = 0;
-    public int YellowScore = 0;
+    public static int RedScore = 0;
+    public static int BlueScore = 0;
+    public static int GreenScore = 0;
+    public static int YellowScore = 0;
 
     // Called when the node enters the scene tree for the first time
     public override void _Ready()
@@ -162,7 +162,7 @@ public class BuilderNode : Node
             }
         }
 
-        if ((SelectedBuild == "settlement" || SelectedBuild == "city") && ActuallyPlaced)
+        if (ActuallyPlaced)
         {
             switch (CurrentPlayer)
             {

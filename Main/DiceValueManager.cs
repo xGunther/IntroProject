@@ -13,19 +13,95 @@ public class DiceValueManager : Node
     public static Node InventoryManager;
     public static List<Label> ResourceLabels = new List<Label>();
     public static Button DiceButton;
+    public static Label RedScoreLabel;
+    public static Label BlueScoreLabel;
+    public static Label GreenScoreLabel;
+    public static Label YellowScoreLabel;
+    public static Panel EndTurnWarningPanel;
+    public static Timer WarningTimer;
+    public static Panel VictoryScreen;
+    public static Label WinningName;
+    public static Label PlayerName1;
+    public static Label PlayerName2;
+    public static Label PlayerName3;
+    public static Label PlayerName4;
 
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-    {
+    { //gets all the nodes needed from GDscript or other scripts
         InventoryManager = GetNode("../InventoryManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
         Builder = GetNode<BuilderNode>("../BuilderNode");
         DiceButton = GetNode<Button>("../Throw_Dice_Button");
+        RedScoreLabel = GetNode<Label>("../UI_Rect_Players_4/Player_Name1/PlayerScore1");
+        BlueScoreLabel = GetNode<Label>("../UI_Rect_Players_4/Player_Name2/PlayerScore2");
+        GreenScoreLabel = GetNode<Label>("../UI_Rect_Players_4/Player_Name3/PlayerScore3");
+        YellowScoreLabel = GetNode<Label>("../UI_Rect_Players_4/Player_Name4/PlayerScore4");
+        EndTurnWarningPanel = GetNode<Panel>("../WarningLabel");
+        WarningTimer = GetNode<Timer>("../WarningLabel/WarningTimer");
+        VictoryScreen = GetNode<Panel>("../VictoryRect");
+        WinningName = GetNode<Label>("../VictoryRect/WinningName");
+        PlayerName1 = GetNode<Label>("../UI_Rect_Players_4/Player_Name1");
+        PlayerName2 = GetNode<Label>("../UI_Rect_Players_4/Player_Name2");
+        PlayerName3 = GetNode<Label>("../UI_Rect_Players_4/Player_Name3");
+        PlayerName4 = GetNode<Label>("../UI_Rect_Players_4/Player_Name4");
+    }
+
+//Updates the scores according to the amount of cities or settlements for each player player
+    public static void UpdateScoreLabels()
+    {
+        RedScoreLabel.Text = ": " + BuilderNode.RedScore.ToString();
+        BlueScoreLabel.Text = ": " + BuilderNode.BlueScore.ToString();
+        GreenScoreLabel.Text = ": " + BuilderNode.GreenScore.ToString();
+        YellowScoreLabel.Text = ": " + BuilderNode.YellowScore.ToString();
+    }
+    //Checks if a player has reached the amount of points to win
+    public static void CheckVictoryScreen()
+    {
+        if(BuilderNode.RedScore >= 10)
+        {
+            WinningName.Text = PlayerName1.Text + " has won!!!";
+            VictoryScreen.Visible = true;
+            EndTurnWarningPanel.Visible = false;
+        }
+        else if(BuilderNode.BlueScore >= 10)
+        {
+            WinningName.Text = PlayerName2.Text + " has won!!!";
+            VictoryScreen.Visible = true;
+            EndTurnWarningPanel.Visible = false;
+        }
+        else if(BuilderNode.GreenScore >= 10)
+        {
+            WinningName.Text = PlayerName3.Text + " has won!!!";
+            VictoryScreen.Visible = true;
+            EndTurnWarningPanel.Visible = false;
+        }
+        else if(BuilderNode.YellowScore >= 10)
+        {
+            WinningName.Text = PlayerName4.Text + " has won!!!";
+            VictoryScreen.Visible = true;
+            EndTurnWarningPanel.Visible = false;
+        }
+
+    }
+    //Shows a warning message if you have not yet clicked the dice and want to end a turn
+    public static void ShowWarningMessage()
+    {
+        EndTurnWarningPanel.Visible = true;
+        WarningTimer.Start(4.0f);
+        WarningTimerTimeOut();
+    }
+    //If the warning timeout is 0 the panel is removed
+    public static void WarningTimerTimeOut()
+    {   
+        if(WarningTimer.TimeLeft == 0)
+        {
+            EndTurnWarningPanel.Visible = false;
+        }
     }
 
 //This function checks every possible die sum and checks the corresponding tiles with that particular number on the board for settlements or cities
-
     public static void DieValue()
     {
         int DieNumber = Throw_Dice_Button.dieSideSum;
@@ -93,7 +169,7 @@ public class DiceValueManager : Node
     {
         if (ButtonPressedOrNot == false)
         {
-            GD.Print("You can't end the turn, the die have not been thrown yet!!!");
+            ShowWarningMessage();
         }
 		
 	        else if(ButtonPressedOrNot == true)
@@ -109,6 +185,8 @@ public class DiceValueManager : Node
             }
         UpdateResources();
         DiceButton.Show();
+        CheckVictoryScreen();
+        UpdateScoreLabels();
     }
 
 }
