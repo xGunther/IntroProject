@@ -7,7 +7,7 @@ using System;
  * Therefore, there will be no instances of class*/
 public abstract class Placeable : Spatial
 {
-    protected string player;//this describes what player this element belongs to
+    protected string Player;//this describes what player this element belongs to
                           //specifically their colour, as this is the only consistent thing across different games
 
     // Called when the node enters the scene tree for the first time, essentially when the object is constructed
@@ -17,6 +17,6 @@ public abstract class Placeable : Spatial
     //Therefore, this method should have been a property, but is currently just a function that returns the player's colour
      public string GetPlayer()
     {
-         return this.player;
+         return this.Player;
     }
 }
