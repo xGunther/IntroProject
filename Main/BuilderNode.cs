@@ -1,10 +1,9 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using static TileClickManager;
 
 //In this class, all things related to building are added, from creating a new placeable to saving all current placeables
-public class Builder_Node : Node
+public class BuilderNode : Node
 {
     //list to save all made placeables
     public List<Placeable> AllBuildings = new List<Placeable>();
@@ -62,17 +61,12 @@ public class Builder_Node : Node
     public int GreenScore = 0;
     public int YellowScore = 0;
 
-    private TileClickManager Signal;
-
     // Called when the node enters the scene tree for the first time
     public override void _Ready()
     {
         //only need to be called once to access
         DVM = GetNode<DiceValueManager>("../DiceValueManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
-
-        Signal = GetNode<TileClickManager>("/root/TileClickManager");
-        Signal.Connect("NewBuilding", this, "PlaceBuilding");
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
@@ -323,7 +317,7 @@ public class Builder_Node : Node
 
         foreach (Placeable OwnedBuilding in OwnedBuildings)
         {
-            if (Check.DistanceTo(OwnedBuilding.Translation) < 0.7 * size)//there is a building that is only one tile edge away, or 'directly connects'
+            if (Check.DistanceTo(OwnedBuilding.Translation) < 0.7 * size && TurnCount < 2)//there is a building that is only one tile edge away, or 'directly connects'
             {
                 return true;
             }

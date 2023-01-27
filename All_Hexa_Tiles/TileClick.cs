@@ -31,12 +31,23 @@ public class TileClick : Area
                 Corner = true;
             }
             Vector3 LastCoordinates = Shape.GlobalTranslation;
-            RotationOfNode = Shape.Rotation;
+            RotationOfNode = ConvertRotation(Shape.Rotation);
 
             // Tells Main that the tile has been clicked at the coordinates given
-            TileClickManager Grid = GetNode<TileClickManager>("/root/TileClickManager");
-            Grid.ClickedAt(LastCoordinates, Corner, RotationOfNode); 
+            BuilderNode Builder = GetNode<BuilderNode>("/root/Main/BuilderNode");
+            Builder.PlaceBuilding(LastCoordinates, Corner, RotationOfNode);
         }
+    }
+
+    //A method to change the rotational vector, to avoid some problems
+    public Vector3 ConvertRotation(Vector3 Rotation)
+    {
+        if (0.52 < Rotation[1] && Rotation[1] < 0.53)
+        {
+            Rotation[1] += (float)(0.5 * Math.PI);
+        }
+
+        return Rotation;
     }
 
 }
