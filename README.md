@@ -19,14 +19,17 @@ To play the game, simply download the .exe file (Ziggurat.exe) and run it. As fo
 
 <a name ="play"></a>
 ## How to Play
-*waarschijnlijk het beste om dit uit te leggen wanneer het spel echt speelbaar is*
+To get a good idea of how to play the game, read the rules [here](https://www.catan.com/sites/default/files/2021-06/catan_base_rules_2020_200707.pdf). Note that there is no form of trading at all in our version. Too many pages? Read below!
+
+#### Too lazy; didn't read
+In Catan, your goal is to place settlements and cities in order to gain the resources that the dice throw around those buildings. You can also place roads in order to expand your kingdom, as you are only allowed to place settlements or cities next to roads after the second round of turns. The crux is that you need resources to build. Each settlement is worth 1 victory point and each city is worth 2 victory points. *hier nog verder uitleggen, ik snap catan niet*
 
 ## Controls
 
 ##### Making your turn
-Click on the dice in the bottom left to throw two dice. The dice in the bottom left will show what you ended up rolling.  
+Click on the dice in the bottom left to throw two dice. The dice in the bottom left will show what you ended up rolling. You have to roll your dice before ending your turn.  
 Use WASD to move around in the game in order to get a better look at the board.  
-*hier uitgelegd hoe je dingen bouwt*  
+Click on the buttons in the bottom left to select a build to build (a road, settlement or city). Then click the corner or side of a hexagon tile to place it.
 Clicking `Build Cost` shows you the resources needed for each building and how many victory points you get per building.  
 After you have finished your turn, click on `End Turn` in the bottom right to end your turn.
 
@@ -45,7 +48,11 @@ After you have finished your turn, click on `End Turn` in the bottom right to en
 **Extra Information**: .tscn are scene files, .gd are scripts written in GDScript, and .cs are scripts written in C#. They can be opened within Godot.
 
 ## Credits
+#### Creators
 - Niels van den Oever    [GitHub](https://github.com/n1eles)
 - Gun Chen          [GitHub](https://github.com/xGunther)
 - Jonathan van Dijk      [GitHub](https://github.com/ThannerJonna)
 - Floris Dinkelberg       [GitHub](https://github.com/florisyours)
+
+#### Other
+- Hexagons from [here](https://opengameart.org/content/hexagon-kit)
