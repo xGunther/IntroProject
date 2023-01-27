@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using static GridClick;
 
 //In this class, all things related to building are added, from creating a new placeable to saving all current placeables
 public class Builder_Node : Node
@@ -25,7 +26,7 @@ public class Builder_Node : Node
     public string SelectedBuild;
 
     //spot to save the TurnManager
-    private Node TM;
+    private DiceValueManager DVM;
 
     //spot to save the HexatileBoard
     private Hex_GridCS Board;
@@ -67,7 +68,7 @@ public class Builder_Node : Node
     public override void _Ready()
     {
         //only need to be called once to access
-        TM = GetNode<Node>("../TurnManager");
+        DVM = GetNode<DiceValueManager>("../DiceValueManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
 
         Signal = GetNode<GridClick>("/root/GridClick");
@@ -77,10 +78,10 @@ public class Builder_Node : Node
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
     public void Build(Vector3 Plaats)
     {
-        CurrentPlayer = (int)TM.Get("CurrentTurn");
+        CurrentPlayer = (int)DVM.Get("CurrentTurn");
 
         //Local variables to save the relevant player-specific list, whether for roads or buildings, with standard value
-        List<Placeable> RelevantList= RedBuilds;
+        List<Placeable> RelevantList = RedBuilds;
         List<Road> RoadList = RedWays;
 
         switch (CurrentPlayer)
@@ -138,6 +139,7 @@ public class Builder_Node : Node
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
                 ActuallyPlaced= true;
+                //NewBuild.Translate(new Vector3(0, 0.334f, 0));
             }
         }
         else if(SelectedBuild == "road")
@@ -275,7 +277,7 @@ public class Builder_Node : Node
     {
         float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
-        int TurnCount = (int)TM.Get("TurnCount");
+        int TurnCount = (int)DVM.Get("TurnCount");
 
         foreach(Road Another in AllWays)
         {

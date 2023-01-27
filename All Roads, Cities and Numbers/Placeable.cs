@@ -15,7 +15,7 @@ public abstract class Placeable : Spatial
 
     // This method is WIP, GoDot has mentioned that properties have had troubles in the past
     //Therefore, this method should have been a property, but is currently just a function that returns the player's colour
-     public string getPlayer()
+     public string GetPlayer()
     {
          return this.player;
     }

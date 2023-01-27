@@ -27,7 +27,6 @@ public class Throw_Dice_Button : Button
             Spatial Grid = GetNode<Spatial>("../Die_Grid");
             Grid.Show();
             dieTimer.Start();
-            DiceValueManager.ButtonPressedOrNot = true;
         }
 
     }
@@ -112,6 +111,7 @@ public class Throw_Dice_Button : Button
         DiceValueManager.DieValue();
         Spatial Grid = GetNode<Spatial>("../Die_Grid");
         Grid.Hide();
+        DiceValueManager.ButtonPressedOrNot = true;
     }
 
 }
