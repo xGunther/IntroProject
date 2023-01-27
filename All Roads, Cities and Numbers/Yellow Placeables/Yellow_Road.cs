@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-//This class will be the blueprint for all other road classes, that belong to different players
+//This class specifically belongs to the roads that the yellow player places
 public class Yellow_Road : Road
 {
     // Called when the node enters the scene tree for the first time, essentially when the object is constructed
