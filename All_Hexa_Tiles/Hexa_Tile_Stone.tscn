@@ -1,4 +1,6 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://All_Hexa_Tiles/TileClick.cs" type="Script" id=1]
 
 [sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 0.466667, 0.466667, 0.466667, 1 )
@@ -18,9 +20,6 @@ surfaces/0 = {
 "vertex_count": 36
 }
 
-[sub_resource type="SpatialMaterial" id=11]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
-
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "water_rocks_Mesh rock"
 surfaces/0 = {
@@ -30,14 +29,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": SubResource( 11 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
 }
-
-[sub_resource type="SpatialMaterial" id=12]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "water_rocks_Mesh rock2"
@@ -48,14 +43,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": SubResource( 12 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
 }
-
-[sub_resource type="SpatialMaterial" id=13]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=4]
 resource_name = "water_rocks_Mesh rock3"
@@ -66,14 +57,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": SubResource( 13 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
 }
-
-[sub_resource type="SpatialMaterial" id=14]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=5]
 resource_name = "water_rocks_Mesh rock4"
@@ -84,14 +71,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": SubResource( 14 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
 }
-
-[sub_resource type="SpatialMaterial" id=15]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=6]
 resource_name = "water_rocks_Mesh rock5"
@@ -102,14 +85,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": SubResource( 15 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
 }
-
-[sub_resource type="SpatialMaterial" id=16]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=7]
 resource_name = "water_rocks_Mesh rockLarge"
@@ -120,14 +99,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 72,
-"material": SubResource( 16 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 42
 }
-
-[sub_resource type="SpatialMaterial" id=17]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=8]
 resource_name = "water_rocks_Mesh rockLarge2"
@@ -138,14 +113,10 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 72,
-"material": SubResource( 17 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 42
 }
-
-[sub_resource type="SpatialMaterial" id=18]
-albedo_color = Color( 0.627451, 0.211765, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=9]
 resource_name = "water_rocks_Mesh rockLarge3"
@@ -156,13 +127,36 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 96,
-"material": SubResource( 18 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 54
 }
 
-[node name="Hexa_Tile_Stone" type="Spatial"]
+[sub_resource type="SphereShape" id=11]
+
+[sub_resource type="SphereShape" id=12]
+
+[sub_resource type="SphereShape" id=13]
+
+[sub_resource type="SphereShape" id=14]
+
+[sub_resource type="SphereShape" id=15]
+
+[sub_resource type="SphereShape" id=16]
+
+[sub_resource type="BoxShape" id=17]
+
+[sub_resource type="BoxShape" id=18]
+
+[sub_resource type="BoxShape" id=19]
+
+[sub_resource type="BoxShape" id=20]
+
+[sub_resource type="BoxShape" id=21]
+
+[sub_resource type="BoxShape" id=22]
+
+[node name="water_rocks" type="Spatial"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="tmpParent" type="Spatial" parent="."]
@@ -208,7 +202,99 @@ mesh = SubResource( 9 )
 transform = Transform( 0.365928, 0, -0.365928, 0, 0.5175, 0, 0.365928, 0, 0.365928, 0.329541, 0.1, -0.197172 )
 mesh = SubResource( 9 )
 
-[node name="water_rocks2" type="MeshInstance" parent="tmpParent"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../..")
+[node name="Corner1" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileCornerShape" type="CollisionShape" parent="Corner1"]
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 2.887, 1, 0 )
+shape = SubResource( 11 )
+
+[node name="Corner2" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileCornerShape" type="CollisionShape" parent="Corner2"]
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 1.443, 1, 2.5 )
+shape = SubResource( 12 )
+
+[node name="Corner3" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileCornerShape" type="CollisionShape" parent="Corner3"]
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.443, 1, 2.5 )
+shape = SubResource( 13 )
+
+[node name="Corner4" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileCornerShape" type="CollisionShape" parent="Corner4"]
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -2.887, 1, 0 )
+shape = SubResource( 14 )
+
+[node name="Corner5" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileCornerShape" type="CollisionShape" parent="Corner5"]
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, -1.443, 1, -2.5 )
+shape = SubResource( 15 )
+
+[node name="Corner6" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileCornerShape" type="CollisionShape" parent="Corner6"]
+transform = Transform( 0.75, 0, -8.88178e-16, 0, 0, 0, 8.88178e-16, 0, 0.75, 1.444, 1, -2.5 )
+shape = SubResource( 16 )
+
+[node name="Side1" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileSideShape" type="CollisionShape" parent="Side1"]
+transform = Transform( 0.3465, 0, 0.600156, 0, 0, 0, -0.600156, 0, 0.3465, 2.165, 1, 1.25 )
+shape = SubResource( 17 )
+
+[node name="Side2" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileSideShape" type="CollisionShape" parent="Side2"]
+transform = Transform( 0.693, 0, 0, 0, 0, 0, 0, 0, 0.693, 0, 1, 2.5 )
+shape = SubResource( 18 )
+
+[node name="Side3" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileSideShape" type="CollisionShape" parent="Side3"]
+transform = Transform( 0.600156, 0, 0.3465, 0, 0, 0, -0.3465, 0, 0.600156, -2.165, 1, 1.25 )
+shape = SubResource( 19 )
+
+[node name="Side4" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileSideShape" type="CollisionShape" parent="Side4"]
+transform = Transform( 0.3465, 0, 0.600156, 0, 0, 0, -0.600156, 0, 0.3465, -2.165, 1, -1.25 )
+shape = SubResource( 20 )
+
+[node name="Side5" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileSideShape" type="CollisionShape" parent="Side5"]
+transform = Transform( 0.693, 0, -6.39893e-16, 0, 0, 0, 6.39893e-16, 0, 0.693, 0, 1, -2.5 )
+shape = SubResource( 21 )
+
+[node name="Side6" type="Area" parent="."]
+script = ExtResource( 1 )
+
+[node name="TileSideShape" type="CollisionShape" parent="Side6"]
+transform = Transform( 0.600156, 0, 0.3465, 0, 0, 0, -0.3465, 0, 0.600156, 2.165, 1, -1.25 )
+shape = SubResource( 22 )
+
+[connection signal="input_event" from="Corner1" to="Corner1" method="TileInputEvent"]
+[connection signal="input_event" from="Corner2" to="Corner2" method="TileInputEvent"]
+[connection signal="input_event" from="Corner3" to="Corner3" method="TileInputEvent"]
+[connection signal="input_event" from="Corner4" to="Corner4" method="TileInputEvent"]
+[connection signal="input_event" from="Corner5" to="Corner5" method="TileInputEvent"]
+[connection signal="input_event" from="Corner6" to="Corner6" method="TileInputEvent"]
+[connection signal="input_event" from="Side1" to="Side1" method="TileInputEvent"]
+[connection signal="input_event" from="Side2" to="Side2" method="TileInputEvent"]
+[connection signal="input_event" from="Side3" to="Side3" method="TileInputEvent"]
+[connection signal="input_event" from="Side4" to="Side4" method="TileInputEvent"]
+[connection signal="input_event" from="Side5" to="Side5" method="TileInputEvent"]
+[connection signal="input_event" from="Side6" to="Side6" method="TileInputEvent"]
