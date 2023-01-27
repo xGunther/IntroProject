@@ -294,7 +294,7 @@ public class BuilderNode : Node
             return null;
         }
         // returns placeable to let function know that they cannot place a city
-        return TheList[0];
+        return null;
     }
 
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
