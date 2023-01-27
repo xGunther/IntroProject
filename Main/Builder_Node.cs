@@ -7,20 +7,20 @@ using static TileClickManager;
 public class Builder_Node : Node
 {
     //list to save all made placeables
-    public List<Placeable> AllBuildings= new List<Placeable>();
-    public List<Road> AllWays= new List<Road>();
+    public List<Placeable> AllBuildings = new List<Placeable>();
+    public List<Road> AllWays = new List<Road>();
 
     //Lists for all players to quickly access their buildings
-    public List<Placeable> RedBuilds= new List<Placeable>();
-    public List<Placeable> BlueBuilds= new List<Placeable>();
-    public List<Placeable> GreenBuilds= new List<Placeable>();
-    public List<Placeable> YellowBuilds= new List<Placeable>();
+    public List<Placeable> RedBuilds = new List<Placeable>();
+    public List<Placeable> BlueBuilds = new List<Placeable>();
+    public List<Placeable> GreenBuilds = new List<Placeable>();
+    public List<Placeable> YellowBuilds = new List<Placeable>();
 
     //Lists for all players with their roads
-    public List<Road> RedWays= new List<Road>();
-    public List<Road> BlueWays= new List<Road>();
-    public List<Road> GreenWays= new List<Road>();
-    public List<Road> YellowWays= new List<Road>();
+    public List<Road> RedWays = new List<Road>();
+    public List<Road> BlueWays = new List<Road>();
+    public List<Road> GreenWays = new List<Road>();
+    public List<Road> YellowWays = new List<Road>();
 
     //this variable saves what will be built next. If nothing is being built, value should be null
     public string SelectedBuild;
@@ -115,75 +115,70 @@ public class Builder_Node : Node
                 RelevantList = YellowBuilds;
                 break;
         }
-        
+
         //A variable that checks whether anything was actually instanced. Used for victory point management
-        bool ActuallyPlaced= false;
+        bool ActuallyPlaced = false;
 
         //make placeable and add it to the list
         if (SelectedBuild == "city")
-        {       
-            foreach (Placeable Placed in RelevantList)
-            {       
-                if (Placed.Translation == Plaats)
-                {
-                    Placed.Hide();
-                    AllBuildings.Remove(Placed);
+        {
+            Placeable CurrentSettlement = AllowedCity(Plaats, RelevantList);
 
-                    Placeable NewBuild = CreateBuidingInstance();
-                    NewBuild.Translate(Plaats);
-                    
-                    AddChild(NewBuild);
-                    AllBuildings.Add(NewBuild);
-                    RelevantList.Add(NewBuild);
-                    ActuallyPlaced= true;
-                }
-                
+            if (CurrentSettlement != null)
+            {
+                CurrentSettlement.Hide();
+                AllBuildings.Remove(CurrentSettlement);
+                Placeable NewBuild = CreateBuidingInstance();
+                NewBuild.Translate(Plaats);
+                NewBuild.Translate(new Vector3(0, 0.334f, 0));
+                AddChild(NewBuild);
+                AllBuildings.Add(NewBuild);
+                RelevantList.Add(NewBuild);
+                ActuallyPlaced = true;
+                SelectedBuild = null;
             }
         }
-        else if(SelectedBuild == "settlement")
+        else if (SelectedBuild == "settlement")
         {
             if (AllowedSettlement(Plaats))
             {
                 Placeable NewBuild = CreateBuidingInstance();
                 NewBuild.Translate(Plaats);
-                
+                NewBuild.Translate(new Vector3(0, 0.334f, 0));
                 AddChild(NewBuild);
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
-                ActuallyPlaced= true;
-                NewBuild.Translate(new Vector3(0, 0.334f, 0));
+                ActuallyPlaced = true;
+                SelectedBuild = null;
             }
         }
-        else if(SelectedBuild == "road")
+        else if (SelectedBuild == "road")
         {
             if (AllowedRoad(Plaats, RoadList, RelevantList))
             {
                 Road NewBuild = CreateRoadInstance();
                 NewBuild.Translate(Plaats);
-
+                NewBuild.Translate(new Vector3(0, 0.1667f, 0));
                 AddChild(NewBuild);
                 AllWays.Add(NewBuild);
                 RelevantList.Add(NewBuild);
-                NewBuild.Translate(new Vector3(0, 0.1667f, 0));
                 NewBuild.Rotation = Rotation;
-                GD.Print($"{NewBuild.Rotation} {Rotation}");
+                SelectedBuild = null;
 
             }
         }
-            
+
         if ((SelectedBuild == "settlement" || SelectedBuild == "city") && ActuallyPlaced)
-        {       
+        {
             switch (CurrentPlayer)
             {
-                    
+
                 case 1: RedScore++; break;
                 case 2: BlueScore++; break;
                 case 3: GreenScore++; break;
                 case 4: YellowScore++; break;
             }
-        }   
-        
-        SelectedBuild = null;
+        }
     }
 
     //Takes player and values and creates and instances the correct placeable/building
@@ -272,6 +267,21 @@ public class Builder_Node : Node
         return Result;
     }
 
+    private Placeable AllowedCity(Vector3 Check, List<Placeable> TheList)
+    {
+        foreach (Placeable Placed in TheList)
+        {
+            if (Placed.Translation.DistanceTo(Check) < 0.5)
+            {
+                return Placed;
+            }
+
+        }
+        //no settlement here of this player
+        return null;
+    }
+
+
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
     private bool AllowedSettlement(Vector3 Check)
     {
@@ -279,7 +289,7 @@ public class Builder_Node : Node
 
         foreach (Placeable Other in AllBuildings)
         {
-            if(Check.DistanceTo(Other.Translation) < 0.8 * size)
+            if (Check.DistanceTo(Other.Translation) < 0.8 * size)
             {
                 return false;
             }
@@ -295,23 +305,23 @@ public class Builder_Node : Node
 
         int TurnCount = (int)DVM.Get("TurnCount");
 
-        foreach(Road Another in AllWays)
+        foreach (Road Another in AllWays)
         {
-            if(Check.DistanceTo(Another.Translation) < 0.25 * size)//the roads are on the same edge of a tile, practically in the same spot
+            if (Check.DistanceTo(Another.Translation) < 0.25 * size)//the roads are on the same edge of a tile, practically in the same spot
             {
                 return false;
             }
         }
         //No road in the same spot
-        foreach(Road OwnedRoad in OwnedRoads)
+        foreach (Road OwnedRoad in OwnedRoads)
         {
-            if(Check.DistanceTo(OwnedRoad.Translation) < 0.7 * size && TurnCount>2)//there is a road that is only one tile edge away, or 'directly connects'
+            if (Check.DistanceTo(OwnedRoad.Translation) < 0.7 * size && TurnCount > 2)//there is a road that is only one tile edge away, or 'directly connects'
             {
                 return true;
             }
         }
 
-        foreach(Placeable OwnedBuilding in OwnedBuildings)
+        foreach (Placeable OwnedBuilding in OwnedBuildings)
         {
             if (Check.DistanceTo(OwnedBuilding.Translation) < 0.7 * size)//there is a building that is only one tile edge away, or 'directly connects'
             {
