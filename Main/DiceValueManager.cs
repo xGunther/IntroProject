@@ -11,6 +11,7 @@ public class DiceValueManager : Node
     public static Hex_GridCS Board;
     public static Builder_Node Builder;
     public static Node InventoryManager;
+    public static List<Label> ResourceLabels = new List<Label>();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -18,6 +19,12 @@ public class DiceValueManager : Node
         InventoryManager = GetNode("../InventoryManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
         Builder = GetNode<Builder_Node>("../Builder_Node");
+
+        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Gold/Gold_Count"));
+        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Sheep/Sheep_Count"));
+        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Stone/Stone_Count"));
+        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Wood/Wood_Count"));
+        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Grain/Grain_Count"));
     }
 
 //This function checks every possible die sum and checks the corresponding tiles with that particular number on the board for settlements or cities
@@ -66,10 +73,23 @@ public class DiceValueManager : Node
     {
         GD.Print($"Gave {Resource} to {PlayerNumber}");
         if (Resource != "Sand")
-        { InventoryManager.Call($"AddResources, {PlayerNumber}, {Resource}, {Amount}"); }
+        { InventoryManager.Call($"AddResources", PlayerNumber, Resource, Amount); }
 
-
+        UpdateResources();
     }
+
+    public static void UpdateResources()
+    {
+        /*string[] ResourceNames = new string[] {"Gold", "Sheep", "Stone", "Wood", "Grain"};
+        for (int ResourceIndex = 0; ResourceIndex < ResourceNames.Length; ResourceIndex++)
+        {
+            Label ResourceLabel = ResourceLabels[ResourceIndex];
+            ResourceLabel.Text = (string)InventoryManager.Get("PlayerInventory[PlayerNumber][resourceIndex]");
+        }*/
+
+        InventoryManager.Call("UpdateLabels");
+    }
+
     //This function firstly checks if the die have been thrown, if this is not the case it will print out a warning in the console
     //If the button has been pressed it will go to the next turn and resets the boolean value of the button press
     public void EndTurn()
@@ -89,8 +109,8 @@ public class DiceValueManager : Node
                 } 
                 ButtonPressedOrNot = false;
 	             
-            } 
-
+            }
+        UpdateResources();
     }	
 
 }

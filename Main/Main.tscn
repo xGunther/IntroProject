@@ -470,17 +470,31 @@ position = Vector2( 32, 32 )
 scale = Vector2( 2.18, 2.75 )
 texture = ExtResource( 3 )
 
-[node name="Panel_Goat" type="Panel" parent="UI_Rect_Resources"]
+[node name="Gold_Count" parent="UI_Rect_Resources/Panel_Gold" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
+
+[node name="Panel_Sheep" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 152.0
 margin_top = 8.0
 margin_right = 216.0
 margin_bottom = 72.0
 custom_styles/panel = SubResource( 9 )
 
-[node name="Goat_Icon" type="Sprite" parent="UI_Rect_Resources/Panel_Goat"]
+[node name="Sheep_Icon" type="Sprite" parent="UI_Rect_Resources/Panel_Sheep"]
 position = Vector2( 31.2813, 32.4531 )
 scale = Vector2( 1.17395, 0.919389 )
 texture = ExtResource( 4 )
+
+[node name="Sheep_Count" parent="UI_Rect_Resources/Panel_Sheep" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
 
 [node name="Panel_Stone" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 272.0
@@ -494,6 +508,13 @@ position = Vector2( 32.0001, 32 )
 scale = Vector2( 2.05769, 2.63125 )
 texture = ExtResource( 6 )
 
+[node name="Stone_Count" parent="UI_Rect_Resources/Panel_Stone" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
+
 [node name="Panel_Wood" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 392.0
 margin_top = 8.0
@@ -506,6 +527,13 @@ position = Vector2( 32, 32 )
 scale = Vector2( 2.17, 2.67411 )
 texture = ExtResource( 5 )
 
+[node name="Wood_Count" parent="UI_Rect_Resources/Panel_Wood" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
+
 [node name="Panel_Grain" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 512.0
 margin_top = 8.0
@@ -517,6 +545,13 @@ custom_styles/panel = SubResource( 9 )
 position = Vector2( 32, 32 )
 scale = Vector2( 1.36586, 1.375 )
 texture = ExtResource( 14 )
+
+[node name="Grain_Count" parent="UI_Rect_Resources/Panel_Grain" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
 
 [node name="UI_Rect_Players_4" parent="." instance=ExtResource( 7 )]
 margin_left = 1408.0
@@ -783,6 +818,7 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
 
 [node name="Name_Input_Menu" parent="." instance=ExtResource( 1 )]
+visible = false
 rect_pivot_offset = Vector2( 528, 472 )
 
 [node name="Player_Names" type="Panel" parent="Name_Input_Menu"]
