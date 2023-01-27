@@ -3,34 +3,34 @@ using System;
 
 public class Throw_Dice_Button : Button
 {
-    public int dieSide1 = 1;
-    public int dieSide2 = 1;
-    public static int dieSideSum = 2;
+    public int DieSide1 = 1;
+    public int DieSide2 = 1;
+    public static int DieSideSum = 2;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         float DieWaitTime = 4; // AMOUNT OF TIME TO WAIT BEFORE THE DICE DISAPPEAR
-        Timer dieTimer = GetNode<Timer>("Delay");
-        dieTimer.WaitTime = DieWaitTime;
+        Timer DieTimer = GetNode<Timer>("Delay");
+        DieTimer.WaitTime = DieWaitTime;
     }
 
     public void ButtonPressed()
     {
-        Timer dieTimer = GetNode<Timer>("Delay");
+        Timer DieTimer = GetNode<Timer>("Delay");
 
-        // Only throws new die if the timer is on zero.
+        // Only throws new Die if the timer is on zero.
         // Currently missing an extra check to determine whether they are allowed to throw them game-wise
-        if (dieTimer.TimeLeft == 0 && DiceValueManager.TurnCount > 2)
+        if (DieTimer.TimeLeft == 0 && DiceValueManager.TurnCount > 2)
         {
             Spatial Grid = GetNode<Spatial>("../Die_Grid");
             Grid.Show();
-            dieTimer.Start();
+            DieTimer.Start();
         }
         this.Hide();
     }
 
-    public int GetDieSide(RigidBody die)
+    public int GetDieSide(RigidBody Die)
     {
 
 
@@ -40,15 +40,15 @@ public class Throw_Dice_Button : Button
         // transform[2] == 0 1 0 => 4
         // transform[0] == 0 1 0 => 5
         // transform[1] == 0 1 0 => 6
-        float AbsZero = Math.Abs(die.Transform[0].y);
-        float AbsOne = Math.Abs(die.Transform[1].y);
-        float AbsTwo = Math.Abs(die.Transform[2].y);
+        float AbsZero = Math.Abs(Die.Transform[0].y);
+        float AbsOne = Math.Abs(Die.Transform[1].y);
+        float AbsTwo = Math.Abs(Die.Transform[2].y);
 
 
         // Case where Transform[0].y is the largest value (2 and 5)
         if (AbsZero > AbsOne && AbsZero > AbsTwo)
         {
-            if (die.Transform[0].y > 0)
+            if (Die.Transform[0].y > 0)
                 return 5;
             else
                 return 2;
@@ -57,7 +57,7 @@ public class Throw_Dice_Button : Button
         // Case where Transform[1].y is the largest value (1 and 6)
         else if (AbsOne > AbsZero && AbsOne > AbsTwo)
         {
-            if (die.Transform[1].y > 0)
+            if (Die.Transform[1].y > 0)
                 return 6;
             else
                 return 1;
@@ -66,7 +66,7 @@ public class Throw_Dice_Button : Button
         // Case where Transform[2].y is the largest value (3 and 4)
         else
         {
-            if (die.Transform[2].y > 0)
+            if (Die.Transform[2].y > 0)
                 return 4;
             else
                 return 3;
@@ -82,21 +82,21 @@ public class Throw_Dice_Button : Button
         // Checks if the dice are visible before throwing them 
         if (Grid.Visible)
         {
-            Sprite dieSprite;
+            Sprite DieSprite;
 
-            RigidBody die1 = GetNode<RigidBody>("../Die_Grid/die");
-            RigidBody die2 = GetNode<RigidBody>("../Die_Grid/die2");
-            dieSide1 = GetDieSide(die1);
-            dieSide2 = GetDieSide(die2);
-            dieSideSum = dieSide1 + dieSide2;
+            RigidBody Die1 = GetNode<RigidBody>("../Die_Grid/Die");
+            RigidBody Die2 = GetNode<RigidBody>("../Die_Grid/Die2");
+            DieSide1 = GetDieSide(Die1);
+            DieSide2 = GetDieSide(Die2);
+            DieSideSum = DieSide1 + DieSide2;
 
-            // Changes the Texture property to the rolled number of that die.
-            // First die
-            dieSprite = GetNode<Sprite>("../Side1");
-            dieSprite.Texture = (Texture)GD.Load($"res://All Sprites/Side{dieSide1}.png");
-            // Second die
-            dieSprite = GetNode<Sprite>("../Side2");
-            dieSprite.Texture = (Texture)GD.Load($"res://All Sprites/Side{dieSide2}.png");
+            // Changes the Texture property to the rolled number of that Die.
+            // First Die
+            DieSprite = GetNode<Sprite>("../Side1");
+            DieSprite.Texture = (Texture)GD.Load($"res://All Sprites/Side{DieSide1}.png");
+            // Second Die
+            DieSprite = GetNode<Sprite>("../Side2");
+            DieSprite.Texture = (Texture)GD.Load($"res://All Sprites/Side{DieSide2}.png");
 
         }
 

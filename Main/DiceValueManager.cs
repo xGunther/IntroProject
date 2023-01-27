@@ -7,7 +7,7 @@ public class DiceValueManager : Node
 {   public static bool ButtonPressedOrNot = false;
     public static int CurrentTurn = 1;
     public static int TurnCount = 1;
-    public static int playerCount = 4;
+    public static int PlayerCount = 4;
     public static Hex_GridCS Board;
     public static BuilderNode Builder;
     public static Node InventoryManager;
@@ -101,12 +101,12 @@ public class DiceValueManager : Node
         }
     }
 
-//This function checks every possible die sum and checks the corresponding tiles with that particular number on the board for settlements or cities
+//This function checks every possible Die sum and checks the corresponding tiles with that particular number on the board for settlements or cities
     public static void DieValue()
     {
-        int DieNumber = Throw_Dice_Button.dieSideSum;
+        int DieNumber = Throw_Dice_Button.DieSideSum;
 
-        // Goes over each Tile that has the given die number
+        // Goes over each Tile that has the given Die number
         foreach(Tile Tile in Board.TilesDictionary[DieNumber])
         {
             Vector3 Location = Tile.TileNode.GlobalTranslation;
@@ -178,7 +178,7 @@ public class DiceValueManager : Node
         InventoryManager.Call("UpdateLabels");
     }
 
-    //This function firstly checks if the die have been thrown, if this is not the case it will print out a warning in the console
+    //This function firstly checks if the Die have been thrown, if this is not the case it will print out a warning in the console
     //If the button has been pressed it will go to the next turn and resets the boolean value of the button press
     public void EndTurn()
     {
@@ -190,7 +190,7 @@ public class DiceValueManager : Node
 	    else
         {
             CurrentTurn += 1;
-            if (CurrentTurn > playerCount)
+            if (CurrentTurn > PlayerCount)
             {
                 CurrentTurn = 1;
                 if (TurnCount <= 2)

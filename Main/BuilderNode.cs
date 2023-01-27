@@ -89,7 +89,7 @@ public class BuilderNode : Node
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    private void Build(Vector3 Plaats, Vector3 ObjectRotation)
+    private void Build(Vector3 Location, Vector3 ObjectRotation)
     {
         CurrentPlayer = DiceValueManager.CurrentTurn;
 
@@ -123,7 +123,7 @@ public class BuilderNode : Node
         //make placeable and add it to the list
         if (SelectedBuild == "city")
         {
-            Placeable CurrentSettlement = AllowedCity(Plaats, RelevantList);
+            Placeable CurrentSettlement = AllowedCity(Location, RelevantList);
                 
             if (CurrentSettlement != null)
             {
@@ -131,7 +131,7 @@ public class BuilderNode : Node
                 CurrentSettlement.Hide();
                 AllBuildings.Remove(CurrentSettlement);
                 Placeable NewBuild = CreateBuidingInstance();
-                NewBuild.Translate(Plaats);
+                NewBuild.Translate(Location);
                 NewBuild.Rotation = ObjectRotation;
                     
                 AddChild(NewBuild);
@@ -144,12 +144,12 @@ public class BuilderNode : Node
         }
         else if(SelectedBuild == "settlement")
         {
-            if (AllowedSettlement(Plaats, RoadList))
+            if (AllowedSettlement(Location, RoadList))
             {
                 if (DiceValueManager.TurnCount > 2)
                 { InventoryManager.Call("RemoveResources", CurrentPlayer, "settlement"); }
                 Placeable NewBuild = CreateBuidingInstance();
-                NewBuild.Translate(Plaats);
+                NewBuild.Translate(Location);
                 NewBuild.Rotation = ObjectRotation;
 
                 AddChild(NewBuild);
@@ -162,12 +162,12 @@ public class BuilderNode : Node
         }
         else if(SelectedBuild == "road")
         {
-            if (AllowedRoad(Plaats, RoadList, RelevantList))
+            if (AllowedRoad(Location, RoadList, RelevantList))
             {
                 if (DiceValueManager.TurnCount > 2)
                 { InventoryManager.Call("RemoveResources", CurrentPlayer, "road"); }
                 Road NewBuild = CreateRoadInstance();
-                NewBuild.Translate(Plaats);
+                NewBuild.Translate(Location);
                 NewBuild.Rotation = ObjectRotation;
 
                 AddChild(NewBuild);
