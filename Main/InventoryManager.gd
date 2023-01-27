@@ -1,8 +1,8 @@
 extends Node
 
 var ThrowDiceScript = load("res://Main/Throw_Dice_Button.cs")
-var resourceIndex
-#an array to keep track of the resource amounts for every player by refering to their number 
+var ResourceIndex
+#an array to keep track of the resource Amounts for every player by refering to their number 
 var PlayerInventory = {1: [0, 0, 0, 0, 0], 2: [0, 0, 0, 0, 0], 3: [0, 0, 0, 0, 0], 4: [0, 0, 0, 0, 0]}
 var ResourceNames = ["Gold", "Sheep", "Stone", "Wood", "Grain"]
 #for every placeable there are certain resource requirements and these are put into arrays
@@ -21,10 +21,10 @@ func _ready():
 	pass 
 	
 #adds the resources to a players inventory when the dice rolled a number connected to their placeable
-func AddResources(PlayerNumber, resourceName, amount):
-	resourceIndex = ResourceNames.find(resourceName)
+func AddResources(PlayerNumber, resourceName, Amount):
+	ResourceIndex = ResourceNames.find(resourceName)
 	#checks if there is a city or a settlement 
-	PlayerInventory[PlayerNumber][resourceIndex] += amount
+	PlayerInventory[PlayerNumber][ResourceIndex] += Amount
 	
 #removes the resources of the player's inventory after placing a building
 func RemoveResources(PlayerNumber, PlaceableType):
@@ -66,15 +66,6 @@ func CheckResourcesForCity(PlayerNumber):
 			EnoughResources = false
 	return EnoughResources
 
-#checks if the player has enough resources to build a placeable or a DevCard
-func CheckResourcesForDevCard(PlayerNumber):
-	for i in (ResourcesRequiredDevCard):
-		if PlayerInventory [PlayerNumber][i] >= ResourcesRequiredDevCard:
-			# removeResources(PlayerNumber, i, ResourcesRequiredDevCard)
-			return true
-		else: 
-			print("You don't have enough resources to build a settlement")
-			return false
 #when the button is clicked, it will check if the player has enough resources if so, the player can build that placeable
 func _on_Road_Button_pressed():
 	CheckResourcesForRoad($"../TurnManager".currentTurn)
@@ -90,9 +81,3 @@ func _on_City_Button_pressed():
 	CheckResourcesForCity($"../TurnManager".currentTurn)
 	#build function
 	
-#when the button is clicked, it will check if the player has enough resources if so, the player can build that placeable
-func _on_DevCard_Button_pressed():
-	CheckResourcesForDevCard($"../TurnManager".currentTurn)
-	#build function
-	
-#this function checks every possible die sum and checks the corresponding tiles with that particular number on the board for settlements or cities
