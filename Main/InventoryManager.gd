@@ -6,10 +6,10 @@ var resourceIndex
 var PlayerInventory = {1: [0, 0, 0, 0, 0], 2: [0, 0, 0, 0, 0], 3: [0, 0, 0, 0, 0], 4: [0, 0, 0, 0, 0]}
 var ResourceNames = ["Gold", "Sheep", "Stone", "Wood", "Grain"]
 #for every placeable there are certain resource requirements and these are put into arrays
-var resourcesRequiredRoad = [0, 0, 1, 1, 0]
-var resourcesRequiredSettlement = [0, 1, 1, 1, 1]
-var resourcesRequiredCity = [2, 0, 0, 0, 3]
-var resourcesRequiredDevCard = [1, 1, 0, 0, 1]
+var ResourcesRequiredRoad = [0, 0, 1, 1, 0]
+var ResourcesRequiredSettlement = [0, 1, 1, 1, 1]
+var ResourcesRequiredCity = [2, 0, 0, 0, 3]
+var ResourcesRequiredDevCard = [1, 1, 0, 0, 1]
 
 func UpdateLabels():
 	var ResourceLabels = [$"../UI_Rect_Resources/Panel_Gold/Gold_Count", $"../UI_Rect_Resources/Panel_Sheep/Sheep_Count", $"../UI_Rect_Resources/Panel_Stone/Stone_Count", $"../UI_Rect_Resources/Panel_Wood/Wood_Count", $"../UI_Rect_Resources/Panel_Grain/Grain_Count"]
@@ -27,70 +27,72 @@ func AddResources(PlayerNumber, resourceName, amount):
 	PlayerInventory[PlayerNumber][resourceIndex] += amount
 	
 #removes the resources of the player's inventory after placing a building
-func removeResources(PlayerNumber, resourceIndex, amount):
-	if 	PlayerInventory[PlayerNumber][resourceIndex] > 0:
-		PlayerInventory[PlayerNumber][resourceIndex] -= amount
-		return true
+func RemoveResources(PlayerNumber, PlaceableType):
+	var Resources
+	if PlaceableType == "settlement":
+		Resources = ResourcesRequiredSettlement
+	elif PlaceableType == "road":
+		Resources = ResourcesRequiredRoad
 	else:
-		return false
+		Resources = ResourcesRequiredCity
+	
+	
+	for i in range(0, 5, 1):
+		PlayerInventory[PlayerNumber][i] -= Resources[i]
+	UpdateLabels()
 		
 #checks if the player has enough resources to build a placeable or a DevCard
-func checkResourcesForRoad(PlayerNumber, resourceName):
-	for i in range (resourcesRequiredRoad):
-		if PlayerInventory[PlayerNumber][i] >= resourcesRequiredRoad:
-			removeResources(PlayerNumber, i, resourcesRequiredRoad)
-			return true
-		else: 
+func CheckResourcesForRoad(PlayerNumber):
+	var EnoughResources = true
+	for i in range(0, 5, 1):
+		if !(PlayerInventory[PlayerNumber][i] >= ResourcesRequiredRoad[i] || $"../DiceValueManager".TurnCount <= 2):
 			print("You don't have enough resources to build a settlement")
-			return false
-			
+			EnoughResources = false
+	return EnoughResources
 #checks if the player has enough resources to build a placeable or a DevCard
-func checkResourcesForSettlement(PlayerNumber, resourceName):
-	for i in range(resourcesRequiredSettlement):
-		if PlayerInventory[PlayerNumber][i] >= resourcesRequiredSettlement:
-			removeResources(PlayerNumber, i, resourcesRequiredSettlement)
-			return true
-		else: 
+func CheckResourcesForSettlement(PlayerNumber):
+	var EnoughResources = true
+	for i in range(0, 5, 1):
+		if !(PlayerInventory[PlayerNumber][i] >= ResourcesRequiredSettlement[i] || $"../DiceValueManager".TurnCount <= 2):
 			print("You don't have enough resources to build a settlement")
-			return false
-	
+			EnoughResources = false
+	return EnoughResources
 #checks if the player has enough resources to build a placeable or a DevCard
-func checkResourcesForCity(PlayerNumber, resourceName):
-	for i in range(resourcesRequiredCity):
-		if PlayerInventory[PlayerNumber][i] >= resourcesRequiredCity:
-			removeResources(PlayerNumber, i, resourcesRequiredCity)
-			return true
-		else: 
+func CheckResourcesForCity(PlayerNumber):
+	var EnoughResources = true
+	for i in range(0, 5, 1):
+		if !(PlayerInventory[PlayerNumber][i] >= ResourcesRequiredCity[i]):
 			print("You don't have enough resources to build a settlement")
-			return false
+			EnoughResources = false
+	return EnoughResources
 
 #checks if the player has enough resources to build a placeable or a DevCard
-func checkResourcesForDevCard(PlayerNumber, resourceName):
-	for i in (resourcesRequiredDevCard):
-		if PlayerInventory [PlayerNumber][i] >= resourcesRequiredDevCard:
-			removeResources(PlayerNumber, i, resourcesRequiredDevCard)
+func CheckResourcesForDevCard(PlayerNumber):
+	for i in (ResourcesRequiredDevCard):
+		if PlayerInventory [PlayerNumber][i] >= ResourcesRequiredDevCard:
+			# removeResources(PlayerNumber, i, ResourcesRequiredDevCard)
 			return true
 		else: 
 			print("You don't have enough resources to build a settlement")
 			return false
 #when the button is clicked, it will check if the player has enough resources if so, the player can build that placeable
 func _on_Road_Button_pressed():
-	checkResourcesForRoad($"../TurnManager".currentTurn, resourceIndex)
+	CheckResourcesForRoad($"../TurnManager".currentTurn)
 	#build function
 
 #when the button is clicked, it will check if the player has enough resources if so, the player can build that placeable
 func _on_Settlement_Button_pressed():
-	checkResourcesForSettlement($"../TurnManager".currentTurn, resourceIndex)
+	CheckResourcesForSettlement($"../TurnManager".currentTurn)
 	#build function
 	
 #when the button is clicked, it will check if the player has enough resources if so, the player can build that placeable
 func _on_City_Button_pressed():
-	checkResourcesForCity($"../TurnManager".currentTurn, resourceIndex)
+	CheckResourcesForCity($"../TurnManager".currentTurn)
 	#build function
 	
 #when the button is clicked, it will check if the player has enough resources if so, the player can build that placeable
 func _on_DevCard_Button_pressed():
-	checkResourcesForDevCard($"../TurnManager".currentTurn, resourceIndex)
+	CheckResourcesForDevCard($"../TurnManager".currentTurn)
 	#build function
 	
 #this function checks every possible die sum and checks the corresponding tiles with that particular number on the board for settlements or cities

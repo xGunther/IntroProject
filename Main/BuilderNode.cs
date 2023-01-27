@@ -31,6 +31,9 @@ public class BuilderNode : Node
     private int CurrentPlayer = 1;
     private string CurrentColour = "red";
 
+    // Saves the InventoryManager in order to access it when building
+    private Node InventoryManager;
+
     //Red Builds
     private PackedScene RCity = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_City.tscn");
     private PackedScene RSettlement = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_Settlement.tscn");
@@ -63,6 +66,7 @@ public class BuilderNode : Node
     {
         //only need to be called once to access
         Board = (Hex_GridCS)GetNode("/root/Main/Hex_GridCS");
+        InventoryManager = GetNode("../InventoryManager");
 
         RedScore = 0;
         BlueScore = 0;
@@ -122,7 +126,8 @@ public class BuilderNode : Node
             Placeable CurrentSettlement = AllowedCity(Plaats, RelevantList);
                 
             if (CurrentSettlement != null)
-            {   
+            {
+                InventoryManager.Call("RemoveResources", CurrentPlayer, "city");
                 CurrentSettlement.Hide();
                 AllBuildings.Remove(CurrentSettlement);
                 Placeable NewBuild = CreateBuidingInstance();
@@ -141,6 +146,8 @@ public class BuilderNode : Node
         {
             if (AllowedSettlement(Plaats, RoadList))
             {
+                if (DiceValueManager.TurnCount > 2)
+                { InventoryManager.Call("RemoveResources", CurrentPlayer, "settlement"); }
                 Placeable NewBuild = CreateBuidingInstance();
                 NewBuild.Translate(Plaats);
                 NewBuild.Rotation = ObjectRotation;
@@ -157,6 +164,8 @@ public class BuilderNode : Node
         {
             if (AllowedRoad(Plaats, RoadList, RelevantList))
             {
+                if (DiceValueManager.TurnCount > 2)
+                { InventoryManager.Call("RemoveResources", CurrentPlayer, "road"); }
                 Road NewBuild = CreateRoadInstance();
                 NewBuild.Translate(Plaats);
                 NewBuild.Rotation = ObjectRotation;
@@ -271,46 +280,56 @@ public class BuilderNode : Node
     //Will execute all checks related to placing a city, like whether there is a settlement there. It returns the relevant settlement or null
     private Placeable AllowedCity(Vector3 Check, List<Placeable> TheList)
     {
-        foreach (Placeable Placed in TheList)
+        if ((bool)InventoryManager.Call("CheckResourcesForCity", CurrentPlayer))
         {
-            if (Placed.Translation == Check)
+            foreach (Placeable Placed in TheList)
             {
-                return Placed;
-            }
+                if (Placed.Translation == Check)
+                {
+                    return Placed;
+                }
 
+            }
+            //no settlement here of this player
+            return null;
         }
-        //no settlement here of this player
-        return null;
+        // returns placeable to let function know that they cannot place a city
+        return TheList[0];
     }
 
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
     private bool AllowedSettlement(Vector3 Check, List<Road> RoadList)
     {
-        float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
-        int CurrentRound = DiceValueManager.TurnCount;
-
-        foreach (Placeable Other in AllBuildings)
+        if ((bool)InventoryManager.Call("CheckResourcesForSettlement", CurrentPlayer))
         {
-            if(Check.DistanceTo(Other.Translation) < 0.8 * Size)
-            {
-                return false;
-            }
-        }
-        //no other building is too close
 
-        if(CurrentRound>2)
-        {
-            foreach(Road Connection in RoadList)
+
+            float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
+            int CurrentRound = DiceValueManager.TurnCount;
+
+            foreach (Placeable Other in AllBuildings)
             {
-                if (Check.DistanceTo(Connection.Translation) < 0.4 * Size)
+                if (Check.DistanceTo(Other.Translation) < 0.8 * Size)
                 {
-                    return true;
+                    return false;
                 }
             }
-        }
-        else
-        {
-            return true;
+            //no other building is too close
+
+            if (CurrentRound > 2)
+            {
+                foreach (Road Connection in RoadList)
+                {
+                    if (Check.DistanceTo(Connection.Translation) < 0.4 * Size)
+                    {
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -318,35 +337,38 @@ public class BuilderNode : Node
     //Will execute all checks related to placing a road and if there isn't a road on the same spot
     private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads, List<Placeable> Buildings)
     {
-        float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
-        int CurrentRound= DiceValueManager.TurnCount;
-
-        foreach(Road Another in AllWays)
+        if ((bool)InventoryManager.Call("CheckResourcesForRoad", CurrentPlayer))
         {
-            if(Check.DistanceTo(Another.Translation) < 0.25 * Size)//the roads are on the same edge of a tile, practically in the same spot
-            {
-                return false;
-            }
-        }
-        //No road in the same spot
+            float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
+            int CurrentRound = DiceValueManager.TurnCount;
 
-        if (CurrentRound > 2)//after the first two rounds, the players are limited in where they can place a road
-        {
-            foreach (Road Owned in OwnedRoads)
+            foreach (Road Another in AllWays)
             {
-                if (Check.DistanceTo(Owned.Translation) < 0.7 * Size)//there is a road that is only one tile edge away, or 'directly connects'
+                if (Check.DistanceTo(Another.Translation) < 0.25 * Size)//the roads are on the same edge of a tile, practically in the same spot
                 {
-                    return true;
+                    return false;
                 }
             }
-        }
-        else//player is in the first two rounds
-        {
-            foreach (Placeable PutDown in Buildings)
+            //No road in the same spot
+
+            if (CurrentRound > 2)//after the first two rounds, the players are limited in where they can place a road
             {
-                if (Check.DistanceTo(PutDown.Translation) < 0.4 * Size)//road has to be next to a building
+                foreach (Road Owned in OwnedRoads)
                 {
-                    return true;
+                    if (Check.DistanceTo(Owned.Translation) < 0.7 * Size)//there is a road that is only one tile edge away, or 'directly connects'
+                    {
+                        return true;
+                    }
+                }
+            }
+            else//player is in the first two rounds
+            {
+                foreach (Placeable PutDown in Buildings)
+                {
+                    if (Check.DistanceTo(PutDown.Translation) < 0.4 * Size)//road has to be next to a building
+                    {
+                        return true;
+                    }
                 }
             }
         }
