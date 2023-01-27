@@ -131,8 +131,6 @@ public class Hex_GridCS : GridMap
                 case 45: break; // x=5 y=4
                 case 46: break; // x=6 y=4
             }
-            DiceValueManager DiceManager = GetNode<DiceValueManager>("../DiceValueManager");
-            DiceManager.UpdateVars();
         }
 
         // Functions for adding the specific tile to the coordinate in the switch (above)

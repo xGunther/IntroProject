@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using static GridClick;
+using static TileClickManager;
 
 //In this class, all things related to building are added, from creating a new placeable to saving all current placeables
 public class Builder_Node : Node
@@ -62,7 +62,7 @@ public class Builder_Node : Node
     public int GreenScore = 0;
     public int YellowScore = 0;
 
-    private GridClick Signal;
+    private TileClickManager Signal;
 
     // Called when the node enters the scene tree for the first time
     public override void _Ready()
@@ -71,12 +71,12 @@ public class Builder_Node : Node
         DVM = GetNode<DiceValueManager>("../DiceValueManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
 
-        Signal = GetNode<GridClick>("/root/GridClick");
+        Signal = GetNode<TileClickManager>("/root/TileClickManager");
         Signal.Connect("NewBuilding", this, "Build");
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    public void Build(Vector3 Plaats)
+    public void Build(Vector3 Plaats, bool IsCorner)
     {
         CurrentPlayer = (int)DVM.Get("CurrentTurn");
 
@@ -108,7 +108,7 @@ public class Builder_Node : Node
         bool ActuallyPlaced= false;
 
         //make placeable and add it to the list
-        if (SelectedBuild == "city")
+        if (SelectedBuild == "city" && IsCorner)
         {       
             foreach (Placeable Placed in RelevantList)
             {       
@@ -128,7 +128,7 @@ public class Builder_Node : Node
                 
             }
         }
-        else if(SelectedBuild == "settlement")
+        else if(SelectedBuild == "settlement" && IsCorner)
         {
             if (AllowedSettlement(Plaats))
             {
@@ -139,7 +139,7 @@ public class Builder_Node : Node
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
                 ActuallyPlaced= true;
-                //NewBuild.Translate(new Vector3(0, 0.334f, 0));
+                NewBuild.Translate(new Vector3(0, 0.334f, 0));
             }
         }
         else if(SelectedBuild == "road")

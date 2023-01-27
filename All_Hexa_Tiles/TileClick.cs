@@ -5,34 +5,35 @@ public class TileClick : Area
 {
     public override void _Ready()
     {
-        //GetTree().Root.GetNode("Main").GetNode<Builder_Node>("Builder_Node");
+
     }
 
+    // Is called whenever a tile is clicked on the side or corner
     public void TileInputEvent(Viewport viewport, InputEvent @event, Vector3 position, Vector3 normal, int shape_idx)
     {
+        // Filters for only left clicks that have just been pressed
         if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
         {
             CollisionShape Shape;
-            String LastClick = Name;
-            String ShapeString = "";
+            bool Corner;
 
-            if (LastClick.Contains("Side"))
+            // Checks the name so that the coordinates can be received from the child node
+            if (Name.Contains("Side"))
             {
                 Shape = (CollisionShape)GetNode("TileSideShape");
-                ShapeString = "Side";
+                Corner = false;
             }
 
             else // Corner
             {
                 Shape = (CollisionShape)GetNode("TileCornerShape");
-                ShapeString = "Corner";
+                Corner = true;
             }
             Vector3 LastCoordinates = Shape.GlobalTranslation;
 
-            GD.Print($"{LastClick} clicked: {LastCoordinates}"); // REMOVE LATER
-
-            GridClick Grid = GetNode<GridClick>("/root/GridClick");
-            Grid.ClickedAt(LastCoordinates); // This is where you use the buildernode. Something like: BuilderNode.NewBuilding(parameters that you need here)
+            // Tells Main that the tile has been clicked at the coordinates given
+            TileClickManager Grid = GetNode<TileClickManager>("/root/TileClickManager");
+            Grid.ClickedAt(LastCoordinates, Corner); 
         }
     }
 

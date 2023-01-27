@@ -4,7 +4,7 @@ var ThrowDiceScript = load("res://Main/Throw_Dice_Button.cs")
 var resourceIndex
 #an array to keep track of the resource amounts for every player by refering to their number 
 var playerInventory = {1: [0, 0, 0, 0, 0], 2: [0, 0, 0, 0, 0], 3: [0, 0, 0, 0, 0], 4: [0, 0, 0, 0, 0]}
-var resourceNames = ["Gold", "Goat", "Stone", "Wood", "Grain"]
+var resourceNames = ["Gold", "Sheep", "Stone", "Wood", "Grain"]
 #for every placeable there are certain resource requirements and these are put into arrays
 var resourcesRequiredRoad = [0, 0, 1, 1, 0]
 var resourcesRequiredSettlement = [0, 1, 1, 1, 1]
@@ -15,7 +15,7 @@ func _ready():
 	pass 
 	
 #adds the resources to a players inventory when the dice rolled a number connected to their placeable
-func addResources(playerNumber, resourceName, amount):
+func AddResources(playerNumber, resourceName, amount):
 	resourceIndex = resourceNames.find(resourceName)
 	#checks if there is a city or a settlement 
 	playerInventory[playerNumber][resourceIndex] += amount

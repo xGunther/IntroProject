@@ -42,7 +42,7 @@
 [ext_resource path="res://Main/Builder_Node.cs" type="Script" id=40]
 [ext_resource path="res://Main/InventoryManager.gd" type="Script" id=41]
 [ext_resource path="res://Main/DiceValueManager.cs" type="Script" id=42]
-[ext_resource path="res://Main/GridClick.cs" type="Script" id=43]
+[ext_resource path="res://Main/TileClickManager.cs" type="Script" id=43]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -424,7 +424,7 @@ anti_aliasing_size = 2.0
 [sub_resource type="PlaneShape" id=51]
 
 [node name="Main" type="Spatial"]
-transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="Hex_GridCS" type="GridMap" parent="."]
 transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
@@ -995,7 +995,7 @@ script = ExtResource( 41 )
 [node name="DiceValueManager" type="Node" parent="."]
 script = ExtResource( 42 )
 
-[node name="GridClick" type="Node" parent="."]
+[node name="TileClickManager" type="Node" parent="."]
 script = ExtResource( 43 )
 
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
