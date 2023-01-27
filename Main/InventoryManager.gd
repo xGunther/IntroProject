@@ -8,7 +8,7 @@ var ResourceNames = ["Gold", "Sheep", "Stone", "Wood", "Grain"]
 #for every placeable there are certain resource requirements and these are put into arrays
 var ResourcesRequiredRoad = [0, 0, 1, 1, 0]
 var ResourcesRequiredSettlement = [0, 1, 1, 1, 1]
-var ResourcesRequiredCity = [2, 0, 0, 0, 3]
+var ResourcesRequiredCity = [3, 0, 0, 0, 2]
 var ResourcesRequiredDevCard = [1, 1, 0, 0, 1]
 
 func UpdateLabels():
