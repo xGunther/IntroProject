@@ -564,7 +564,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
-movement_speed = 20.0
 
 [node name="Elevation" type="Spatial" parent="Camera_Controller"]
 transform = Transform( 1, 0, 0, 0, 0.642853, 0.766123, 0, -0.766123, 0.642853, -1, 0, -8 )
@@ -899,7 +898,6 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
 
 [node name="Name_Input_Menu" parent="." instance=ExtResource( 1 )]
-visible = false
 rect_pivot_offset = Vector2( 528, 472 )
 
 [node name="Player_Names" type="Panel" parent="Name_Input_Menu"]

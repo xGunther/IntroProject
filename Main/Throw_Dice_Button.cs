@@ -33,7 +33,7 @@ public class Throw_Dice_Button : Button
     public int GetDieSide(RigidBody Die)
     {
 
-
+        // Overview of the values of transform with the associated die number
         // transform[1] == 0 -1 0 => 1
         // transform[0] == 0 -1 0 => 2
         // transform[2] == 0 -1 0 => 3

@@ -115,6 +115,7 @@ public class DiceValueManager : Node
         }
     }
 
+    // General function as two functions need it. Calls AddResources for each placeable on the edge of a tile
     private static void GetPlayerResources(String ResourceType, Vector3 Location)
     {
         foreach (Placeable Placeable in GetPlaceables(Location))
@@ -131,6 +132,7 @@ public class DiceValueManager : Node
         }
     }
 
+    // Gives resources in the first two rounds for any settlements around each tile
     public static void EarlyResources()
     {
         foreach (KeyValuePair<int, List<Tile>> kvp in Board.TilesDictionary)
@@ -157,6 +159,7 @@ public class DiceValueManager : Node
         return Placeables;
     }
     
+    // Adds resources to a player by calling a function in InventoryManager
     public static void AddResources(string Resource, int PlayerNumber, int Amount)
     {
         GD.Print($"Gave {Resource} to {PlayerNumber}");
@@ -168,13 +171,6 @@ public class DiceValueManager : Node
 
     public static void UpdateResources()
     {
-        /*string[] ResourceNames = new string[] {"Gold", "Sheep", "Stone", "Wood", "Grain"};
-        for (int ResourceIndex = 0; ResourceIndex < ResourceNames.Length; ResourceIndex++)
-        {
-            Label ResourceLabel = ResourceLabels[ResourceIndex];
-            ResourceLabel.Text = (string)InventoryManager.Get("PlayerInventory[PlayerNumber][resourceIndex]");
-        }*/
-
         InventoryManager.Call("UpdateLabels");
     }
 
