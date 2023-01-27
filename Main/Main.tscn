@@ -42,7 +42,6 @@
 [ext_resource path="res://Main/BuilderNode.cs" type="Script" id=40]
 [ext_resource path="res://Main/InventoryManager.gd" type="Script" id=41]
 [ext_resource path="res://Main/DiceValueManager.cs" type="Script" id=42]
-[ext_resource path="res://Main/TileClickManager.cs" type="Script" id=43]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -422,6 +421,38 @@ anti_aliasing_size = 2.0
 [sub_resource type="PlaneMesh" id=50]
 
 [sub_resource type="PlaneShape" id=51]
+
+[sub_resource type="CSharpScript" id=52]
+script/source = "using Godot;
+using System;
+
+public class TileClickManager : Node
+{
+
+    [Signal] public delegate void NewBuilding(Vector3 Coordinates, bool Corner, Vector3 Rotation);
+    public override void _Ready()
+    {
+
+    }
+
+    public Vector3 ConvertRotation(Vector3 Rotation)
+    {
+        if (0.52 < Rotation[1] && Rotation[1] < 0.53)
+        {
+            Rotation[1] += (float)(0.5 * Math.PI);
+        }
+        
+        return Rotation;
+    }
+    // Emits signal for Builder_Node to use
+    public void ClickedAt(Vector3 Coordinates, bool Corner, Vector3 Rotation)
+    {
+        EmitSignal(\"NewBuilding\", Coordinates, Corner, ConvertRotation(Rotation));
+
+    }
+}
+
+"
 
 [node name="Main" type="Spatial"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
@@ -1031,7 +1062,7 @@ script = ExtResource( 41 )
 script = ExtResource( 42 )
 
 [node name="TileClickManager" type="Node" parent="."]
-script = ExtResource( 43 )
+script = SubResource( 52 )
 
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]
