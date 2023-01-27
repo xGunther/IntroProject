@@ -65,12 +65,26 @@ public class BuilderNode : Node
     public override void _Ready()
     {
         //only need to be called once to access
-        TM = GetNode<Node>("../TurnManager");
-        Board = GetNode<Hex_GridCS>("../Hex_GridCS");
+        TM = (Node)GetNode("/root/Main/TurnManager");
+        Board = (Hex_GridCS)GetNode("/root/Main/Hex_GridCS");
+    }
+
+    //This method is the 'entrance' for the build function. It makes a couple important filters before going through the process of building
+    public void PlaceBuilding(Vector3 Placement, String Type)
+    {
+        if(Type=="Side" && SelectedBuild == "road") //the collision node pressed is on an edge and the building to be placed is a road
+        {
+            Build(Placement);
+        }
+        else if(Type == "Corner" && (SelectedBuild=="city"||SelectedBuild=="settlement") ) //the collision node pressed is on a corner
+                                                                                   //and the building to be placed is a city or settlement
+        {
+            Build(Placement);
+        }
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    public void Build(Vector3 Plaats)
+    private void Build(Vector3 Plaats)
     {
         CurrentPlayer = (int)TM.Get("CurrentTurn");
 
@@ -270,7 +284,7 @@ public class BuilderNode : Node
     {
         float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
-        int TurnCount= (int)TM.Get("TurnCount");
+        int CurrentRound= (int)TM.Get("CurrentRound");
 
         foreach(Road Another in AllWays)
         {
@@ -282,7 +296,7 @@ public class BuilderNode : Node
         //No road in the same spot
         foreach(Road Owned in OwnedRoads)
         {
-            if(Check.DistanceTo(Owned.Translation) < 0.7 * size && TurnCount>2)//there is a road that is only one tile edge away, or 'directly connects'
+            if(Check.DistanceTo(Owned.Translation) < 0.7 * size && CurrentRound>2)//there is a road that is only one tile edge away, or 'directly connects'
             {
                 return true;
             }

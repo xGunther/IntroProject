@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+//This class has the purpose of connecting the click on a collision node with the BuilderNode functions
 public class TileClick : Area
 {
     public override void _Ready()
@@ -8,13 +9,14 @@ public class TileClick : Area
 
     }
 
-    public void TileInputEvent(Viewport viewport, InputEvent @event, Vector3 position, Vector3 normal, int shape_idx)
+    //This function intakes all the necessary parameters for input_event from CollisionObject and sends the right information to BuilderNode   
+    public void TileInputEvent(Viewport Viewport, InputEvent @Event, Vector3 Position, Vector3 Normal, int ShapeIdx)
     {
-        if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
+        if (@Event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
         {
             CollisionShape Shape;
             String LastClick = Name;
-            String ShapeString = "";
+            String ShapeString;//variable to state where relative to the hexatiles the collision node is placed
 
             if (LastClick.Contains("Side"))
             {
@@ -29,10 +31,8 @@ public class TileClick : Area
             }
             Vector3 LastCoordinates = Shape.GlobalTranslation;
 
-            GD.Print($"{LastClick} clicked: {LastCoordinates}"); // REMOVE LATER
-
-            GridClick Grid = (GridClick)GetNode("/root/GridClick");
-            Grid.NewBuilding(LastCoordinates, ShapeString); // This is where you use the buildernode. Something like: BuilderNode.NewBuilding(parameters that you need here)
+            BuilderNode Builder = (BuilderNode)GetNode("/root/Main/BuilderNode");
+            Builder.PlaceBuilding(LastCoordinates, ShapeString); 
         }
     }
 
