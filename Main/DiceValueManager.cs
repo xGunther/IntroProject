@@ -5,7 +5,8 @@ using System.Data;
 
 public class DiceValueManager : Node
 {   public static bool ButtonPressedOrNot = false;
-    public static int currentTurn = 1; 
+    public static int currentTurn = 1;
+    public static int TurnCount = 0;
     public static int playerCount = 4;
     public static Hex_GridCS Board;
     public static Builder_Node Builder;
@@ -70,7 +71,8 @@ public class DiceValueManager : Node
                 currentTurn += 1;
                 if (currentTurn > playerCount)
                 {
-                  currentTurn = 1;  
+                  currentTurn = 1;
+                TurnCount++;
                 } 
                 ButtonPressedOrNot = false;
 	             

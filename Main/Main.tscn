@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -42,6 +42,7 @@
 [ext_resource path="res://Main/Builder_Node.cs" type="Script" id=40]
 [ext_resource path="res://Main/InventoryManager.gd" type="Script" id=41]
 [ext_resource path="res://Main/DiceValueManager.cs" type="Script" id=42]
+[ext_resource path="res://Main/GridClick.cs" type="Script" id=43]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -993,6 +994,9 @@ script = ExtResource( 41 )
 
 [node name="DiceValueManager" type="Node" parent="."]
 script = ExtResource( 42 )
+
+[node name="GridClick" type="Node" parent="."]
+script = ExtResource( 43 )
 
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]

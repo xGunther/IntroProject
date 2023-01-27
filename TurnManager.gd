@@ -1,4 +1,6 @@
 extends Node
+var CurrentTurn = 1
+var TurnCount = 0
 
 func _ready():
 	pass
@@ -13,6 +15,8 @@ func updateLabel():
 		$"../UI_Rect_Turn/Players_Turn".text =  $"../UI_Rect_Players_4/Player_Name3".text + "'s Turn"
 	elif($"../DiceValueManager".currentTurn == 4):	
 		$"../UI_Rect_Turn/Players_Turn".text =  $"../UI_Rect_Players_4/Player_Name4".text + "'s Turn"
+	CurrentTurn = $"../DiceValueManager".currentTurn
+	TurnCount = $"../DiceValueManager".TurnCount
 		
 #If the End Turn button is pressed it will go through the EndTurn function and it will update the turn label with the function aboven
 func _on_End_Turn_Button_pressed():

@@ -61,12 +61,17 @@ public class Builder_Node : Node
     public int GreenScore = 0;
     public int YellowScore = 0;
 
+    private GridClick Signal;
+
     // Called when the node enters the scene tree for the first time
     public override void _Ready()
     {
         //only need to be called once to access
         TM = GetNode<Node>("../TurnManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
+
+        Signal = GetNode<GridClick>("/root/GridClick");
+        Signal.Connect("NewBuilding", this, "Build");
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
@@ -270,7 +275,7 @@ public class Builder_Node : Node
     {
         float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
-        int TurnCount= (int)TM.Get("TurnCount");
+        int TurnCount = (int)TM.Get("TurnCount");
 
         foreach(Road Another in AllWays)
         {
