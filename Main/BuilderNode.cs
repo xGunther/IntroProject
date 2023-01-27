@@ -139,7 +139,7 @@ public class BuilderNode : Node
         }
         else if(SelectedBuild == "settlement")
         {
-            if (AllowedSettlement(Plaats))
+            if (AllowedSettlement(Plaats, RoadList))
             {
                 Placeable NewBuild = CreateBuidingInstance();
                 NewBuild.Translate(Plaats);
@@ -155,7 +155,7 @@ public class BuilderNode : Node
         }
         else if(SelectedBuild == "road")
         {
-            if (AllowedRoad(Plaats, RoadList))
+            if (AllowedRoad(Plaats, RoadList, RelevantList))
             {
                 Road NewBuild = CreateRoadInstance();
                 NewBuild.Translate(Plaats);
@@ -284,9 +284,10 @@ public class BuilderNode : Node
     }
 
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
-    private bool AllowedSettlement(Vector3 Check)
+    private bool AllowedSettlement(Vector3 Check, List<Road> RoadList)
     {
         float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
+        int CurrentRound = DiceValueManager.TurnCount;
 
         foreach (Placeable Other in AllBuildings)
         {
@@ -296,14 +297,24 @@ public class BuilderNode : Node
             }
         }
         //no other building is too close
+
+        if(CurrentRound>2)
+        {
+            foreach(Road Connection in RoadList)
+            {
+                if (Check.DistanceTo(Connection.Translation) < 0.4 * Size)
+                {
+                    return true;
+                }
+            }
+        }
         return true;
     }
 
     //Will execute all checks related to placing a road and if there isn't a road on the same spot
-    private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads)
+    private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads, List<Placeable> Buildings)
     {
         float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
-
         int CurrentRound= DiceValueManager.TurnCount;
 
         foreach(Road Another in AllWays)
@@ -319,15 +330,21 @@ public class BuilderNode : Node
         {
             foreach (Road Owned in OwnedRoads)
             {
-                if (Check.DistanceTo(Owned.Translation) < 0.7 * Size && CurrentRound > 2)//there is a road that is only one tile edge away, or 'directly connects'
+                if (Check.DistanceTo(Owned.Translation) < 0.7 * Size)//there is a road that is only one tile edge away, or 'directly connects'
                 {
                     return true;
                 }
             }
         }
-        else//there are no limitations anymore, so the player gets to place a road
+        else//player is in the first two rounds
         {
-            return true;
+            foreach (Placeable PutDown in Buildings)
+            {
+                if (Check.DistanceTo(PutDown.Translation) < 0.4 * Size)//road has to be next to a building
+                {
+                    return true;
+                }
+            }
         }
         //there are no roads of this player that 'directly connect'; they're all too far away. And it matters
         return false;
