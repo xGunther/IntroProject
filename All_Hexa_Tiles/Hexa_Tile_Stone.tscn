@@ -162,7 +162,7 @@ surfaces/0 = {
 "vertex_count": 54
 }
 
-[node name="water_rocks" type="Spatial"]
+[node name="Hexa_Tile_Stone" type="Spatial"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="tmpParent" type="Spatial" parent="."]

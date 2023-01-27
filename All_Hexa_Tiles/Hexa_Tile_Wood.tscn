@@ -216,7 +216,7 @@ surfaces/1 = {
 "vertex_count": 72
 }
 
-[node name="dirt_lumber" type="Spatial"]
+[node name="Hexa_Tile_Wood" type="Spatial"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="tmpParent" type="Spatial" parent="."]
