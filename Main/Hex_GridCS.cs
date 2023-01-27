@@ -33,9 +33,9 @@ public class Hex_GridCS : GridMap
     // Function that makes a floating number to give to the Vector3 structure
     public static float ThirtyDegrees() 
     {
-        double radians = (Math.PI / 180) * 30;
-        float radiansF = Convert.ToSingle(radians);
-        return radiansF;
+        double Radians = (Math.PI / 180) * 30;
+        float RadiansF = Convert.ToSingle(Radians);
+        return RadiansF;
     }
 
     // Function that puts the tiles in a list for the build feature to use
