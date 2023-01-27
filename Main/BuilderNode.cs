@@ -163,7 +163,7 @@ public class BuilderNode : Node
 
                 AddChild(NewBuild);
                 AllWays.Add(NewBuild);
-                RelevantList.Add(NewBuild);
+                RoadList.Add(NewBuild);
 
                 SelectedBuild = null;
             }
@@ -308,7 +308,11 @@ public class BuilderNode : Node
                 }
             }
         }
-        return true;
+        else
+        {
+            return true;
+        }
+        return false;
     }
 
     //Will execute all checks related to placing a road and if there isn't a road on the same spot
