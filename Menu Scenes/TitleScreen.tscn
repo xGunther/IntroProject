@@ -1,12 +1,96 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=1]
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=3]
 [ext_resource path="res://Menu Scenes/Exit_Game_Button4.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Menu Scenes/Options_Game_ButtonV4.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Menu Scenes/Menu_Music.tscn" type="PackedScene" id=6]
 [ext_resource path="res://All Sprites/Mesopotamia_001nm.jpg" type="Texture" id=7]
 [ext_resource path="res://All Sprites/ziggurat.png" type="Texture" id=8]
+[ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=9]
+[ext_resource path="res://Menu Scenes/OptionsButton.gd" type="Script" id=10]
+[ext_resource path="res://Menu Scenes/OptionsMenu.gd" type="Script" id=11]
+[ext_resource path="res://Menu Scenes/OptionsBackButton.gd" type="Script" id=12]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=2]
+size = 57
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 38
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.521569, 0.458824, 0.0901961, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
 
 [node name="TitleScreen" type="Node2D"]
 
@@ -33,6 +117,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+reference_path = "res://Main/Main.tscn"
 
 [node name="OptionsButton" parent="." instance=ExtResource( 5 )]
 pause_mode = 2
@@ -42,11 +127,10 @@ margin_right = 1184.0
 margin_bottom = 652.0
 focus_neighbour_top = NodePath("../NewGameButton")
 focus_neighbour_bottom = NodePath("../ExitButton")
-script = ExtResource( 1 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_lock_": true
 }
-reference_path = "res://Menu Scenes/Options_Game_Menu.tscn"
 
 [node name="ExitButton" parent="." instance=ExtResource( 4 )]
 pause_mode = 2
@@ -62,4 +146,52 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer" parent="." instance=ExtResource( 6 )]
-volume_db = -9.135
+volume_db = -80.0
+
+[node name="OptionsMenu" type="Panel" parent="."]
+visible = false
+margin_left = 384.0
+margin_top = 64.0
+margin_right = 1536.0
+margin_bottom = 704.0
+rect_pivot_offset = Vector2( 528, 168 )
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 11 )
+
+[node name="MenuMusicSlider" type="Label" parent="OptionsMenu"]
+margin_left = 400.0
+margin_top = 64.0
+margin_right = 755.0
+margin_bottom = 127.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Menu Music"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HSlider" type="HSlider" parent="OptionsMenu/MenuMusicSlider"]
+margin_left = -336.0
+margin_top = 16.0
+margin_right = 688.0
+margin_bottom = 176.0
+
+[node name="BackButton" parent="OptionsMenu/MenuMusicSlider" instance=ExtResource( 2 )]
+pause_mode = 2
+margin_left = -392.0
+margin_top = -56.0
+margin_right = -240.0
+margin_bottom = 8.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_colors/font_color_focus = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = ExtResource( 3 )
+custom_styles/normal = SubResource( 6 )
+text = "Back"
+script = ExtResource( 12 )
+
+[connection signal="pressed" from="OptionsButton" to="OptionsButton" method="_on_OptionsButton_pressed"]
+[connection signal="value_changed" from="OptionsMenu/MenuMusicSlider/HSlider" to="OptionsMenu" method="_on_HSlider_value_changed"]

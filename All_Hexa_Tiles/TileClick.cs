@@ -9,30 +9,34 @@ public class TileClick : Area
 
     }
 
-    //This function intakes all the necessary parameters for input_event from CollisionObject and sends the right information to BuilderNode   
-    public void TileInputEvent(Viewport Viewport, InputEvent @Event, Vector3 Position, Vector3 Normal, int ShapeIdx)
+    // Is called whenever a tile is clicked on the side or corner
+    public void TileInputEvent(Viewport viewport, InputEvent @event, Vector3 position, Vector3 normal, int shape_idx)
     {
-        if (@Event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
+        // Filters for only left clicks that have just been pressed
+        if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
         {
             CollisionShape Shape;
-            String LastClick = Name;
-            String ShapeString;//variable to state where relative to the hexatiles the collision node is placed
+            Vector3 RotationOfNode;
+            bool Corner;
 
-            if (LastClick.Contains("Side"))
+            // Checks the name so that the coordinates can be received from the child node
+            if (Name.Contains("Side"))
             {
                 Shape = (CollisionShape)GetNode("TileSideShape");
-                ShapeString = "Side";
+                Corner = false;
             }
 
             else // Corner
             {
                 Shape = (CollisionShape)GetNode("TileCornerShape");
-                ShapeString = "Corner";
+                Corner = true;
             }
             Vector3 LastCoordinates = Shape.GlobalTranslation;
+            RotationOfNode = Shape.Rotation;
 
-            BuilderNode Builder = (BuilderNode)GetNode("/root/Main/BuilderNode");
-            Builder.PlaceBuilding(LastCoordinates, ShapeString); 
+            // Tells Main that the tile has been clicked at the coordinates given
+            TileClickManager Grid = GetNode<TileClickManager>("/root/TileClickManager");
+            Grid.ClickedAt(LastCoordinates, Corner, RotationOfNode); 
         }
     }
 

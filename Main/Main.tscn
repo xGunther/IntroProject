@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Menu Scenes/Name_Input_Menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main/Camera_Controller.gd" type="Script" id=2]
@@ -11,13 +11,13 @@
 [ext_resource path="res://Menu Scenes/Build_Button.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Main/Font.tres" type="DynamicFont" id=10]
 [ext_resource path="res://Main/Pause_Menu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Main/TurnManager.gd" type="Script" id=12]
+[ext_resource path="res://TurnManager.gd" type="Script" id=12]
 [ext_resource path="res://All Sprites/1098400-200.png" type="Texture" id=13]
 [ext_resource path="res://All Sprites/WheatV2.png" type="Texture" id=14]
 [ext_resource path="res://All Sprites/knight.png" type="Texture" id=15]
 [ext_resource path="res://All Sprites/Longes_Road.png" type="Texture" id=16]
 [ext_resource path="res://Main/Hex_GridCS.cs" type="Script" id=17]
-[ext_resource path="res://Main/Build_Cost.gd" type="Script" id=18]
+[ext_resource path="res://Main/BuildCost.gd" type="Script" id=18]
 [ext_resource path="res://All Sprites/Side1.png" type="Texture" id=19]
 [ext_resource path="res://Start_Game.gd" type="Script" id=20]
 [ext_resource path="res://Main/die.tscn" type="PackedScene" id=21]
@@ -39,7 +39,10 @@
 [ext_resource path="res://Menu Scenes/RoadBuild_Button.cs" type="Script" id=37]
 [ext_resource path="res://Menu Scenes/CityBuild_Button.cs" type="Script" id=38]
 [ext_resource path="res://Menu Scenes/SettlementBuild_Button.cs" type="Script" id=39]
-[ext_resource path="res://Main/BuilderNode.cs" type="Script" id=40]
+[ext_resource path="res://Main/Builder_Node.cs" type="Script" id=40]
+[ext_resource path="res://Main/InventoryManager.gd" type="Script" id=41]
+[ext_resource path="res://Main/DiceValueManager.cs" type="Script" id=42]
+[ext_resource path="res://Main/TileClickManager.cs" type="Script" id=43]
 
 [sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -421,7 +424,7 @@ anti_aliasing_size = 2.0
 [sub_resource type="PlaneShape" id=51]
 
 [node name="Main" type="Spatial"]
-transform = Transform( -0.0768234, 0, -0.997045, 0, 1, 0, 0.997045, 0, -0.0768234, 0, 0, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="Hex_GridCS" type="GridMap" parent="."]
 transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
@@ -467,17 +470,31 @@ position = Vector2( 32, 32 )
 scale = Vector2( 2.18, 2.75 )
 texture = ExtResource( 3 )
 
-[node name="Panel_Goat" type="Panel" parent="UI_Rect_Resources"]
+[node name="Gold_Count" parent="UI_Rect_Resources/Panel_Gold" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
+
+[node name="Panel_Sheep" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 152.0
 margin_top = 8.0
 margin_right = 216.0
 margin_bottom = 72.0
 custom_styles/panel = SubResource( 9 )
 
-[node name="Goat_Icon" type="Sprite" parent="UI_Rect_Resources/Panel_Goat"]
+[node name="Sheep_Icon" type="Sprite" parent="UI_Rect_Resources/Panel_Sheep"]
 position = Vector2( 31.2813, 32.4531 )
 scale = Vector2( 1.17395, 0.919389 )
 texture = ExtResource( 4 )
+
+[node name="Sheep_Count" parent="UI_Rect_Resources/Panel_Sheep" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
 
 [node name="Panel_Stone" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 272.0
@@ -491,6 +508,13 @@ position = Vector2( 32.0001, 32 )
 scale = Vector2( 2.05769, 2.63125 )
 texture = ExtResource( 6 )
 
+[node name="Stone_Count" parent="UI_Rect_Resources/Panel_Stone" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
+
 [node name="Panel_Wood" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 392.0
 margin_top = 8.0
@@ -503,6 +527,13 @@ position = Vector2( 32, 32 )
 scale = Vector2( 2.17, 2.67411 )
 texture = ExtResource( 5 )
 
+[node name="Wood_Count" parent="UI_Rect_Resources/Panel_Wood" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
+
 [node name="Panel_Grain" type="Panel" parent="UI_Rect_Resources"]
 margin_left = 512.0
 margin_top = 8.0
@@ -514,6 +545,13 @@ custom_styles/panel = SubResource( 9 )
 position = Vector2( 32, 32 )
 scale = Vector2( 1.36586, 1.375 )
 texture = ExtResource( 14 )
+
+[node name="Grain_Count" parent="UI_Rect_Resources/Panel_Grain" instance=ExtResource( 34 )]
+margin_left = 66.0
+margin_top = -9.0
+margin_right = 119.0
+margin_bottom = 69.0
+text = "0"
 
 [node name="UI_Rect_Players_4" parent="." instance=ExtResource( 7 )]
 margin_left = 1408.0
@@ -780,6 +818,7 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
 
 [node name="Name_Input_Menu" parent="." instance=ExtResource( 1 )]
+visible = false
 rect_pivot_offset = Vector2( 528, 472 )
 
 [node name="Player_Names" type="Panel" parent="Name_Input_Menu"]
@@ -917,7 +956,7 @@ margin_right = 1081.0
 margin_bottom = 159.0
 text = "4 Players"
 
-[node name="BuilderNode" type="Node" parent="."]
+[node name="Builder_Node" type="Node" parent="."]
 script = ExtResource( 40 )
 
 [node name="TurnManager" type="Node" parent="."]
@@ -985,6 +1024,15 @@ mass = 0.06
 [node name="die2" parent="Die_Grid" instance=ExtResource( 21 )]
 transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 29.5, 25, 14.5 )
 mass = 0.06
+
+[node name="InventoryManager" type="Node" parent="."]
+script = ExtResource( 41 )
+
+[node name="DiceValueManager" type="Node" parent="."]
+script = ExtResource( 42 )
+
+[node name="TileClickManager" type="Node" parent="."]
+script = ExtResource( 43 )
 
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Road_Button" to="UI_Rect_Build_Destroy/Road_Button" method="Triggered"]
 [connection signal="pressed" from="UI_Rect_Build_Destroy/Settlement_Button" to="UI_Rect_Build_Destroy/Settlement_Button" method="Triggered"]

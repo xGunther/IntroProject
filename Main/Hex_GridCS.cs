@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Runtime.ExceptionServices;
+using static Godot.RichTextLabel;
 
 public class Hex_GridCS : GridMap
 {
@@ -14,21 +15,25 @@ public class Hex_GridCS : GridMap
     public PackedScene TileStone = (PackedScene)GD.Load("res://All_Hexa_Tiles/Hexa_Tile_Stone.tscn");
     public PackedScene TileSand = (PackedScene)GD.Load("res://All_Hexa_Tiles/Sand_Tile2.tscn");
 
-    // Loading the number files into the project
-    public PackedScene Number2 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_2.tscn");
-    public PackedScene Number3 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_3.tscn");
-    public PackedScene Number4 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_4.tscn");
-    public PackedScene Number5 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_5.tscn");
-    public PackedScene Number6 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_6.tscn");
-    public PackedScene Number8 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_8.tscn");
-    public PackedScene Number9 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_9.tscn");
-    public PackedScene Number10 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_10.tscn");
-    public PackedScene Number11 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_11.tscn");
-    public PackedScene Number12 = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Number_12.tscn");
+    public PackedScene[] Numbers = new PackedScene[13];
 
     public float TileSize = 5; // Size of the tiles of the board
     public int GridRange = 7; // Number of lines and columns of the grid
-    List<Spatial> Tiles = new List<Spatial>();
+    public List<Spatial> Tiles = new List<Spatial>();
+    public Dictionary<int, List<Tile>> TilesDictionary = new Dictionary<int, List<Tile>>();
+    private int LastNumber;
+
+
+    private void AddNumbers()
+    {
+        for (int i = 2; i < 13; i++)
+        {
+            if (i != 7) // The number 7 is not used in this board, hence it is not needed
+            {
+                Numbers[i] = ((PackedScene)GD.Load($"res://All Roads, Cities and Numbers/Number_{i}.tscn"));
+            }
+        }
+    }
 
     // Function that makes a floating number to give to the Vector3 structure
     public static float ThirtyDegrees() 
@@ -42,6 +47,15 @@ public class Hex_GridCS : GridMap
     public void PutInTileList(Spatial listTile)
     {
         Tiles.Add(listTile);
+        TilesDictionary[LastNumber].Add(new Tile(listTile, LastNumber));
+    }
+
+    public void FillTilesDictionary()
+    {
+        for (int n = 2; n < 13; n++)
+        {
+            TilesDictionary[n] = new List<Tile>() ;
+        }
     }
 
     // Function responsible for creating the grid
@@ -83,149 +97,70 @@ public class Hex_GridCS : GridMap
                 case 0: break; // x=0 y=0
                 case 1: break; // x=1 y=0
                 case 2: break; // x=2 y=0
-                case 3: TileChooserGrain(); NumberChooser9(); break; // x=3 y=0
+                case 3: NumberChooser(9); SpecificTileChooser(TileGrain); break; // x=3 y=0
                 case 4: break; // x=4 y=0
                 case 5: break; // x=5 y=0
                 case 6: break; // x=6 y=0
                 case 10: break; // x=0 y=1
-                case 11: TileChooserStone(); NumberChooser5(); break; // x=1 y=1
-                case 12: TileChooserWood(); NumberChooser8(); break; // x=2 y=1
-                case 13: TileChooserWood(); NumberChooser11(); break; // x=3 y=1
-                case 14: TileChooserGrain(); NumberChooser12(); break; // x=4 y=1
-                case 15: TileChooserGold(); NumberChooser10(); break; // x=5 y=1
+                case 11: NumberChooser(5); SpecificTileChooser(TileStone); break; // x=1 y=1
+                case 12: NumberChooser(8); SpecificTileChooser(TileWood); break; // x=2 y=1
+                case 13: NumberChooser(11); SpecificTileChooser(TileWood); break; // x=3 y=1
+                case 14: NumberChooser(12); SpecificTileChooser(TileGrain); break; // x=4 y=1
+                case 15: NumberChooser(10); SpecificTileChooser(TileGold); break; // x=5 y=1
                 case 16: break; // x=6 y=1
                 case 20: break; // x=0 y=2
-                case 21: TileChooserGrain(); NumberChooser6(); break; // x=1 y=2
-                case 22: TileChooserGold(); NumberChooser3(); break; // x=2 y=2
-                case 23: TileChooserSand(); break; // x=3 y=2
-                case 24: TileChooserStone(); NumberChooser6(); break; // x=4 y=2
-                case 25: TileChooserSheep(); NumberChooser2(); break; // x=5 y=2
+                case 21: NumberChooser(6); SpecificTileChooser(TileGrain); break; // x=1 y=2
+                case 22: NumberChooser(3); SpecificTileChooser(TileGold); break; // x=2 y=2
+                case 23: NumberChooser(7); SpecificTileChooser(TileSand); break; // x=3 y=2
+                case 24: NumberChooser(6); SpecificTileChooser(TileStone); break; // x=4 y=2
+                case 25: NumberChooser(2); SpecificTileChooser(TileSheep); break; // x=5 y=2
                 case 26: break; // x=6 y=2
                 case 30: break; // x=0 y=3
-                case 31: TileChooserSheep(); NumberChooser11(); break; // x=1 y=3
-                case 32: TileChooserGrain(); NumberChooser4(); break; // x=2 y=3
-                case 33: TileChooserWood(); NumberChooser3(); break; // x=3 y=3
-                case 34: TileChooserSheep(); NumberChooser4(); break; // x=4 y=3
-                case 35: TileChooserWood(); NumberChooser9(); break; // x=5 y=3
+                case 31: NumberChooser(11); SpecificTileChooser(TileSheep); break; // x=1 y=3
+                case 32: NumberChooser(4); SpecificTileChooser(TileGrain); break; // x=2 y=3
+                case 33: NumberChooser(3); SpecificTileChooser(TileWood); break; // x=3 y=3
+                case 34: NumberChooser(4); SpecificTileChooser(TileSheep); break; // x=4 y=3
+                case 35: NumberChooser(9); SpecificTileChooser(TileWood); break; // x=5 y=3
                 case 36: break; // x=6 y=3
                 case 40: break; // x=0 y=4
                 case 41: break; // x=1 y=4
-                case 42: TileChooserSheep(); NumberChooser5(); break; // x=2 y=4
-                case 43: TileChooserGold(); NumberChooser8(); break; // x=3 y=4
-                case 44: TileChooserStone(); NumberChooser10(); break; // x=4 y=4
+                case 42: NumberChooser(5); SpecificTileChooser(TileSheep); break; // x=2 y=4
+                case 43: NumberChooser(8); SpecificTileChooser(TileGold); break; // x=3 y=4
+                case 44: NumberChooser(10); SpecificTileChooser(TileStone); break; // x=4 y=4
                 case 45: break; // x=5 y=4
                 case 46: break; // x=6 y=4
             }
         }
 
         // Functions for adding the specific tile to the coordinate in the switch (above)
-        void TileChooserSheep()
+
+        void SpecificTileChooser(PackedScene Tile)
         {
-            Spatial sheepTile = (Spatial)TileSheep.Instance();
-            AddChild(sheepTile);
-            sheepTile.Translate(tileCoordsV3);
-            PutInTileList(sheepTile);
-        }
-        void TileChooserGold()
-        {
-            Spatial goldTile = (Spatial)TileGold.Instance();
-            AddChild(goldTile);
-            goldTile.Translate(tileCoordsV3);
-            PutInTileList(goldTile);
-        }
-        void TileChooserGrain()
-        {
-            Spatial grainTile = (Spatial)TileGrain.Instance();
-            AddChild(grainTile);
-            grainTile.Translate(tileCoordsV3);
-            PutInTileList(grainTile);
-        }
-        void TileChooserWood()
-        {
-            Spatial woodTile = (Spatial)TileWood.Instance();
-            AddChild(woodTile);
-            woodTile.Translate(tileCoordsV3);
-            PutInTileList(woodTile);
-        }
-        void TileChooserStone()
-        {
-            Spatial stoneTile = (Spatial)TileStone.Instance();
-            AddChild(stoneTile);
-            stoneTile.Translate(tileCoordsV3);
-            PutInTileList(stoneTile);
-        }
-        void TileChooserSand()
-        {
-            Spatial sandTile = (Spatial)TileSand.Instance();
-            AddChild(sandTile);
-            sandTile.Translate(tileCoordsV3);
-            PutInTileList(sandTile);
+            Spatial SpatialTile = (Spatial)Tile.Instance();
+            AddChild(SpatialTile);
+            SpatialTile.Translate(tileCoordsV3);
+
+            PutInTileList(SpatialTile);
         }
 
+
         // Functions for adding the specific number to the coordinate in the switch (above)
-        void NumberChooser2()
+        void NumberChooser(int Number)
         {
-            Spatial nr2 = (Spatial)Number2.Instance();
-            AddChild(nr2);
-            nr2.Translate(tileCoordsV3);
-        }
-        void NumberChooser3()
-        {
-            Spatial nr3 = (Spatial)Number3.Instance();
-            AddChild(nr3);
-            nr3.Translate(tileCoordsV3);
-        }
-        void NumberChooser4()
-        {
-            Spatial nr4 = (Spatial)Number4.Instance();
-            AddChild(nr4);
-            nr4.Translate(tileCoordsV3);
-        }
-        void NumberChooser5()
-        {
-            Spatial nr5 = (Spatial)Number5.Instance();
-            AddChild(nr5);
-            nr5.Translate(tileCoordsV3);
-        }
-        void NumberChooser6()
-        {
-            Spatial nr6 = (Spatial)Number6.Instance();
-            AddChild(nr6);
-            nr6.Translate(tileCoordsV3);
-        }
-        void NumberChooser8()
-        {
-            Spatial nr8 = (Spatial)Number8.Instance();
-            AddChild(nr8);
-            nr8.Translate(tileCoordsV3);
-        }
-        void NumberChooser9()
-        {
-            Spatial nr9 = (Spatial)Number9.Instance();
-            AddChild(nr9);
-            nr9.Translate(tileCoordsV3);
-        }
-        void NumberChooser10()
-        {
-            Spatial nr10 = (Spatial)Number10.Instance();
-            AddChild(nr10);
-            nr10.Translate(tileCoordsV3);
-        }
-        void NumberChooser11()
-        {
-            Spatial nr11 = (Spatial)Number11.Instance();
-            AddChild(nr11);
-            nr11.Translate(tileCoordsV3);
-        }   
-        void NumberChooser12()
-        {
-            Spatial nr12 = (Spatial)Number12.Instance();
-            AddChild(nr12);
-            nr12.Translate(tileCoordsV3);
+            if (Number != 7)
+            {
+                Spatial SpatialNumber = (Spatial)Numbers[Number].Instance();
+                AddChild(SpatialNumber);
+                SpatialNumber.Translate(tileCoordsV3);
+            }
+
+            LastNumber = Number;
         }
     }
     public override void _Ready()
     {
+        AddNumbers();
+        FillTilesDictionary();
         MakeGrid(GridRange);
     }
 }
