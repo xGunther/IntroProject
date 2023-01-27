@@ -45,7 +45,11 @@ After you have finished your turn, click on `End Turn` in the bottom right to en
 **Extra Information**: .tscn are scene files, .gd are scripts written in GDScript, and .cs are scripts written in C#. They can be opened within Godot.
 
 ## Credits
+#### Creators
 - Niels van den Oever    [GitHub](https://github.com/n1eles)
 - Gun Chen          [GitHub](https://github.com/xGunther)
 - Jonathan van Dijk      [GitHub](https://github.com/ThannerJonna)
 - Floris Dinkelberg       [GitHub](https://github.com/florisyours)
+
+#### Other
+- Hexagons from [here](https://opengameart.org/content/hexagon-kit)
