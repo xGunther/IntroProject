@@ -1,0 +1,152 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Menu Scenes/UI_Rect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Main/Players_Turn.tscn" type="PackedScene" id=2]
+[ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://All Sprites/Victory.png" type="Texture" id=5]
+[ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 0.686275 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 38
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0.368627, 0.352941, 0.352941, 0.6 )
+shadow_size = 3
+shadow_offset = Vector2( 2, 0 )
+anti_aliasing_size = 2.0
+
+[node name="VictoryScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VictoryRect" parent="." instance=ExtResource( 1 )]
+margin_left = 256.0
+margin_top = 192.0
+margin_right = -256.0
+margin_bottom = -176.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="VictoryLabel" parent="VictoryRect" instance=ExtResource( 2 )]
+margin_left = 616.0
+margin_top = 176.0
+margin_right = 792.0
+margin_bottom = 221.0
+custom_fonts/font = SubResource( 2 )
+text = "Victory"
+
+[node name="WinningName" parent="VictoryRect" instance=ExtResource( 2 )]
+margin_right = 1408.0
+margin_bottom = 712.0
+custom_fonts/font = SubResource( 2 )
+text = "Player 1 has won!!!"
+
+[node name="Victory" type="Sprite" parent="VictoryRect/WinningName"]
+position = Vector2( 704, 88 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="Exit_Button" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
+margin_left = 768.0
+margin_top = 768.0
+margin_right = 1152.0
+margin_bottom = 832.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionsButton")
+custom_colors/font_color_focus = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+text = "Exit"
+script = ExtResource( 6 )
+reference_path = "res://Menu Scenes/TitleScreen.tscn"
