@@ -12,6 +12,8 @@ public class DiceValueManager : Node
     public static Builder_Node Builder;
     public static Node InventoryManager;
     public static List<Label> ResourceLabels = new List<Label>();
+    public static Button DiceButton;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -19,12 +21,7 @@ public class DiceValueManager : Node
         InventoryManager = GetNode("../InventoryManager");
         Board = GetNode<Hex_GridCS>("../Hex_GridCS");
         Builder = GetNode<Builder_Node>("../Builder_Node");
-
-        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Gold/Gold_Count"));
-        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Sheep/Sheep_Count"));
-        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Stone/Stone_Count"));
-        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Wood/Wood_Count"));
-        ResourceLabels.Add(GetNode<Label>("../UI_Rect_Resources/Panel_Grain/Grain_Count"));
+        DiceButton = GetNode<Button>("../Throw_Dice_Button");
     }
 
 //This function checks every possible die sum and checks the corresponding tiles with that particular number on the board for settlements or cities
@@ -111,6 +108,7 @@ public class DiceValueManager : Node
 	             
             }
         UpdateResources();
-    }	
+        DiceButton.Show();
+    }
 
 }

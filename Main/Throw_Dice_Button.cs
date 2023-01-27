@@ -28,7 +28,7 @@ public class Throw_Dice_Button : Button
             Grid.Show();
             dieTimer.Start();
         }
-
+        this.Hide();
     }
 
     public int GetDieSide(RigidBody die)
