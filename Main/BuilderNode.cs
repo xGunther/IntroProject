@@ -281,11 +281,11 @@ public class BuilderNode : Node
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close
     private bool AllowedSettlement(Vector3 Check)
     {
-        float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
+        float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
         foreach (Placeable Other in AllBuildings)
         {
-            if(Check.DistanceTo(Other.Translation) < 0.8 * size)
+            if(Check.DistanceTo(Other.Translation) < 0.8 * Size)
             {
                 return false;
             }
@@ -297,26 +297,34 @@ public class BuilderNode : Node
     //Will execute all checks related to placing a road and if there isn't a road on the same spot
     private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads)
     {
-        float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
+        float Size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
         int CurrentRound= DiceValueManager.TurnCount;
 
         foreach(Road Another in AllWays)
         {
-            if(Check.DistanceTo(Another.Translation) < 0.25 * size)//the roads are on the same edge of a tile, practically in the same spot
+            if(Check.DistanceTo(Another.Translation) < 0.25 * Size)//the roads are on the same edge of a tile, practically in the same spot
             {
                 return false;
             }
         }
         //No road in the same spot
-        foreach(Road Owned in OwnedRoads)
+
+        if (CurrentRound > 2)//after the first two rounds, the players are limited in where they can place a road
         {
-            if(Check.DistanceTo(Owned.Translation) < 0.7 * size && CurrentRound>2)//there is a road that is only one tile edge away, or 'directly connects'
+            foreach (Road Owned in OwnedRoads)
             {
-                return true;
+                if (Check.DistanceTo(Owned.Translation) < 0.7 * Size && CurrentRound > 2)//there is a road that is only one tile edge away, or 'directly connects'
+                {
+                    return true;
+                }
             }
         }
-        //there are no roads of this player that 'directly connect'; they're all too far away
+        else//there are no limitations anymore, so the player gets to place a road
+        {
+            return true;
+        }
+        //there are no roads of this player that 'directly connect'; they're all too far away. And it matters
         return false;
     }
 }
