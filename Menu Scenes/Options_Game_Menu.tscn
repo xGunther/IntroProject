@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Menu Scenes/New_Game_ButtonV4.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Menu Scenes/Menu_Buttons.gd" type="Script" id=2]
 [ext_resource path="res://COPRGTL.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Menu Scenes/UI_Button.tres" type="StyleBox" id=4]
+[ext_resource path="res://Menu Scenes/OptionsMenu.gd" type="Script" id=5]
+[ext_resource path="res://Menu Scenes/Menu_Music.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.756863, 0.662745, 0.109804, 1 )
@@ -17,6 +19,14 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=10]
+size = 57
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 38
@@ -76,25 +86,47 @@ shadow_size = 3
 shadow_offset = Vector2( 2, 0 )
 anti_aliasing_size = 2.0
 
-[sub_resource type="DynamicFont" id=10]
-size = 57
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 3 )
-
 [node name="Options_Game" type="Panel"]
 margin_right = 1920.0
 margin_bottom = 1080.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 5 )
 
-[node name="BackButton" parent="." instance=ExtResource( 1 )]
-pause_mode = 2
-margin_left = 16.0
+[node name="Box" type="Panel" parent="."]
+margin_left = 384.0
+margin_top = 64.0
+margin_right = 1536.0
+margin_bottom = 704.0
+rect_pivot_offset = Vector2( 528, 168 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="Menu_Music_Slider" type="Label" parent="Box"]
+margin_left = 400.0
+margin_top = 64.0
+margin_right = 755.0
+margin_bottom = 127.0
+custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "Menu Music"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer" parent="Box/Menu_Music_Slider" instance=ExtResource( 6 )]
+volume_db = -80.0
+
+[node name="HSlider" type="HSlider" parent="Box/Menu_Music_Slider"]
+margin_left = -336.0
 margin_top = 16.0
-margin_right = 168.0
-margin_bottom = 80.0
+margin_right = 688.0
+margin_bottom = 176.0
+
+[node name="BackButton" parent="Box/Menu_Music_Slider" instance=ExtResource( 1 )]
+pause_mode = 2
+margin_left = -392.0
+margin_top = -56.0
+margin_right = -240.0
+margin_bottom = 8.0
 focus_neighbour_top = NodePath("../ExitButton")
 focus_neighbour_bottom = NodePath("../OptionsButton")
 custom_colors/font_color_focus = Color( 0.254902, 0.160784, 0.160784, 1 )
@@ -105,36 +137,6 @@ custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = SubResource( 5 )
 text = "Back"
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 reference_path = "res://Menu Scenes/TitleScreen.tscn"
 
-[node name="Box" type="Panel" parent="."]
-margin_left = 384.0
-margin_top = 64.0
-margin_right = 1536.0
-margin_bottom = 704.0
-rect_pivot_offset = Vector2( 528, 168 )
-custom_styles/panel = SubResource( 1 )
-
-[node name="Menu_Music_Slider" type="Label" parent="."]
-margin_left = 784.0
-margin_top = 128.0
-margin_right = 1139.0
-margin_bottom = 191.0
-custom_colors/font_color = Color( 0.254902, 0.160784, 0.160784, 1 )
-custom_fonts/font = SubResource( 10 )
-text = "Menu Music"
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="HSlider" type="HSlider" parent="Menu_Music_Slider"]
-margin_left = -336.0
-margin_top = 16.0
-margin_right = 688.0
-margin_bottom = 176.0
-__meta__ = {
-"_edit_lock_": true
-}
+[connection signal="value_changed" from="Box/Menu_Music_Slider/HSlider" to="." method="_on_HSlider_value_changed"]
