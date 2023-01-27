@@ -22,5 +22,5 @@ func _on_End_Turn_Button_pressed():
 	updateLabel()
 
 #Sets the first player's name to the current turn in the turn label
-func _on_LineEdit_text_changed(new_text):
-	$"../UI_Rect_Turn/Players_Turn".text =  new_text + "'s Turn"
+func _on_LineEdit_text_changed(NewText):
+	$"../UI_Rect_Turn/Players_Turn".text =  NewText + "'s Turn"
