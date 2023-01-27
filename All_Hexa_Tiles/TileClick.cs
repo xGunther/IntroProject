@@ -15,6 +15,7 @@ public class TileClick : Area
         if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.ButtonIndex == (int)ButtonList.Left && eventMouseButton.Pressed)
         {
             CollisionShape Shape;
+            Vector3 RotationOfNode;
             bool Corner;
 
             // Checks the name so that the coordinates can be received from the child node
@@ -30,10 +31,11 @@ public class TileClick : Area
                 Corner = true;
             }
             Vector3 LastCoordinates = Shape.GlobalTranslation;
+            RotationOfNode = Shape.Rotation;
 
             // Tells Main that the tile has been clicked at the coordinates given
             TileClickManager Grid = GetNode<TileClickManager>("/root/TileClickManager");
-            Grid.ClickedAt(LastCoordinates, Corner); 
+            Grid.ClickedAt(LastCoordinates, Corner, RotationOfNode); 
         }
     }
 

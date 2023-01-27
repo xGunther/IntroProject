@@ -48,7 +48,6 @@ public class Hex_GridCS : GridMap
     {
         Tiles.Add(listTile);
         TilesDictionary[LastNumber].Add(new Tile(listTile, LastNumber));
-
     }
 
     public void FillTilesDictionary()

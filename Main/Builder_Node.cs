@@ -76,7 +76,7 @@ public class Builder_Node : Node
     }
 
     //This method will create the nodes/placement instances and brings all the relevant functions together to make that happen
-    public void Build(Vector3 Plaats, bool IsCorner)
+    public void Build(Vector3 Plaats, bool IsCorner, Vector3 Rotation)
     {
         CurrentPlayer = (int)DVM.Get("CurrentTurn");
 
@@ -142,9 +142,9 @@ public class Builder_Node : Node
                 NewBuild.Translate(new Vector3(0, 0.334f, 0));
             }
         }
-        else if(SelectedBuild == "road")
+        else if(SelectedBuild == "road" && !IsCorner)
         {
-            if (AllowedRoad(Plaats, RoadList))
+            if (AllowedRoad(Plaats, RoadList, RelevantList))
             {
                 Road NewBuild = CreateRoadInstance();
                 NewBuild.Translate(Plaats);
@@ -152,6 +152,10 @@ public class Builder_Node : Node
                 AddChild(NewBuild);
                 AllWays.Add(NewBuild);
                 RelevantList.Add(NewBuild);
+                NewBuild.Translate(new Vector3(0, 0.1667f, 0));
+                NewBuild.Rotation = Rotation;
+                GD.Print($"{NewBuild.Rotation} {Rotation}");
+
             }
         }
             
@@ -273,7 +277,7 @@ public class Builder_Node : Node
     }
 
     //Will execute all checks related to placing a road and if there isn't a road on the same spot
-    private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads)
+    private bool AllowedRoad(Vector3 Check, List<Road> OwnedRoads, List<Placeable> OwnedBuildings)
     {
         float size = Board.TileSize;//TileSize describes the distance between two opposite sides of the hexagons
 
@@ -287,9 +291,17 @@ public class Builder_Node : Node
             }
         }
         //No road in the same spot
-        foreach(Road Owned in OwnedRoads)
+        foreach(Road OwnedRoad in OwnedRoads)
         {
-            if(Check.DistanceTo(Owned.Translation) < 0.7 * size && TurnCount>2)//there is a road that is only one tile edge away, or 'directly connects'
+            if(Check.DistanceTo(OwnedRoad.Translation) < 0.7 * size && TurnCount>2)//there is a road that is only one tile edge away, or 'directly connects'
+            {
+                return true;
+            }
+        }
+
+        foreach(Placeable OwnedBuilding in OwnedBuildings)
+        {
+            if (Check.DistanceTo(OwnedBuilding.Translation) < 0.7 * size)//there is a building that is only one tile edge away, or 'directly connects'
             {
                 return true;
             }
