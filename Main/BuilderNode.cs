@@ -32,7 +32,7 @@ public class BuilderNode : Node
 
     //saves which player is currently playing, with standard value, in case real value can't be retrieved.
     private int CurrentPlayer = 1;
-    private string currentColour = "red";
+    private string CurrentColour = "red";
 
     //Red Builds
     private PackedScene RCity = (PackedScene)GD.Load("res://All Roads, Cities and Numbers/Red Placeables/Red_City.tscn");
@@ -117,23 +117,22 @@ public class BuilderNode : Node
 
         //make placeable and add it to the list
         if (SelectedBuild == "city")
-        {       
-            foreach (Placeable Placed in RelevantList)
-            {       
-                if (Placed.Translation == Plaats)
-                {
-                    Placed.Hide();
-                    AllBuildings.Remove(Placed);
-
-                    Placeable NewBuild = CreateBuidingInstance();
-                    NewBuild.Translate(Plaats);
-                    
-                    AddChild(NewBuild);
-                    AllBuildings.Add(NewBuild);
-                    RelevantList.Add(NewBuild);
-                    ActuallyPlaced= true;
-                }
+        {
+            Placeable CurrentSettlement = AllowedCity(Plaats, RelevantList);
                 
+            if (CurrentSettlement != null)
+            {   
+                CurrentSettlement.Hide();
+                AllBuildings.Remove(CurrentSettlement);
+                Placeable NewBuild = CreateBuidingInstance();
+                NewBuild.Translate(Plaats);
+                    
+                AddChild(NewBuild);
+                AllBuildings.Add(NewBuild);
+                RelevantList.Add(NewBuild);
+                ActuallyPlaced= true;
+
+                SelectedBuild = null;
             }
         }
         else if(SelectedBuild == "settlement")
@@ -147,6 +146,8 @@ public class BuilderNode : Node
                 AllBuildings.Add(NewBuild);
                 RelevantList.Add(NewBuild);
                 ActuallyPlaced= true;
+
+                SelectedBuild = null;
             }
         }
         else if(SelectedBuild == "road")
@@ -159,6 +160,8 @@ public class BuilderNode : Node
                 AddChild(NewBuild);
                 AllWays.Add(NewBuild);
                 RelevantList.Add(NewBuild);
+
+                SelectedBuild = null;
             }
         }
             
@@ -172,9 +175,7 @@ public class BuilderNode : Node
                 case 3: GreenScore++; break;
                 case 4: YellowScore++; break;
             }
-        }   
-        
-        SelectedBuild = null;
+        }
     }
 
     //Takes player and values and creates and instances the correct placeable/building
@@ -194,7 +195,7 @@ public class BuilderNode : Node
                         Result = (Placeable)RCity.Instance();
                         break;
                 }
-                currentColour = "red";
+                CurrentColour = "red";
                 break;
             case 2://Blue player's turn
                 switch (SelectedBuild)
@@ -206,7 +207,7 @@ public class BuilderNode : Node
                         Result = (Placeable)BCity.Instance();
                         break;
                 }
-                currentColour = "blue";
+                CurrentColour = "blue";
                 break;
             case 3: //Green player's turn
                 switch (SelectedBuild)
@@ -218,7 +219,7 @@ public class BuilderNode : Node
                         Result = (Placeable)GCity.Instance();
                         break;
                 }
-                currentColour = "green";
+                CurrentColour = "green";
                 break;
             case 4: //Yellow player's turn
                 switch (SelectedBuild)
@@ -230,7 +231,7 @@ public class BuilderNode : Node
                         Result = (Placeable)YCity.Instance();
                         break;
                 }
-                currentColour = "yellow";
+                CurrentColour = "yellow";
                 break;
         }
         return Result;
@@ -245,22 +246,37 @@ public class BuilderNode : Node
         {
             case 1://Red player's turn
                 Result = (Road)RRoad.Instance();
-                currentColour = "red";
+                CurrentColour = "red";
                 break;
             case 2://Blue player's turn
                 Result = (Road)BRoad.Instance();
-                currentColour = "blue";
+                CurrentColour = "blue";
                 break;
             case 3: //Green player's turn
                 Result = (Road)GRoad.Instance();
-                currentColour = "green";
+                CurrentColour = "green";
                 break;
             case 4: //Yellow player's turn
                 Result = (Road)YRoad.Instance();
-                currentColour = "yellow";
+                CurrentColour = "yellow";
                 break;
         }
         return Result;
+    }
+
+    //Will execute all checks related to placing a city, like whether there is a settlement there. It returns the relevant settlement or null
+    private Placeable AllowedCity(Vector3 Check, List<Placeable> TheList)
+    {
+        foreach (Placeable Placed in TheList)
+        {
+            if (Placed.Translation == Check)
+            {
+                return Placed;
+            }
+
+        }
+        //no settlement here of this player
+        return null;
     }
 
     //Will execute all checks related to placing a settlement and if there is not anther settlement too close

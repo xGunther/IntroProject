@@ -2,6 +2,12 @@
 
 [ext_resource path="res://All Roads, Cities and Numbers/Green Placeables/Green_City.cs" type="Script" id=1]
 
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="CubeMesh" id=6]
+material = SubResource( 5 )
+size = Vector3( 8, 3, 4 )
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 1, 0, 1 )
@@ -15,23 +21,18 @@ albedo_color = Color( 0, 1, 0, 1 )
 [sub_resource type="PrismMesh" id=4]
 material = SubResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0, 1, 0, 1 )
-
-[sub_resource type="CubeMesh" id=6]
-material = SubResource( 5 )
-size = Vector3( 8, 3, 4 )
-
 [node name="City" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 0.333, 0, 0, 0, 0.333, 0, 0, 0, 0.333, 0, 0, 0 )
+mesh = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance2"]
 transform = Transform( 2, 0, 0, 0, 1, 0, 0, 0, 2, 2, 2, 0 )
 mesh = SubResource( 2 )
+skeleton = NodePath("../..")
 
-[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance2/MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
 mesh = SubResource( 4 )
-
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-mesh = SubResource( 6 )
