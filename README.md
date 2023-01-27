@@ -21,8 +21,8 @@ To play the game, simply download the .exe file (Ziggurat.exe) and run it. As fo
 ## How to Play
 To get a good idea of how to play the game, read the rules [here](https://www.catan.com/sites/default/files/2021-06/catan_base_rules_2020_200707.pdf). Note that there is no form of trading at all in our version. Too many pages? Read below!
 
-#### Too lazy; didn't read
-In Catan, your goal is to place settlements and cities in order to gain the resources that the dice throw around those buildings. You can also place roads in order to expand your kingdom, as you are only allowed to place settlements or cities next to roads after the second round of turns. The crux is that you need resources to build. Each settlement is worth 1 victory point and each city is worth 2 victory points. *hier nog verder uitleggen, ik snap catan niet*
+#### Too long; didn't read
+In Catan, your goal is to place settlements and cities in order to gain the resources that the dice throw around those buildings. You can also place roads in order to expand your kingdom, as you are only allowed to place settlements or cities next to roads after the second round of turns. The crux is that you need resources to build. Each settlement is worth 1 victory point and each city is worth 2 victory points. In the first two rounds, you can place 1 settlement and 1 road adjacent to that settlement. After that, you start rolling the dice and getting resources for the number thrown. The first to 10 victory points wins!
 
 ## Controls
 
