@@ -11,7 +11,6 @@ public class Throw_Dice_Button : Button
     public override void _Ready()
     {
         float DieWaitTime = 4; // AMOUNT OF TIME TO WAIT BEFORE THE DICE DISAPPEAR
-
         Timer dieTimer = GetNode<Timer>("Delay");
         dieTimer.WaitTime = DieWaitTime;
     }
@@ -22,7 +21,7 @@ public class Throw_Dice_Button : Button
 
         // Only throws new die if the timer is on zero.
         // Currently missing an extra check to determine whether they are allowed to throw them game-wise
-        if (dieTimer.TimeLeft == 0)
+        if (dieTimer.TimeLeft == 0 && DiceValueManager.TurnCount > 2)
         {
             Spatial Grid = GetNode<Spatial>("../Die_Grid");
             Grid.Show();

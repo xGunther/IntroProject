@@ -166,22 +166,22 @@ public class DiceValueManager : Node
     //If the button has been pressed it will go to the next turn and resets the boolean value of the button press
     public void EndTurn()
     {
-        if (ButtonPressedOrNot == false)
+        if (ButtonPressedOrNot == false && TurnCount > 2)
         {
             ShowWarningMessage();
         }
 		
-	        else if(ButtonPressedOrNot == true)
+	    else
+        {
+            CurrentTurn += 1;
+            if (CurrentTurn > playerCount)
             {
-                CurrentTurn += 1;
-                if (CurrentTurn > playerCount)
-                {
                 CurrentTurn = 1;
                 TurnCount++;
-                } 
-                ButtonPressedOrNot = false;
+            } 
+            ButtonPressedOrNot = false;
 	             
-            }
+        }
         UpdateResources();
         DiceButton.Show();
         CheckVictoryScreen();
